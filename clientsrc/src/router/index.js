@@ -14,7 +14,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/dashboard/',
+      path: '/dashboard/:id',
       name: 'dashboard',
       component: dashboard,
       beforeEnter: authGuard

@@ -36,7 +36,10 @@ export default new Vuex.Store({
     async getProfile({ commit }) {
       try {
         let res = await api.get("/profile")
+        debugger
         commit("setUser", res.data)
+
+        router.push({ name: "dashboard", params: { id: res.data.email } });
       } catch (err) {
         console.error(err)
       }
