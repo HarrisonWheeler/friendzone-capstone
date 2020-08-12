@@ -11,6 +11,7 @@ async function createProfileIfNeeded(profile, user) {
   if (!profile) {
     profile = await dbContext.Profile.create({
       ...user,
+      newUser: true,
       subs: [user.sub]
     });
   }

@@ -23,26 +23,69 @@
         <h1>COMING SOON......</h1>
       </div>
     </div>
+    <div v-if="profile.id && profile.newUser">
+      <profileModal id="id">
+        <div slot="body">
+          <input type="text" class="form-control text-wrap" placeholder="Enter Username...." />
+          <input
+            type="text"
+            class="form-control text-wrap"
+            placeholder="Enter Profile Picture Url...."
+          />
+          <div class="input-group">
+            <input
+              v-model="gamerTags"
+              type="text"
+              class="form-control"
+              aria-label="Text input with dropdown button"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary dropdown-toggle"
+                type="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >PICK YOUR PLATFORM</button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" @change="gamerTags.pc">PC</a>
+                <a class="dropdown-item" @change="gamerTags.xbox">XBOX</a>
+                <a class="dropdown-item" @change="gamerTags.playstation">PLAYSTATION</a>
+                <a class="dropdown-item" @change="gamerTags.nintendo">NINTENDO</a>
+                <div role="separator" class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </profileModal>
+    </div>
   </div>
 </template>
 
 
 <script>
+import ProfileModal from "../components/ProfileModal";
 export default {
   name: "dashboard",
   data() {
-    return {};
+    return {
+      gamerTags: {
+        pc: "",
+        playstation: "",
+        xbox: "",
+        nintendo: "",
+      },
+    };
   },
-  mounted() {
-    this.$store.dispatch("getMyProfile");
-  },
+  mounted() {},
   computed: {
-    userData() {
-      return this.$store.state.dashboard;
+    profile() {
+      return this.$store.state.profile;
     },
   },
   methods: {},
-  components: {},
+  components: { ProfileModal },
 };
 </script>
 
