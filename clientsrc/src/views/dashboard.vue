@@ -33,8 +33,10 @@
             placeholder="Enter Profile Picture Url...."
           />
           <div class="input-group">
+            <!-- check out vue select -->
             <input
-              v-model="gamerTags"
+              v-model="gamerTagInput"
+              @input="gamerTags[targetTag] = gamerTagInput"
               type="text"
               class="form-control"
               aria-label="Text input with dropdown button"
@@ -48,7 +50,7 @@
                 aria-expanded="false"
               >PICK YOUR PLATFORM</button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" @change="gamerTags.pc">PC</a>
+                <a class="dropdown-item" @change="targetTag = 'pc'">PC</a>
                 <a class="dropdown-item" @change="gamerTags.xbox">XBOX</a>
                 <a class="dropdown-item" @change="gamerTags.playstation">PLAYSTATION</a>
                 <a class="dropdown-item" @change="gamerTags.nintendo">NINTENDO</a>
@@ -76,6 +78,7 @@ export default {
         xbox: "",
         nintendo: "",
       },
+      targetTag: "pc",
     };
   },
   mounted() {},

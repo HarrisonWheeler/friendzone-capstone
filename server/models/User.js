@@ -16,13 +16,17 @@ const TagsSchema = new Schema({
 const User = new Schema({
   followers: { type: ObjectId, required: false },
   games: { type: ObjectId, required: false },
-  creatorEmail: { type: String, required: true },
   tags: [{ type: TagsSchema }],
   rep: { type: Number, required: false, default: 0 },
   username: { type: String, required: false },
   profilePicture: { type: String, required: false },
   videoClip: { type: String, required: false },
-  firstTimeUser: { type: Boolean, default: true }
+  firstTimeUser: { type: Boolean, default: true },
+  subs: [{ type: String, unique: true }],
+  email: { type: String, lowercase: true, unique: true },
+  name: { type: String, required: true },
+  picture: { type: String },
+  newUser: { type: Boolean, default: true }
 }, { timestamps: true, toJSON: { virtuals: false } })
 
 User.virtual("creator",

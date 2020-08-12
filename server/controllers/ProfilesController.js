@@ -9,7 +9,11 @@ export class ProfilesController extends BaseController {
     this.router
       .use(auth0provider.getAuthorizedUserInfo)
       .get("", this.getUserProfile)
-      .put("/:id", this.edit);
+      .put("/:id", this.edit)
+      .get('/:id', this.getById)
+      .post('', this.create)
+      .put('/:id', this.edit)
+      .delete('/:id', this.delete)
   }
   async getUserProfile(req, res, next) {
     try {
@@ -19,6 +23,21 @@ export class ProfilesController extends BaseController {
       next(error);
     }
   }
+
+  async getById(req, res, next) {
+    try {
+      let data = await profilesService.getById(req.params.id)
+      return res.send(data)
+    } catch (error) { next(error) }
+  }
+  async create(req, res, next) {
+    try {
+      req.body.creatorEmail = req.userInfo.email
+      let data = await profilesService.create(req.body)
+      return res.status(201).send(data)
+    } catch (error) { next(error) }
+  }
+
   async edit(req, res, next) {
     try {
       req.body.creatorId = req.user.sub;
@@ -26,5 +45,11 @@ export class ProfilesController extends BaseController {
     } catch (error) {
       next(error);
     }
+  }
+  async delete(req, res, next) {
+    try {
+      await profilesService.delete(req.params.id, req.userInfo.email)
+      return res.send("Successfully deleted")
+    } catch (error) { next(error) }
   }
 }

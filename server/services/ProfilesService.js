@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext";
+import { BadRequest } from "../utils/Errors"
 
 // Private Methods
 
@@ -56,6 +57,26 @@ class ProfileService {
     }).select("email picture name");
     return profiles;
   }
+
+  async getById(id) {
+    let data = await dbContext.Profile.findOne({ _id: id })
+    if (!data) {
+      throw new BadRequest("Invalid ID or you do not own this user")
+    }
+    return data
+  }
+
+  async create(rawData) {
+    let data = await dbContext.Profile.create(rawData)
+    return data
+  }
+  async delete(id, userEmail) {
+    let data = await dbContext.Profile.findOneAndRemove({ _id: id, creatorEmail: userEmail });
+    if (!data) {
+      throw new BadRequest("Invalid ID or you do not own this user");
+    }
+  }
+
 
   /**
    * Returns a user profile from the Auth0 user object
