@@ -14,7 +14,6 @@ export class GamesController extends BaseController {
       .get('', this.getAll)
       .get('/:id', this.getById)
       .post('', this.create)
-      .put('/:id', this.edit)
       .delete('/:id', this.delete)
   }
 
@@ -42,14 +41,6 @@ export class GamesController extends BaseController {
       return res.status(201).send(data)
     } catch (error) { next(error) }
   }
-
-  async edit(req, res, next) {
-    try {
-      let data = await gameService.edit(req.params.id, req.userInfo.email, req.body)
-      return res.send(data)
-    } catch (error) { next(error) }
-  }
-
   async delete(req, res, next) {
     try {
       await gameService.delete(req.params.id, req.userInfo.email)
