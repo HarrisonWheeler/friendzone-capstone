@@ -6,9 +6,9 @@ const User = new Schema({
   followers: { type: ObjectId, required: false },
   games: { type: ObjectId, required: false },
   creatorEmail: { type: String, required: true },
-  tags: [{ type: String, enum: ["playstation", "xbox", "pc", "nintendo"] }],
-  rep: { type: Number, required: true },
-  username: { type: String, required: true },
+  tags: [{ type: String, required: false, enum: ["playstation", "xbox", "pc", "nintendo"] }],
+  rep: { type: Number, required: false, default: 0 },
+  username: { type: String, required: false },
   profilePicture: { type: String, required: false },
   videoClip: { type: String, required: false },
   firstTimeUser: { type: Boolean, default: true }
