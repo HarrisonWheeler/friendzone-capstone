@@ -4,6 +4,7 @@ import router from '../router/index'
 import { api } from "./AxiosService"
 import dashBoardModule from "../store/Dashboard"
 import profileModule from "../store/Profile"
+import { profileService } from './ProfileService'
 
 Vue.use(Vuex)
 
@@ -11,7 +12,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: {},
+    profile: {},
     games: [],
     gameDetails: {},
     dashboard: {}
@@ -19,7 +20,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setUser(state, user) {
-      state.user = user
+      state.profile = user
     },
     setDashboard(state, data) {
       state.dashboard = data
@@ -33,13 +34,9 @@ export default new Vuex.Store({
     resetBearer() {
       api.defaults.headers.authorization = "";
     },
-    async getProfile({ commit }) {
+    async getProfile({ commit }, cb = () => { }) {
       try {
-        let res = await api.get("/profile")
-        debugger
-        commit("setUser", res.data)
-
-        router.push({ name: "dashboard", params: { id: res.data.email } });
+        profileService.getProfile(cb)
       } catch (err) {
         console.error(err)
       }

@@ -14,7 +14,7 @@ export default {
   actions: {
     async getMyProfile({ commit, dispatch }, email) {
       let res = await api.get("user/" + email.toLowerCase())
-      debugger
+
       console.log(res.data);
       dispatch("getDashboard", res.data)
     },
