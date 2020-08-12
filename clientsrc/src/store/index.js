@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import router from '../router/index'
 import { api } from "./AxiosService"
+import dashBoardModule from "../store/Dashboard"
+import profileModule from "../store/Profile"
 
 Vue.use(Vuex)
 
@@ -10,15 +12,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {},
-    boards: [],
-    activeBoard: {}
+    games: [],
+    gameDetails: {},
+    dashboard: {}
+
   },
   mutations: {
     setUser(state, user) {
       state.user = user
     },
-    setBoards(state, boards) {
-      state.boards = boards
+    setDashboard(state, data) {
+      state.dashboard = data
     }
   },
   actions: {
@@ -41,18 +45,7 @@ export default new Vuex.Store({
 
 
     //#region -- BOARDS --
-    getBoards({ commit, dispatch }) {
-      api.get('boards')
-        .then(res => {
-          commit('setBoards', res.data)
-        })
-    },
-    addBoard({ commit, dispatch }, boardData) {
-      api.post('boards', boardData)
-        .then(serverBoard => {
-          dispatch('getBoards')
-        })
-    }
+
     //#endregion
 
 
@@ -61,5 +54,9 @@ export default new Vuex.Store({
 
 
     //#endregion
+  },
+  modules: {
+    dashBoardModule,
+    profileModule
   }
 })
