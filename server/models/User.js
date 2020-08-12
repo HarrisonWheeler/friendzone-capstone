@@ -11,6 +11,7 @@ const User = new Schema({
   username: { type: String, required: true },
   profilePicture: { type: String, required: false },
   videoClip: { type: String, required: false },
+  firstTimeUser: { type: Boolean, default: true }
 }, { timestamps: true, toJSON: { virtuals: false } })
 
 User.virtual("creator",
