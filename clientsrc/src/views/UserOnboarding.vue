@@ -26,7 +26,7 @@
     <h1>ONBOARDING</h1>
     <profileModal id="id">
       <div slot="body">
-        <input type="text" class="form-control text-wrap" placeholder="Enter Username...." />
+        <input type="text" class="form-control text-wrap my-2" placeholder="Enter Username...." />
         <input
           type="text"
           class="form-control text-wrap"
@@ -36,12 +36,13 @@
           <input
             v-model="gamerTags"
             type="text"
-            class="form-control"
+            class="form-control my-2"
             aria-label="Text input with dropdown button"
+            placeholder="Enter GamerTag...."
           />
-          <div class="input-group-append">
+          <div class="input-group-prepend my-2">
             <button
-              class="btn btn-outline-secondary dropdown-toggle"
+              class="btn btn-dark dropdown-toggle"
               type="button"
               data-toggle="dropdown"
               aria-haspopup="true"
@@ -52,8 +53,6 @@
               <a class="dropdown-item" @change="gamerTags.xbox">XBOX</a>
               <a class="dropdown-item" @change="gamerTags.playstation">PLAYSTATION</a>
               <a class="dropdown-item" @change="gamerTags.nintendo">NINTENDO</a>
-              <div role="separator" class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
             </div>
           </div>
         </div>
@@ -77,7 +76,9 @@ export default {
       },
     };
   },
-  mounted() {},
+  mounted() {
+    $("#id").modal("show");
+  },
   computed: {
     profile() {
       return this.$store.state.profile;
