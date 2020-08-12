@@ -7,8 +7,8 @@ class UserService {
     return await dbContext.User.find({ creatorEmail: userEmail }).populate("creator", "name picture")
   }
 
-  async getById(id, userEmail) {
-    let data = await dbContext.User.findOne({ _id: id, creatorEmail: userEmail })
+  async getById(id) {
+    let data = await dbContext.User.findOne({ creatorEmail: id })
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this user")
     }

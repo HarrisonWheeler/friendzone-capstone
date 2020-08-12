@@ -30,7 +30,7 @@ export class UserController extends BaseController {
 
   async getById(req, res, next) {
     try {
-      let data = await userService.getById(req.params.id, req.userInfo.email)
+      let data = await userService.getById(req.params.id)
       return res.send(data)
     } catch (error) { next(error) }
   }

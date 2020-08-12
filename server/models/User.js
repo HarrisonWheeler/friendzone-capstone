@@ -10,8 +10,8 @@ const User = new Schema({
   rep: { type: Number, required: true },
   username: { type: String, required: true },
   profilePicture: { type: String, required: false },
-  videoClip: { type: String, required: false }
-}, { timestamps: true, toJSON: { virtuals: true } })
+  videoClip: { type: String, required: false },
+}, { timestamps: true, toJSON: { virtuals: false } })
 
 User.virtual("creator",
   {
