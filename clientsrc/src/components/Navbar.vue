@@ -1,34 +1,64 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <router-link class="navbar-brand" :to="{ name: 'home' }">Kanban</router-link>
+  <nav class="navbar navbar-expand-lg navbar-secondary bg-secondary shadow-lg p-2">
+    <a class="navbar-brand" href="#">
+      <h3>FRIENDZONE</h3>
+    </a>
     <button
       class="navbar-toggler"
       type="button"
       data-toggle="collapse"
-      data-target="#navbarText"
-      aria-controls="navbarText"
+      data-target="#navbarColor03"
+      aria-controls="navbarColor03"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item" :class="{ active: $route.name == 'home' }">
-          <router-link :to="{ name: 'home' }" class="nav-link">Home</router-link>
+
+    <div class="collapse navbar-collapse" id="navbarColor03">
+      <ul class="navbar-nav mr-auto text-light">
+        <li class="nav-item">
+          <router-link :to="{ name: 'home' }" class="nav-link">HOME</router-link>
         </li>
-        <li
-          class="nav-item"
-          v-if="$auth.isAuthenticated"
-          :class="{ active: $route.name == 'dashboard' }"
-        >
-          <router-link class="nav-link" :to="{ name: 'dashboard' }">My Dashboard</router-link>
+        <li class="nav-item" v-if="$auth.isAuthenticated">
+          <router-link :to="{ name: 'dashboard' }" class="nav-link">MY DASHBOARD</router-link>
+        </li>
+        <li class="nav-item" v-if="$auth.isAuthenticated">
+          <router-link class="nav-link" :to="{ name: 'games' }">GAMES</router-link>
         </li>
       </ul>
-      <span class="navbar-text">
-        <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
-        <button class="btn btn-danger" @click="logout" v-else>logout</button>
-      </span>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarText"
+        aria-controls="navbarText"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto"></ul>
+        <form class="form-inline my-2 my-lg-0 mx-1">
+          <div class="input-group border-primary">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search..."
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+            />
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button" id="button-addon2">SEARCH</button>
+            </div>
+          </div>
+        </form>
+        <span class="navbar-text">
+          <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
+          <button class="btn btn-danger" @click="logout" v-else>logout</button>
+        </span>
+      </div>
     </div>
   </nav>
 </template>
@@ -57,4 +87,20 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped >
+.navbar .nav-item.active .nav-link {
+  background-color: rgb(39 43 48);
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+  background-image: none;
+  background-repeat: no-repeat;
+  -webkit-filter: none;
+  filter: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+.shadow-lg {
+  box-shadow: 0 0.25rem 2rem rgba(126, 126, 126, 0.616) !important;
+}
+</style>
