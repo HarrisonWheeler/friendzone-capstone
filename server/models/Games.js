@@ -2,17 +2,18 @@ import mongoose from "mongoose"
 let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
 
+
 const Games = new Schema({
   slug: { type: String, required: true },
   name: { type: String, required: true },
-  platforms: { type: String, required: true },
+  platforms: [{ type: String }],
   ratings: { type: Number, required: true },
-  backgroundImg: { type: String, required: true },
+  backgroundImg: { type: String, required: false },
   clip: { type: String, required: false },
   genre: { type: String, required: true },
   gameId: { type: String, required: true },
   creatorEmail: { type: String, required: true },
-}, { timestamps: true, toJSON: { virtuals: true } })
+}, { timestamps: true, toJSON: { virtuals: false } })
 
 
 Games.virtual("creator",
