@@ -1,3 +1,3 @@
-export const domain = "";
-export const audience = "";
-export const clientId = "";
+export const domain = "bcw-harrisonw.us.auth0.com";
+export const audience = "https://friendzone.com";
+export const clientId = "7sQZxfusj0GZgsvsuCNAs940IWDOoPp3";
