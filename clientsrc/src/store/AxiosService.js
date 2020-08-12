@@ -11,4 +11,9 @@ export const api = Axios.create({
   withCredentials: true
 });
 
+export const gameApi = Axios.create({
+  baseURL: "https://api.rawg.io/api/games?page_size=100",
+  timeout: 6000,
+})
+
 
