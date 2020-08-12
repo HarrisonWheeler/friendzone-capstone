@@ -2,14 +2,21 @@ import mongoose from "mongoose"
 let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
 
-const List = new Schema({
-  title: { type: String, required: true },
+
+const Games = new Schema({
+  slug: { type: String, required: true },
+  name: { type: String, required: true },
+  platforms: [{ type: String }],
+  ratings: { type: Number, required: true },
+  backgroundImg: { type: String, required: false },
+  clip: { type: String, required: false },
+  genre: { type: String, required: true },
+  gameId: { type: String, required: true },
   creatorEmail: { type: String, required: true },
-  boardId: { type: ObjectId, ref: 'Board', required: true }
-}, { timestamps: true, toJSON: { virtuals: true } })
+}, { timestamps: true, toJSON: { virtuals: false } })
 
 
-List.virtual("creator",
+Games.virtual("creator",
   {
     localField: "creatorEmail",
     ref: "Profile",
@@ -18,7 +25,7 @@ List.virtual("creator",
   })
 
 //CASCADE ON DELETE
-List.pre('deleteMany', function (next) {
+Games.pre('deleteMany', function (next) {
   //lets find all the lists and remove them
   Promise.all([
     //something like...
@@ -29,7 +36,7 @@ List.pre('deleteMany', function (next) {
 })
 
 //CASCADE ON DELETE
-List.pre('findOneAndRemove', function (next) {
+Games.pre('findOneAndRemove', function (next) {
   //lets find all the lists and remove them
   Promise.all([
     // dbContext.Task.deleteMany({ boardId: this._conditions._id })
@@ -38,4 +45,4 @@ List.pre('findOneAndRemove', function (next) {
     .catch(err => next(err))
 })
 
-export default List
+export default Games
