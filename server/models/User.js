@@ -2,11 +2,22 @@ import mongoose from "mongoose"
 let Schema = mongoose.Schema
 let ObjectId = Schema.Types.ObjectId
 
+
+const TagsSchema = new Schema({
+  consoles: [{ type: String, required: false, enum: ["playstation", "xbox", "pc", "nintendo"] }],
+  gamertags: [{
+    pc: "",
+    xbox: "",
+    playstation: "",
+    nintendo: ""
+  }]
+})
+
 const User = new Schema({
   followers: { type: ObjectId, required: false },
   games: { type: ObjectId, required: false },
   creatorEmail: { type: String, required: true },
-  tags: [{ type: String, required: false, enum: ["playstation", "xbox", "pc", "nintendo"] }],
+  tags: [{ type: TagsSchema }],
   rep: { type: Number, required: false, default: 0 },
   username: { type: String, required: false },
   profilePicture: { type: String, required: false },
