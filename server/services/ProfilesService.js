@@ -42,7 +42,11 @@ function sanitizeBody(body) {
     addresses: body.addresses,
     notes: body.notes,
     picture: body.picture,
-    firstTimeUser: body.firstTimeUser
+    firstTimeUser: body.firstTimeUser,
+    follows: body.followers,
+    games: body.games,
+    rep: body.rep,
+    videoClip: body.videoClip
   };
   return writable;
 }
