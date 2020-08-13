@@ -4,6 +4,7 @@ import router from '../router/index'
 import { api } from "./AxiosService"
 import dashBoardModule from "../store/Dashboard"
 import profileModule from "../store/Profile"
+import gamesModule from "../store/GamesModule"
 import { profileService } from './ProfileService'
 
 Vue.use(Vuex)
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     setDashboard(state, data) {
       state.dashboard = data
+    },
+    setGames(state, games) {
+      state.games = games
     }
   },
   actions: {
@@ -57,6 +61,7 @@ export default new Vuex.Store({
   },
   modules: {
     dashBoardModule,
-    profileModule
+    profileModule,
+    gamesModule
   }
 })
