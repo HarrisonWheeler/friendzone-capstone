@@ -1,19 +1,32 @@
 <template>
-  <div class="home">
-    <h1>This is your home page.</h1>
+  <div>
+    <h2 class="text-danger">Trending Games</h2>
+    <div class="home row justify-content-center">
+      <games v-for="game in games" :gameData="game" :key="game.id" />
+    </div>
   </div>
 </template>
 
 
 <script>
+import Games from "../components/Games";
 export default {
   name: "home",
   data() {
     return {};
   },
-  computed: {},
+  mounted() {
+    this.$store.dispatch("getGames");
+  },
+  computed: {
+    games() {
+      return this.$store.state.games;
+    },
+  },
   methods: {},
-  components: {}
+  components: {
+    Games,
+  },
 };
 </script>
 

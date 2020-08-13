@@ -33,14 +33,14 @@ export default new Router({
       beforeEnter(to, from, next) {
         async function isNew() {
           if (!store.state.profile.id) {
-            return profileService.getProfile(() => {
-              if (store.state.profile.newUser) {
+            return await profileService.getProfile((profile) => {
+              if (profile.firstTimeUser) {
                 return next("/onBoarding")
               }
               next()
             })
           }
-          if (store.state.profile.newUser) {
+          if (store.state.profile.firstTimeUser) {
             return next("/onBoarding")
           }
           next()

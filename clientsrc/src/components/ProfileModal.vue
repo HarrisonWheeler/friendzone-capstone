@@ -9,19 +9,14 @@
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
-      <div class="modal-content bg-secondary p-2">
+      <div class="modal-content bg-light p-2">
         <div class="modal-header">
-          <slot name="header">Title</slot>
+          <slot name="header">Create Your Profile</slot>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <slot name="body" />
-        <div class="modal-footer">
-          <slot name="footer">
-            <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
-          </slot>
-        </div>
+        <slot class="bg-secondary" name="body" />
       </div>
     </div>
   </div>
