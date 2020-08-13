@@ -9,7 +9,7 @@
       <h3 class="mt-3">{{gameData.name}}</h3>
       <p class>{{gameData.genres[0].name}}/{{gameData.genres[1].name}}</p>
       <p
-        :class="gameData.rating > 4 ? 'text-success' : 'text-danger'"
+        :class="gameData.rating >= 4 ? 'text-success' : 'text-danger'"
       >Rating: {{Math.floor(gameData.rating)}}/5</p>
       <p class="text-warning">Metacritic Score: {{gameData.metacritic}}</p>
       <p @click="platformVisible = !platformVisible">
