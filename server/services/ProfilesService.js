@@ -12,7 +12,7 @@ async function createProfileIfNeeded(profile, user) {
   if (!profile) {
     profile = await dbContext.Profile.create({
       ...user,
-      newUser: true,
+      firstTimeUser: true,
       subs: [user.sub]
     });
   }
@@ -41,7 +41,8 @@ function sanitizeBody(body) {
     phones: body.phones,
     addresses: body.addresses,
     notes: body.notes,
-    picture: body.picture
+    picture: body.picture,
+    firstTimeUser: body.firstTimeUser
   };
   return writable;
 }
@@ -100,7 +101,10 @@ class ProfileService {
 ​    * @param {any} body Updates to apply to user object
 ​    */
   async updateProfile(user, body) {
-    let update = sanitizeBody(body);
+    let update = sanitizeBody(body)
+    if (body.name.length > 0) {
+      body.firstTimeUser = false
+    }
     let profile = await dbContext.Profile.findOneAndUpdate(
       { email: user.email },
       { $set: update },
