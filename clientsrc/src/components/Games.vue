@@ -3,7 +3,7 @@
     <img
       :src="gameData.background_image"
       class="card-image-top img-thumbnail align-self-center mt-1"
-      @click="openDeetz(id)"
+      @click="openDeetz(gameData.id)"
     />
     <div class="card-body">
       <h3 class="mt-3">{{gameData.name}}</h3>
@@ -47,7 +47,9 @@ export default {
     //   }
     //   return platforms.toString();
     // },
-    openDeetz(id) {},
+    openDeetz(id) {
+      this.$router.push({ name: "GameDetails", params: { id: id } });
+    },
   },
   components: {},
 };

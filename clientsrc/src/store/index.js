@@ -14,8 +14,10 @@ export default new Vuex.Store({
   state: {
     profile: {},
     games: [],
+    activeGame: [],
     gameDetails: {},
-    dashboard: {}
+    dashboard: {},
+    friendDashboard: {},
 
   },
   mutations: {
@@ -28,6 +30,12 @@ export default new Vuex.Store({
     },
     setGames(state, games) {
       state.games = games
+    },
+    setActiveGame(state, game) {
+      state.activeGame = game
+    },
+    setFriendDashboard(state, data) {
+      state.friendDashboard = data
     }
   },
   actions: {
