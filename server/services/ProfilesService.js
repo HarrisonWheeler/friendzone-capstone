@@ -113,7 +113,7 @@ class ProfileService {
 ​    */
   async updateProfile(user, body) {
     let update = sanitizeBody(body)
-    if (body.name.length > 0) {
+    if (body.name.length > 0 || !body.name) {
       body.firstTimeUser = false
     }
     let profile = await dbContext.Profile.findOneAndUpdate(
