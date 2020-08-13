@@ -7,13 +7,13 @@ let baseUrl = location.host.includes("localhost")
 
 export const api = Axios.create({
   baseURL: baseUrl + "api",
-  timeout: 3000,
+  timeout: 5000,
   withCredentials: true
 });
 
 export const gameApi = Axios.create({
-  baseURL: "https://api.rawg.io/api/games?page_size=100",
-  timeout: 6000,
+  baseURL: "https://api.rawg.io/api/games?page_size=40",
+  timeout: 10000,
 })
 
 
