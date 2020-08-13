@@ -17,7 +17,7 @@ class ProfileService {
 
         let res = await api.get("/profile")
         const profile = res.data
-        // profile.newUser = false
+
         store.commit('setUser', profile)
         this.listeners.forEach(fn => fn(profile))
         this.listeners = []

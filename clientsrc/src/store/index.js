@@ -20,6 +20,7 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, user) {
       state.profile = user
+
     },
     setDashboard(state, data) {
       state.dashboard = data

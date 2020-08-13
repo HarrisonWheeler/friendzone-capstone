@@ -23,7 +23,7 @@
         <h1>COMING SOON......</h1>
       </div>
     </div>
-    <div v-if="profile.id && profile.newUser">
+    <div v-if="profile.id && profile.firstTimeUser">
       <profileModal id="id">
         <div slot="body">
           <input type="text" class="form-control text-wrap" placeholder="Enter Username...." />
@@ -54,8 +54,6 @@
                 <a class="dropdown-item" @change="gamerTags.xbox">XBOX</a>
                 <a class="dropdown-item" @change="gamerTags.playstation">PLAYSTATION</a>
                 <a class="dropdown-item" @change="gamerTags.nintendo">NINTENDO</a>
-                <div role="separator" class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
               </div>
             </div>
           </div>
@@ -67,6 +65,7 @@
 
 
 <script>
+import vSelect from "vue-select";
 import ProfileModal from "../components/ProfileModal";
 export default {
   name: "dashboard",
@@ -88,7 +87,7 @@ export default {
     },
   },
   methods: {},
-  components: { ProfileModal },
+  components: { ProfileModal, vSelect },
 };
 </script>
 

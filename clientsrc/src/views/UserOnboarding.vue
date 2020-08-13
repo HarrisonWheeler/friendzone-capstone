@@ -26,15 +26,21 @@
     <h1>ONBOARDING</h1>
     <profileModal id="id">
       <div slot="body">
-        <input type="text" class="form-control text-wrap my-2" placeholder="Enter Username...." />
         <input
+          v-model="userName"
+          type="text"
+          class="form-control text-wrap my-2"
+          placeholder="Enter Username...."
+        />
+        <input
+          v-model="imgUrl"
           type="text"
           class="form-control text-wrap"
           placeholder="Enter Profile Picture Url...."
         />
         <div class="input-group">
           <input
-            v-model="gamerTags"
+            v-model="targetTag"
             type="text"
             class="form-control my-2"
             aria-label="Text input with dropdown button"
@@ -49,13 +55,26 @@
               aria-expanded="false"
             >PICK YOUR PLATFORM</button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" @change="gamerTags.pc">PC</a>
-              <a class="dropdown-item" @change="gamerTags.xbox">XBOX</a>
-              <a class="dropdown-item" @change="gamerTags.playstation">PLAYSTATION</a>
-              <a class="dropdown-item" @change="gamerTags.nintendo">NINTENDO</a>
+              <a class="dropdown-item" v-if="gamerTags.pc == 'pc' " @click="saveTag('pc')">PC</a>
+              <a
+                class="dropdown-item"
+                v-if="gamerTags.xbox == 'xbox' "
+                @click="saveTag('xbox')"
+              >XBOX</a>
+              <a
+                class="dropdown-item"
+                v-if="gamerTags.playstation == 'playstation' "
+                @click="saveTag('playstation')"
+              >PLAYSTATION</a>
+              <a
+                class="dropdown-item"
+                v-if="gamerTags.nintendo == 'nintendo' "
+                @click="saveTag('nintendo')"
+              >NINTENDO</a>
             </div>
           </div>
         </div>
+        <button @click="editProfile" class="btn btn-success btn-block py-1">Submit</button>
       </div>
     </profileModal>
   </div>
@@ -63,17 +82,21 @@
 
 
 <script>
+import vSelect from "vue-select";
 import ProfileModal from "../components/ProfileModal";
 export default {
   name: "dashboard",
   data() {
     return {
       gamerTags: {
-        pc: "",
-        playstation: "",
-        xbox: "",
-        nintendo: "",
+        pc: "pc",
+        playstation: "playstation",
+        xbox: "xbox",
+        nintendo: "nintendo",
       },
+      targetTag: "",
+      userName: "",
+      imgUrl: "",
     };
   },
   mounted() {
@@ -84,8 +107,36 @@ export default {
       return this.$store.state.profile;
     },
   },
-  methods: {},
-  components: { ProfileModal },
+  methods: {
+    saveTag(options) {
+      if (options == this.gamerTags.pc && this.targetTag) {
+        this.gamerTags.pc = this.targetTag;
+        this.targetTag = "";
+      } else if (options == this.gamerTags.nintendo && this.targetTag) {
+        this.gamerTags.nintendo = this.targetTag;
+        this.targetTag = "";
+      } else if (options == this.gamerTags.xbox && this.targetTag) {
+        this.gamerTags.xbox = this.targetTag;
+        this.targetTag = "";
+      } else if (options == this.gamerTags.playstation && this.targetTag) {
+        this.gamerTags.playstation = this.targetTag;
+        this.targetTag = "";
+      }
+    },
+    editProfile() {
+      let payload = {
+        name: this.userName,
+        profilePicture: this.imgUrl,
+        consles: this.gamerTags,
+        profileId: this.profile._id,
+        firstTimeUser: false,
+      };
+      this.$store.dispatch("editProfile", payload);
+      $("#id").modal("hide");
+      this.$router.push({ name: "dashboard" });
+    },
+  },
+  components: { ProfileModal, vSelect },
 };
 </script>
 
@@ -93,5 +144,8 @@ export default {
 <style scoped>
 .shadow-lg {
   box-shadow: 0 0.25rem 1.2rem rgba(126, 126, 126, 0.616) !important;
+}
+.option-height {
+  height: 2rem;
 }
 </style>
