@@ -126,8 +126,8 @@ export default {
     editProfile() {
       let payload = {
         name: this.userName,
-        profilePicture: this.imgUrl,
-        consles: this.gamerTags,
+        picture: this.imgUrl,
+        consoles: this.gamerTags,
         profileId: this.profile._id,
         firstTimeUser: false,
       };
