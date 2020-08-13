@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// @ts-ignore
 import Home from '../views/Home.vue'
+// @ts-ignore
 import dashboard from '../views/dashboard.vue'
 
+// @ts-ignore
 import { authGuard } from "@bcwdev/auth0-vue"
 import store from '../store'
 import { profileService } from '../store/ProfileService'
@@ -24,6 +27,18 @@ export default new Router({
       path: '/onBoarding',
       name: 'onBoarding',
       component: loadView("UserOnboarding.vue"),
+      beforeEnter: authGuard
+    },
+    {
+      path: '/gameDetails/:id',
+      name: 'GameDetails',
+      // @ts-ignore
+      component: () => import(/* webpackChunkName: "gamedetails" */ '../views/GameDetails.vue')
+    },
+    {
+      path: '/dashboard/:id',
+      name: 'friendDashboard',
+      component: loadView("FriendDashboard.vue"),
       beforeEnter: authGuard
     },
     {
