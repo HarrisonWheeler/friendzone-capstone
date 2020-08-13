@@ -40,9 +40,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto"></ul>
-        <form class="form-inline my-2 my-lg-0 mx-1">
+        <form class="form-inline my-2 my-lg-0 mx-1" @submit.prevent="findProfiles">
           <div class="input-group border-primary">
             <input
+              v-model="query"
               type="text"
               class="form-control"
               placeholder="Search..."
@@ -72,6 +73,11 @@ let _api = axios.create({
 });
 export default {
   name: "Navbar",
+  data() {
+    return {
+      query: "",
+    };
+  },
   methods: {
     async login() {
       await this.$auth.loginWithPopup();
@@ -83,6 +89,11 @@ export default {
     },
     async logout() {
       await this.$auth.logout({ returnTo: window.location.origin });
+    },
+
+    findProfiles() {
+      this.$store.dispatch("searchDashboard", this.query);
+      this.query = "";
     },
   },
 };

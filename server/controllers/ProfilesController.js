@@ -3,6 +3,7 @@ import BaseController from "../utils/BaseController";
 import auth0provider from "@bcwdev/auth0provider";
 import { profilesService } from "../services/ProfilesService";
 
+
 export class ProfilesController extends BaseController {
   constructor() {
     super("api/profile");
@@ -11,9 +12,19 @@ export class ProfilesController extends BaseController {
       .get("", this.getUserProfile)
       .put("/:id", this.edit)
       .get('/:id', this.getById)
+      .get('/name/:query', this.getByName)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
+  }
+  async getByName(req, res, next) {
+    try {
+      let name = req.params.query
+      let data = await profilesService.getByName(name)
+      res.send(data)
+    } catch (error) {
+      next(error)
+    }
   }
   async getUserProfile(req, res, next) {
     try {

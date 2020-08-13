@@ -7,6 +7,7 @@ class ProfileService {
         this.status = ""
         this.listeners = []
     }
+
     async getProfile(cb) {
         if (status === "done") { return cb(store.state.profile) }
         if (this.listeners.indexOf(cb) === -1) { this.listeners.push(cb) }
