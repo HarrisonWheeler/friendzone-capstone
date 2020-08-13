@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard row justify-content-center py-4 mt-3">
+  <div class="friendDashboard row justify-content-center py-4 mt-3">
     <div class="col-3 mt-4">
       <div class="card shadow-lg text-left bg-secondary p-3 h-100">
         <h2 class="text-center m-2">{{profile.name}}</h2>
@@ -37,29 +37,17 @@
 
 
 <script>
-import vSelect from "vue-select";
-import ProfileModal from "../components/ProfileModal";
 export default {
-  name: "dashboard",
+  name: "friendDashboard",
   data() {
-    return {
-      gamerTags: {
-        pc: "",
-        playstation: "",
-        xbox: "",
-        nintendo: "",
-      },
-      targetTag: "pc",
-    };
+    return {};
   },
   mounted() {},
   computed: {
-    profile() {
-      return this.$store.state.profile;
-    },
+    friendData() {},
   },
   methods: {},
-  components: { ProfileModal, vSelect },
+  components: {},
 };
 </script>
 

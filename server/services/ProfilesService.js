@@ -52,6 +52,13 @@ function sanitizeBody(body) {
 }
 
 class ProfileService {
+  async getByName(name) {
+    let friendProfile = await dbContext.Profile.find({
+      name: name
+    })
+    return friendProfile
+
+  }
   /**
    * Provided an array of user emails will return an array of user profiles with email picture and name
    * @param {String[]} emails Array of email addresses to lookup users by
