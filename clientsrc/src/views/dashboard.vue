@@ -2,12 +2,14 @@
   <div class="dashboard row justify-content-center py-4 mt-3">
     <div class="col-3 mt-4">
       <div class="card shadow-lg text-left bg-secondary p-3 h-100">
-        <h2>ENTER NAME HERE...</h2>
-        <img class="mb-4" src="//placehold.it/200x200" alt />
-        <h5>REP SCORE:</h5>
+        <h2>{{profile.name}}</h2>
+        <img class="mb-4 rounded-circle img-fluid" :src="profile.picture" alt />
+        <img v-if="!profile.picture" class="mb-4 rounded-circle" src="//placehold.it/150x150" alt />
+
+        <h5>REP SCORE: {{profile.rep}}</h5>
         <p>GAMERTAGS:</p>
-        <p>FOLLOWERS:</p>
-        <p>FOLLOWING:</p>
+        <p>FOLLOWERS: {{profile.followers}}</p>
+        <p>FOLLOWING: {{profile.following}}</p>
       </div>
     </div>
     <div class="col-8 px-0 mt-4">
