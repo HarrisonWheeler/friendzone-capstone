@@ -25,7 +25,7 @@
           <u>GAMES FOLLOWED:</u>
         </h4>
       </div>
-      <div class="row card shadow-lg bg-secondary ml-2 h-45 p-2">
+      <div class="row card shadow-lg bg-secondary ml-2 my-3 h-45 p-2">
         <h4>
           <u>MY GAME CLIPS:</u>
         </h4>
