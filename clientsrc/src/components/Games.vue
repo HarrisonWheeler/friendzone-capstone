@@ -7,7 +7,7 @@
         @click="openDeetz(gameData.id)"
       />
     </div>
-    <div class="card-body rounded-bottom bg-secondary-25 p-2">
+    <div class="card-body rounded-bottom bg-gradient p-2">
       <h3 class="mt-1">{{gameData.name}}</h3>
       <p class="mb-0">{{gameData.genres[0].name}}/{{gameData.genres[1].name}}</p>
       <p
@@ -71,5 +71,14 @@ export default {
 }
 img.embed-responsive-item {
   object-fit: cover;
+}
+
+.bg-gradient {
+  background: rgb(90, 90, 90);
+  background: radial-gradient(
+    circle,
+    rgba(90, 90, 90, 1) 0%,
+    rgba(35, 35, 35, 1) 100%
+  );
 }
 </style>

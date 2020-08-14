@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <navbar />
-    <div class="container-fluid">
+    <div class="container-fluid bg-image">
       <router-view />
     </div>
   </div>
@@ -52,5 +52,10 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.bg-image {
+  background-image: url("./assets/bg-image.png");
+  background-attachment: fixed;
 }
 </style>
