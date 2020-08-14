@@ -64,6 +64,9 @@ export default {
     friendData() {
       return this.$store.state.friendDashboard;
     },
+    profile() {
+      return this.$store.state.profile;
+    },
   },
   methods: {
     vote(vote) {
@@ -85,7 +88,7 @@ export default {
       if (this.friendData.following != this.$auth.userInfo.email) {
         this.$store.dispatch("follow", {
           // rep: this.friendData.rep
-          following: this.$auth.userInfo.email,
+          following: this.profile._id,
           id: this.$route.params.id,
         });
       }
