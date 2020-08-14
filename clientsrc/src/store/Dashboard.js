@@ -5,6 +5,10 @@ import router from '../router/index'
 
 
 export default {
+  mounted() {
+    debugger;
+    this.$store.dispatch("getProfileGames", this.$route.params.id);
+  },
   state: {
 
   },
