@@ -113,13 +113,13 @@ class ProfileService {
 ​    */
   async editRep(id, body) {
     let rep = await dbContext.Profile.findOneAndUpdate(
-      { _id: id }, body, { new: true }
+      { _id: id }, { $addToSet: { votedNames: body.votedNames } }, { new: true }
     )
     return rep
   }
   async editFollowers(id, body) {
     let followers = await dbContext.Profile.findOneAndUpdate(
-      { _id: id }, body.following, { new: true }
+      { _id: id }, { $addToSet: { following: body.following } }, { new: true }
     )
     return followers
   }
