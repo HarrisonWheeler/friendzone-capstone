@@ -57,12 +57,14 @@ export default {
   },
   methods: {
     followGame(id) {
-      this.activeGame.followers++;
+      debugger;
+      this.activeGame.followers += 1;
       this.$store.dispatch("followGame", {
         id: this.profile.id,
         name: this.activeGame.name,
         gameId: this.activeGame.id,
         backgroundImg: this.activeGame.background_image,
+        followers: +1,
       });
     },
   },

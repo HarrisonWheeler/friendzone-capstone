@@ -28,7 +28,6 @@ export default {
       dispatch("getDashboard", payload.id)
     },
     async follow({ commit, dispatch }, payload) {
-      debugger
       let res = await api.put("profile/following/" + payload.id, payload)
       console.log(res);
       dispatch("getDashboard", payload.id)

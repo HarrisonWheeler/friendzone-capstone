@@ -126,7 +126,13 @@
       <div class="row card shadow-lg bg-secondary ml-2 mb-2 h-50 p-2">
         <h4>
           <u>GAMES FOLLOWED:</u>
-          <h3>{{profile.games}}</h3>
+          <div v-for="game in profile.games" :key="game.name">
+            <div class="col-2">
+              <h4>{{game.name}}</h4>
+              <img :src="game.backgroundImg" class="img-thumbnail" width="100%" alt />
+              <p>{{followers.followers}}</p>
+            </div>
+          </div>
         </h4>
       </div>
       <div class="row card shadow-lg bg-secondary ml-2 my-3 h-50 p-2">
@@ -157,6 +163,9 @@ export default {
   computed: {
     profile() {
       return this.$store.state.profile;
+    },
+    followers() {
+      return this.$store.state.activeGame;
     },
   },
   methods: {

@@ -13,7 +13,7 @@ const Games = new Schema({
   genre: { type: String, required: true },
   gameId: { type: String, required: true },
   creatorEmail: { type: String, required: true },
-  followers: { type: Number, required: true }
+  followers: { type: Number, required: true, default: 0 }
 }, { timestamps: true, toJSON: { virtuals: false } })
 
 
