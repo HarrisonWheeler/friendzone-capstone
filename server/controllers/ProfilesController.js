@@ -92,7 +92,7 @@ export class ProfilesController extends BaseController {
   }
   async followGame(req, res, next) {
     try {
-      await profilesService.followGame(req.params.id, req.body)
+      res.send(await profilesService.followGame(req.params.id, req.body))
     } catch (error) {
       next(error)
     }

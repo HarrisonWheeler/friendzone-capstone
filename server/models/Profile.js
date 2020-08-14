@@ -19,7 +19,7 @@ const Profile = new Schema(
   {
 
     following: [{ type: ObjectId, ref: "Profile", required: false }],
-    games: [{ type: GameSchema }],
+    games: [GameSchema],
     consoles: { type: ConsoleSchema },
     rep: { type: Number, required: false, default: 0 },
     profilePicture: { type: String, required: false },

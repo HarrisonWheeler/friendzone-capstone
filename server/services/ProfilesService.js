@@ -55,8 +55,10 @@ function sanitizeBody(body) {
 class ProfileService {
 
   async followGame(id, body) {
+    // REVIEW get the profile and check if they already have the game
+
     return await dbContext.Profile.findByIdAndUpdate({ _id: id },
-      { $addToSet: { games: { name: body.name, backgroundImg: body.background_image, id: body.id } } }, { new: true })
+      { $addToSet: { games: { name: body.name, backgroundImg: body.backgroundImg, gameId: body.gameId } } }, { new: true })
   }
   async getByName(name) {
     let friendProfile = await dbContext.Profile.find({
