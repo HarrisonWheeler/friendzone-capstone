@@ -19,9 +19,56 @@
           <i class="fa fa-thumbs-o-down fa fa-2x ml-3" @click="vote('down')"></i>
         </div>
         <h5>REPUTATION: {{friendData.rep}}</h5>
-        <p class="mb-1">
-          <b>GAMERTAGS:</b>
-        </p>
+        <div>
+          <p class="mb-1">
+            <b>GAMERTAGS:</b>
+          </p>
+          <div class="row">
+            <div class="col-1">
+              <i v-if="friendData.consoles.pc == 'pc'" class="fas fa-desktop text-warning"></i>
+              <i
+                @click="setDisplayGamerTag(friendData.consoles.pc)"
+                v-else-if="friendData.consoles.pc"
+                class="fas fa-desktop text-warning"
+              ></i>
+            </div>
+            <div class="col-1">
+              <i v-if="friendData.consoles.xbox == 'xbox'" class="fab fa-xbox text-success"></i>
+              <i
+                @click="setDisplayGamerTag(friendData.consoles.xbox)"
+                v-else-if="friendData.consoles.xbox"
+                class="fab fa-xbox text-success"
+              ></i>
+            </div>
+            <div class="col-1">
+              <i
+                v-if="friendData.consoles.playstation == 'playstation'"
+                class="fab fa-playstation text-info"
+              ></i>
+              <i
+                @click="setDisplayGamerTag(friendData.consoles.playstation)"
+                v-else-if="friendData.consoles.playstation"
+                class="fab fa-playstation text-info"
+              ></i>
+            </div>
+            <div class="col-1 text-danger">
+              <span
+                v-if="friendData.consoles.nintendo == 'nintendo'"
+                class="iconify"
+                data-icon="mdi-nintendo-switch"
+                data-inline="false"
+              ></span>
+              <span
+                @click="setDisplayGamerTag(friendData.consoles.nintendo)"
+                v-else-if="friendData.consoles.nintendo"
+                class="iconify"
+                data-icon="mdi-nintendo-switch"
+                data-inline="false"
+              ></span>
+            </div>
+          </div>
+          <h5 v-if="displayGamerTag">{{displayGamerTag}}</h5>
+        </div>
         <!-- TODO followers not hard coded -->
         <p class="mb-1">
           <b>FOLLOWING: {{friendData.following.length}}</b>
@@ -55,7 +102,9 @@
 export default {
   name: "friendDashboard",
   data() {
-    return {};
+    return {
+      displayGamerTag: "",
+    };
   },
   mounted() {
     this.$store.dispatch("getDashboard", this.$route.params.id);
@@ -92,6 +141,11 @@ export default {
           id: this.$route.params.id,
         });
       }
+    },
+    setDisplayGamerTag(console) {
+      if (this.displayGamerTag == console) {
+        this.displayGamerTag = "";
+      } else this.displayGamerTag = console;
     },
   },
   components: {},
