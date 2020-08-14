@@ -16,7 +16,7 @@ class ProfileService {
         status = "pending"
         store.dispatch("setBearer", $auth().bearer);
 
-        let res = await api.get("/profile")
+        let res = await api.get("profile/" + store.state.profile.id)
         const profile = res.data
 
         store.commit('setUser', profile)

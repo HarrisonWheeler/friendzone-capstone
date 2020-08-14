@@ -16,6 +16,11 @@ export default {
 
   },
   actions: {
+    async getProfileGames(id) {
+      debugger
+      let res = await api.get("profile/" + id + "/games")
+
+    },
 
     async votes({ commit, dispatch }, payload) {
       let res = await api.put("profile/votes/" + payload.id, payload)

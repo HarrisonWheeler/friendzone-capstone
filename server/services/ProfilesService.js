@@ -54,7 +54,7 @@ function sanitizeBody(body) {
 class ProfileService {
   async getProfileGames(id) {
 
-    return await dbContext.Profile.find(id)
+    return await dbContext.Profile.find({ _id: id })
   }
   async followGame(id, body) {
     return await dbContext.Profile.findByIdAndUpdate({ _id: id },

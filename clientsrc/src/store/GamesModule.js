@@ -29,10 +29,6 @@ export default {
                 console.error(error);
             }
         },
-        async getProfileGames(id) {
-            debugger
-            let res = await api.get("profile/" + id + "/games")
 
-        }
     },
 }

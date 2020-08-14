@@ -51,7 +51,8 @@ export class ProfilesController extends BaseController {
   }
   async getProfileGames(req, res, next) {
     try {
-      let res = await profilesService.getProfileGames(req.params.id)
+      let data = await profilesService.getProfileGames(req.params.id)
+      res.send(data)
     } catch (error) {
       next(error)
     }
