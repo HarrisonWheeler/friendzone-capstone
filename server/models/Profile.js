@@ -12,7 +12,7 @@ const ConsoleSchema = new Schema({
 const Profile = new Schema(
   {
 
-    following: [{ type: ObjectId, required: false }],
+    following: [{ type: ObjectId, ref: "Profile", required: false }],
     games: { type: ObjectId, required: false },
     consoles: { type: ConsoleSchema },
     rep: { type: Number, required: false, default: 0 },
