@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar sticky-top navbar-expand-lg navbar-secondary bg-secondary shadow-lg p-2">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-secondary bg-gradient shadow-lg p-2">
     <a class="navbar-brand" href="#">
       <h3>FRIENDZONE</h3>
     </a>
@@ -114,5 +114,15 @@ export default {
 }
 .shadow-lg {
   box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.616) !important;
+}
+
+.bg-gradient {
+  background: rgb(38, 38, 38);
+  background: linear-gradient(
+    0deg,
+    rgba(38, 38, 38, 1) 0%,
+    rgba(55, 55, 55, 1) 50%,
+    rgba(33, 32, 32, 1) 100%
+  );
 }
 </style>
