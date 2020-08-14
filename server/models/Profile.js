@@ -9,11 +9,17 @@ const ConsoleSchema = new Schema({
   nintendo: { type: String, default: "" }
 })
 
+const GameSchema = new Schema({
+  name: { type: String, required: true },
+  gameId: { type: String, required: true },
+  backgroundImg: { type: String, required: true },
+})
+
 const Profile = new Schema(
   {
 
     following: [{ type: ObjectId, ref: "Profile", required: false }],
-    games: { type: ObjectId, required: false },
+    games: [{ type: GameSchema }],
     consoles: { type: ConsoleSchema },
     rep: { type: Number, required: false, default: 0 },
     profilePicture: { type: String, required: false },

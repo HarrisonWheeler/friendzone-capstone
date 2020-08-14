@@ -24,6 +24,7 @@ class ProfileService {
         this.listeners = []
         status = "done"
     }
+
 }
 
 export const profileService = new ProfileService()

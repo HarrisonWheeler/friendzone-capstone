@@ -52,6 +52,14 @@ function sanitizeBody(body) {
 }
 
 class ProfileService {
+  async getProfileGames(id) {
+
+    return await dbContext.Profile.find(id)
+  }
+  async followGame(id, body) {
+    return await dbContext.Profile.findByIdAndUpdate({ _id: id },
+      { $addToSet: { games: { name: body.name, backgroundImg: body.background_image, id: body.id } } }, { new: true })
+  }
   async getByName(name) {
     let friendProfile = await dbContext.Profile.find({
       name: name
@@ -63,13 +71,9 @@ class ProfileService {
    * Provided an array of user emails will return an array of user profiles with email picture and name
    * @param {String[]} emails Array of email addresses to lookup users by
    */
-  async getProfiles(emails = []) {
-    let profiles = await dbContext.Profile.find({
-      email: { $in: emails }
-    }).select("email picture name");
-    return profiles;
+  async getProfiles() {
+    return await dbContext.Profile.find()
   }
-
   async getById(id) {
     let data = await dbContext.Profile.findOne({ _id: id })
     if (!data) {
