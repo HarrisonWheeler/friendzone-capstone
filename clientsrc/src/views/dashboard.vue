@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard row justify-content-center py-4 mt-3">
+  <div class="dashboard row justify-content-center py-4">
     <div class="col-3 mt-4">
       <div class="card shadow-lg text-left bg-secondary p-3 h-100">
         <div class="text-right">
@@ -129,7 +129,7 @@
           <h3>{{profile.games}}</h3>
         </h4>
       </div>
-      <div class="row card shadow-lg bg-secondary ml-2 my-3 h-45 p-2">
+      <div class="row card shadow-lg bg-secondary ml-2 my-3 h-50 p-2">
         <h4>
           <u>MY GAME CLIPS:</u>
         </h4>
