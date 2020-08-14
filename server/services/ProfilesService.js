@@ -46,16 +46,14 @@ function sanitizeBody(body) {
     follows: body.followers,
     games: body.games,
     rep: body.rep,
-    videoClip: body.videoClip
+    videoClip: body.videoClip,
+    consoles: body.consoles
   };
   return writable;
 }
 
 class ProfileService {
-  async getProfileGames(id) {
 
-    return await dbContext.Profile.find({ _id: id })
-  }
   async followGame(id, body) {
     return await dbContext.Profile.findByIdAndUpdate({ _id: id },
       { $addToSet: { games: { name: body.name, backgroundImg: body.background_image, id: body.id } } }, { new: true })

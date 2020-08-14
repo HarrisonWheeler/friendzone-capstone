@@ -115,7 +115,7 @@
         </div>
         <!-- TODO followers not hard coded -->
         <p class="mb-1">
-          <b>FOLLOWING: {{profile.following}}</b>
+          <b>FOLLOWING: {{profile.following.length}}</b>
         </p>
         <p class="mb-1">
           <b>FOLLOWERS: 0</b>

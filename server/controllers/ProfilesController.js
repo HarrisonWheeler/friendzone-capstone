@@ -13,13 +13,12 @@ export class ProfilesController extends BaseController {
       .use(auth0provider.getAuthorizedUserInfo)
       .get("/:id", this.getUserProfile)
       .get("", this.getProfiles)
-      .get(":/id/games", this.getProfileGames)
       .get('/:id', this.getById)
       .get('/name/:query', this.getByName)
       .put("/:id", this.edit)
       .put("/:id/votes", this.editRep)
       .put('/:id', this.edit)
-      .put("/:id/following", this.editfollowers)
+      .put("/:id/following", this.editFollowers)
       .post('', this.create)
       .post('/:id/games', this.followGame)
       .delete('/:id', this.delete)
@@ -47,14 +46,6 @@ export class ProfilesController extends BaseController {
       res.send(profile);
     } catch (error) {
       next(error);
-    }
-  }
-  async getProfileGames(req, res, next) {
-    try {
-      let data = await profilesService.getProfileGames(req.params.id)
-      res.send(data)
-    } catch (error) {
-      next(error)
     }
   }
   async getById(req, res, next) {
@@ -87,7 +78,7 @@ export class ProfilesController extends BaseController {
     } catch (error) { next(error) }
   }
 
-  async editfollowers(req, res, next) {
+  async editFollowers(req, res, next) {
     try {
       let data = await profilesService.editFollowers(req.params.id, req.body)
       res.send(data)
