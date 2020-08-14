@@ -58,5 +58,6 @@ export default {
   background-image: url("./assets/bg-image.png");
   background-attachment: fixed;
   background-size: cover;
+  min-height: 100vh;
 }
 </style>
