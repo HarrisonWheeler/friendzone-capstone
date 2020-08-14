@@ -5,12 +5,16 @@ import { profilesService } from "../services/ProfilesService";
 
 
 export class ProfilesController extends BaseController {
+
+
   constructor() {
     super("api/profile");
     this.router
       .use(auth0provider.getAuthorizedUserInfo)
       .get("", this.getUserProfile)
       .put("/:id", this.edit)
+      .put("/votes/:id", this.editRep)
+      .put("/following/:id", this.editfollowers)
       .get('/:id', this.getById)
       .get('/name/:query', this.getByName)
       .post('', this.create)
@@ -57,6 +61,19 @@ export class ProfilesController extends BaseController {
     } catch (error) {
       next(error);
     }
+  }
+  async editRep(req, res, next) {
+    try {
+      let data = await profilesService.editRep(req.params.id, req.body)
+      res.send(data)
+    } catch (error) { next(error) }
+  }
+
+  async editfollowers(req, res, next) {
+    try {
+      let data = await profilesService.editFollowers(req.params.id, req.body)
+      res.send(data)
+    } catch (error) { next(error) }
   }
   async delete(req, res, next) {
     try {

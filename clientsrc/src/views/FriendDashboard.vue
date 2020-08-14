@@ -12,8 +12,7 @@
         <img
           v-if="!friendData.picture"
           class="mb-2 rounded-circle img-fluid"
-          src="//placehold.it/200x200"
-          alt
+          src="https://lh3.googleusercontent.com/proxy/fprp02E8T3_-8ChbSQT-gCogAMmtkcdEKqXjXhGgqS4xdhYgRsVAkajQcNdoSbRZbhm0IqbsYX6Uo-QH46-FkqQ2jizN63jkexMk7ZOzR70AiSsuC1j_1IsZI8xzTIPtrBLXVicq"
         />
         <div class="text-center mb-3">
           <i class="fa fa-thumbs-o-up fa fa-2x mr-3" @click="vote('up')"></i>
@@ -30,7 +29,7 @@
         <p class="mb-1">
           <b>FOLLOWERS: 0</b>
         </p>
-        <button class="btn btn-block border border-info btn-outline-info mt-4">
+        <button @click="follow" class="btn btn-block border border-info btn-outline-info mt-4">
           <b>+</b> FOLLOW
         </button>
       </div>
@@ -68,6 +67,7 @@ export default {
   },
   methods: {
     vote(vote) {
+      debugger;
       if (this.friendData.votedNames != this.$auth.userInfo.email) {
         if (vote == "up") {
           this.friendData.rep++;
@@ -77,6 +77,15 @@ export default {
         this.$store.dispatch("votes", {
           rep: this.friendData.rep,
           votedNames: this.$auth.userInfo.email,
+          id: this.$route.params.id,
+        });
+      }
+    },
+    follow() {
+      if (this.friendData.following != this.$auth.userInfo.email) {
+        this.$store.dispatch("follow", {
+          // rep: this.friendData.rep
+          following: this.$auth.userInfo.email,
           id: this.$route.params.id,
         });
       }

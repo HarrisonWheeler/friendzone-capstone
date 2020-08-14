@@ -111,9 +111,21 @@ class ProfileService {
 ​    * @param {any} user Auth0 user object
 ​    * @param {any} body Updates to apply to user object
 ​    */
+  async editRep(id, body) {
+    let rep = await dbContext.Profile.findOneAndUpdate(
+      { _id: id }, body, { new: true }
+    )
+    return rep
+  }
+  async editFollowers(id, body) {
+    let followers = await dbContext.Profile.findOneAndUpdate(
+      { _id: id }, body.following, { new: true }
+    )
+    return followers
+  }
   async updateProfile(user, body) {
     let update = sanitizeBody(body)
-    if (body.name.length > 0 || !body.name) {
+    if (body.name.length > 0) {
       body.firstTimeUser = false
     }
     let profile = await dbContext.Profile.findOneAndUpdate(
