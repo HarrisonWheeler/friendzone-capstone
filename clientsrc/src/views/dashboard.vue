@@ -126,6 +126,7 @@
       <div class="row card shadow-lg bg-secondary ml-2 mb-2 h-50 p-2">
         <h4>
           <u>GAMES FOLLOWED:</u>
+          <h3>{{profile.games}}</h3>
         </h4>
       </div>
       <div class="row card shadow-lg bg-secondary ml-2 my-3 h-45 p-2">
