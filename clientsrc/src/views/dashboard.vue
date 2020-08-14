@@ -51,15 +51,15 @@
           </p>
           <div class="row">
             <div class="col-1">
-              <i class="fas fa-desktop"></i>
+              <i class="fas fa-desktop text-warning"></i>
             </div>
             <div class="col-1">
-              <i class="fab fa-xbox"></i>
+              <i class="fab fa-xbox text-success"></i>
             </div>
             <div class="col-1">
-              <i class="fab fa-playstation"></i>
+              <i class="fab fa-playstation text-info"></i>
             </div>
-            <div class="col-1">
+            <div class="col-1 text-danger">
               <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
             </div>
           </div>
@@ -72,19 +72,19 @@
             <div
               @click="displayGamerTag = profile.pc"
               v-show="profile.consoles"
-              class="col-1 rounded border border-white"
+              class="col-1 rounded border border-white text-warning"
             >
               <i class="fas fa-desktop"></i>
             </div>
             <div v-show="!profile.consoles" class="col-1">
-              <i class="fas fa-desktop"></i>
+              <i class="fas fa-desktop text-warning"></i>
             </div>
             <div
               @click="displayGamerTag = profile.xbox"
               v-show="profile.consoles"
               class="col-1 rounded border border-white"
             >
-              <i class="fab fa-xbox"></i>
+              <i class="fab fa-xbox text-success"></i>
             </div>
             <div v-show="!profile.consoles" class="col-1">
               <i class="fab fa-xbox"></i>
@@ -94,15 +94,15 @@
               v-show="profile.consoles"
               class="col-1 rounded border border-white"
             >
-              <i class="fab fa-playstation"></i>
+              <i class="fab fa-playstation text-info"></i>
             </div>
             <div v-show="!profile.consoles" class="col-1">
-              <i class="fab fa-playstation"></i>
+              <i class="fab fa-playstation text-info"></i>
             </div>
             <div
               @click="displayGamerTag = profile.nintendo"
               v-show="profile.consoles"
-              class="col-1 rounded border border-white"
+              class="col-1 rounded border border-white text-danger"
             >
               <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
             </div>
