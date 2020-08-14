@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-secondary bg-secondary shadow-lg p-2">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-secondary bg-secondary shadow-lg p-2">
     <a class="navbar-brand" href="#">
       <h3>FRIENDZONE</h3>
     </a>

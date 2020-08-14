@@ -1,37 +1,35 @@
 <template>
-  <div class="game-details container-fluid">
-    <div class="row justify-content-center pt-5">
-      <div
-        class="card border-dark text-light mb-3 shadow-lg"
-        style="min-width: 40rem; max-width: 45rem;"
-      >
-        <h3 class="card-header bg-secondary">{{activeGame.name}}</h3>
-        <div class="card-body">
-          <h4 class>{{activeGame.genres[0].name}}/{{activeGame.genres[1].name}}</h4>
-          <h4
-            :class="activeGame.rating >= 4 ? 'text-success' : 'text-danger'"
-          >Rating: {{Math.floor(activeGame.rating)}}/5</h4>
-          <p class="text-warning">Metacritic Score: {{activeGame.metacritic}}</p>
-          <p @click="platformVisible = !platformVisible" class="cursor">
-            <u>Available Platforms</u>
-          </p>
-          <p v-if="platformVisible">
-            <span
-              v-for="(data,index) in activeGame.platforms"
-              :key="data.platform.name"
-              class
-            >{{data.platform.name}}{{index < activeGame.platforms.length -1 ? ", " : ""}}</span>
-          </p>
+  <div class="game-details justify-content-center row">
+    <div class="col-11 card border border-secondary text-light m-3 shadow-lg px-0">
+      <h3 class="card-header bg-secondary">{{activeGame.name}}</h3>
+      <div class="card-body">
+        <p class="mb-2">{{activeGame.description_raw}}</p>
+        <h6 class>{{activeGame.genres[0].name}}/{{activeGame.genres[1].name}}</h6>
+        <h6
+          :class="activeGame.rating >= 4 ? 'text-success' : 'text-danger'"
+        >Rating: {{Math.floor(activeGame.rating)}}/5</h6>
+        <p class="text-warning">Metacritic Score: {{activeGame.metacritic}}</p>
+        <p @click="platformVisible = !platformVisible" class="cursor">
+          <u>Available Platforms</u>
+        </p>
+        <p v-if="platformVisible">
+          <span
+            v-for="(data,index) in activeGame.platforms"
+            :key="data.platform.name"
+            class
+          >{{data.platform.name}}{{index < activeGame.platforms.length -1 ? ", " : ""}}</span>
+        </p>
+        <div class="row mx-1 justify-content-center">
+          <img :src="activeGame.background_image" class="img-thumbnail w-25 m-1" alt />
           <video :src="activeGame.clip.clip" autoplay loop controls width="400" class="rounded"></video>
-          <div class="row mx-1">
-            <img :src="activeGame.background_image" class="img-thumbnail w-50" alt />
-            <img :src="activeGame.background_image_additional" class="img-thumbnail w-50" alt />
-          </div>
-          <small>{{activeGame.description_raw}}</small>
+          <img :src="activeGame.background_image_additional" class="img-thumbnail w-25 m-1" alt />
         </div>
-        <div class="card-footer">
-          <button class="btn btn-rounded btn-primary btn-block" @click="followGame">Follow Game</button>
-        </div>
+      </div>
+      <div class="card-footer">
+        <button
+          class="border border-info btn btn-rounded btn-outline-info btn-block"
+          @click="followGame"
+        >+Follow Game</button>
       </div>
     </div>
   </div>
