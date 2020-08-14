@@ -1,25 +1,27 @@
 <template>
-  <div class="card games col-2 text-white p-4 m-2 shadow-lg h-50">
-    <img
-      :src="gameData.background_image"
-      class="card-image-top img-thumbnail align-self-center mt-1"
-      @click="openDeetz(gameData.id)"
-    />
-    <div class="card-body">
-      <h3 class="mt-3">{{gameData.name}}</h3>
-      <p class>{{gameData.genres[0].name}}/{{gameData.genres[1].name}}</p>
+  <div class="card rounded games col-2 text-white m-2 shadow-lg px-0">
+    <div class="embed-responsive embed-responsive-4by3">
+      <img
+        :src="gameData.background_image"
+        class="card-img-top embed-responsive-item"
+        @click="openDeetz(gameData.id)"
+      />
+    </div>
+    <div class="card-body rounded-bottom bg-secondary-25 p-2">
+      <h3 class="mt-1">{{gameData.name}}</h3>
+      <p class="mb-0">{{gameData.genres[0].name}}/{{gameData.genres[1].name}}</p>
       <p
+        class="mb-0"
         :class="gameData.rating >= 4 ? 'text-success' : 'text-danger'"
       >Rating: {{Math.floor(gameData.rating)}}/5</p>
-      <p class="text-warning">Metacritic Score: {{gameData.metacritic}}</p>
-      <p @click="platformVisible = !platformVisible">
+      <p class="text-warning mb-0">Metacritic Score: {{gameData.metacritic}}</p>
+      <p class="mb-2" @click="platformVisible = !platformVisible">
         <u>Available Platforms</u>
       </p>
-      <p v-if="platformVisible">
+      <p class="mb-2" v-show="platformVisible">
         <span
           v-for="(data,index) in gameData.platforms"
           :key="data.platform.name"
-          class
         >{{data.platform.name}}{{index < gameData.platforms.length -1 ? ", " : ""}}</span>
       </p>
     </div>
@@ -57,4 +59,17 @@ export default {
 
 
 <style scoped>
+.shadow-lg {
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.616) !important;
+}
+
+/* .bg-secondary-trans {
+  background-color: #e0e0e004 !important;
+} */
+.card {
+  border: none;
+}
+img.embed-responsive-item {
+  object-fit: cover;
+}
 </style>

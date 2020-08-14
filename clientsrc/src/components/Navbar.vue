@@ -113,6 +113,6 @@ export default {
   border-left: 1px solid rgba(0, 0, 0, 0.2);
 }
 .shadow-lg {
-  box-shadow: 0 0.25rem 2rem rgba(126, 126, 126, 0.616) !important;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.616) !important;
 }
 </style>
