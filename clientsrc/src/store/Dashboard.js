@@ -44,7 +44,7 @@ export default {
     async getDashboard({ commit, dispatch }, id) {
       let res = await api.get("profile/" + id)
       console.log(res.data);
-      commit("setFriendDashboard", res.data)
+      commit("setDashboard", res.data)
     },
     async editProfile({ commit, dispatch }, payload) {
       let res = await api.put("profile/" + payload.profileId, payload)
