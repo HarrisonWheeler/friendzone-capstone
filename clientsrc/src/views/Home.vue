@@ -1,9 +1,6 @@
 <template>
-  <div>
-    <h2 class="text-danger">Trending Games</h2>
-    <div class="home row justify-content-center">
-      <games v-for="game in games" :gameData="game" :key="game.id" />
-    </div>
+  <div class="home row justify-content-center">
+    <games v-for="game in games" :gameData="game" :key="game.id" />
   </div>
 </template>
 
