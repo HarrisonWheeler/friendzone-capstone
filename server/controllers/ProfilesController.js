@@ -11,14 +11,17 @@ export class ProfilesController extends BaseController {
     super("api/profile");
     this.router
       .use(auth0provider.getAuthorizedUserInfo)
-      .get("", this.getUserProfile)
-      .put("/:id", this.edit)
-      .put("/votes/:id", this.editRep)
-      .put("/following/:id", this.editfollowers)
+      .get("/:id", this.getUserProfile)
+      .get("", this.getProfiles)
+      .get(":/id/games", this.getProfileGames)
       .get('/:id', this.getById)
       .get('/name/:query', this.getByName)
-      .post('', this.create)
+      .put("/:id", this.edit)
+      .put("/:id/votes", this.editRep)
       .put('/:id', this.edit)
+      .put("/:id/following", this.editfollowers)
+      .post('', this.create)
+      .post('/:id/games', this.followGame)
       .delete('/:id', this.delete)
   }
   async getByName(req, res, next) {
@@ -38,7 +41,21 @@ export class ProfilesController extends BaseController {
       next(error);
     }
   }
-
+  async getProfiles(req, res, next) {
+    try {
+      let profile = await profilesService.getProfiles();
+      res.send(profile);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async getProfileGames(req, res, next) {
+    try {
+      let res = await profilesService.getProfileGames(req.params.id)
+    } catch (error) {
+      next(error)
+    }
+  }
   async getById(req, res, next) {
     try {
       let data = await profilesService.getById(req.params.id)
@@ -80,5 +97,12 @@ export class ProfilesController extends BaseController {
       await profilesService.delete(req.params.id, req.userInfo.email)
       return res.send("Successfully deleted")
     } catch (error) { next(error) }
+  }
+  async followGame(req, res, next) {
+    try {
+      await profilesService.followGame(req.params.id, req.body)
+    } catch (error) {
+      next(error)
+    }
   }
 }

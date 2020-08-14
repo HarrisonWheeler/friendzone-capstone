@@ -28,7 +28,7 @@
       <div class="card-footer">
         <button
           class="border border-info btn btn-rounded btn-outline-info btn-block"
-          @click="followGame"
+          @click="followGame(activeGame.id)"
         >+Follow Game</button>
       </div>
     </div>
@@ -51,9 +51,20 @@ export default {
     activeGame() {
       return this.$store.state.activeGame;
     },
+    profile() {
+      return this.$store.state.profile;
+    },
   },
   methods: {
-    followGame() {},
+    followGame(id) {
+      this.activeGame.followers++;
+      this.$store.dispatch("followGame", {
+        id: this.profile.id,
+        name: this.activeGame.name,
+        gameId: this.activeGame.id,
+        backgroundImg: this.activeGame.background_image,
+      });
+    },
   },
   components: {},
 };

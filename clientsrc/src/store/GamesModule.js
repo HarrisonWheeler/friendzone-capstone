@@ -1,4 +1,4 @@
-import { gameApi } from "./AxiosService"
+import { api, gameApi } from "./AxiosService"
 import router from '../router/index'
 
 
@@ -21,6 +21,18 @@ export default {
             } catch (error) {
                 console.error(error)
             }
+        },
+        followGame({ commit, dispatch }, payload) {
+            try {
+                api.post("profile/" + payload.id + "/games", payload)
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async getProfileGames(id) {
+            debugger
+            let res = await api.get("profile/" + id + "/games")
+
         }
     },
 }
