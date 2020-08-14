@@ -14,7 +14,13 @@ export default {
   actions: {
 
     async votes({ commit, dispatch }, payload) {
-      let res = await api.put("profile/" + payload.id, payload)
+      let res = await api.put("profile/votes/" + payload.id, payload)
+      console.log(res);
+      dispatch("getDashboard", payload.id)
+    },
+    async follow({ commit, dispatch }, payload) {
+      let res = await api.put("profile/following/" + payload.id, payload)
+      console.log(res);
       dispatch("getDashboard", payload.id)
     },
 

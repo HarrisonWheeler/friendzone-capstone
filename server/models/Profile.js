@@ -22,8 +22,8 @@ const Profile = new Schema(
     subs: [{ type: String, unique: true }],
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
-    picture: { type: String, default: "//placehold.it/150x150" },
-    votedNames: { type: String, unique: true }
+    picture: { type: String, default: "https://i1.pngguru.com/preview/760/394/363/company-idolmster-project-lacrosse-xbox-360-management-skill-idolmaster-png-clipart-thumbnail.jpg" },
+    votedNames: [{ type: String, unique: true }]
     // NOTE If you wish to add additional public properties for profiles do so here
   },
   { timestamps: true, toJSON: { virtuals: true } }

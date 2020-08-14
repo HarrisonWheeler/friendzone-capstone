@@ -3,8 +3,17 @@
     <div class="col-3 mt-4">
       <div class="card shadow-lg text-left bg-secondary p-3 h-100">
         <h2 class="text-center m-2">{{profile.name}}</h2>
-        <img class="mb-4 rounded-circle border border-dark img-fluid" :src="profile.picture" alt />
-        <img v-if="!profile.picture" class="mb-4 rounded-circle" src="//placehold.it/150x150" alt />
+        <img
+          v-if="profile.picture"
+          class="mb-4 rounded-circle border border-dark img-fluid"
+          :src="profile.picture"
+          alt
+        />
+        <img
+          v-if="!profile.picture"
+          class="mb-4 rounded-circle"
+          src="https://lh3.googleusercontent.com/proxy/fprp02E8T3_-8ChbSQT-gCogAMmtkcdEKqXjXhGgqS4xdhYgRsVAkajQcNdoSbRZbhm0IqbsYX6Uo-QH46-FkqQ2jizN63jkexMk7ZOzR70AiSsuC1j_1IsZI8xzTIPtrBLXVicq"
+        />
 
         <h5>REPUTATION: {{profile.rep}}</h5>
         <p class="mb-1">
