@@ -55,8 +55,8 @@ class ProfileService {
   async followGame(id, body) {
     // REVIEW get the profile and check if they already have the game
 
-    return await dbContext.Profile.findByIdAndUpdate({ _id: id },
-      { $addToSet: { games: { name: body.name, backgroundImg: body.backgroundImg, gameId: body.gameId } } }, { new: true })
+    return await dbContext.Profile.findOneAndUpdate({ _id: id, "games.gameId": { $ne: body.gameId } },
+      { $addToSet: { "games": body } }, { new: true, upsert: true })
   }
   async getByName(name) {
     let friendProfile = await dbContext.Profile.find({
@@ -109,10 +109,10 @@ class ProfileService {
     return profile;
   }
   /**
-​    * Updates profile with the request body, will only allow changes to editable fields
-​    * @param {any} user Auth0 user object
-​    * @param {any} body Updates to apply to user object
-​    */
+     * Updates profile with the request body, will only allow changes to editable fields
+     * @param {any} user Auth0 user object
+     * @param {any} body Updates to apply to user object
+     */
   async editRep(id, body) {
     let val = body.voteType == 'up' ? 1 : -1
     let rep = await dbContext.Profile.findOneAndUpdate(

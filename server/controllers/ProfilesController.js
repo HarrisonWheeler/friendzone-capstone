@@ -94,6 +94,10 @@ export class ProfilesController extends BaseController {
     try {
       res.send(await profilesService.followGame(req.params.id, req.body))
     } catch (error) {
+      if (error.code == 11000) {
+        res.status(204).send()
+        return
+      }
       next(error)
     }
   }
