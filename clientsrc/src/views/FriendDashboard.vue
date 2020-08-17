@@ -119,7 +119,7 @@ export default {
   },
   methods: {
     vote(vote) {
-      debugger;
+     
       if (this.friendData.votedNames != this.$auth.userInfo.email) {
         if (vote == "up") {
           this.friendData.rep++;

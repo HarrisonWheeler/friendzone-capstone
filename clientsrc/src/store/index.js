@@ -35,7 +35,6 @@ export default new Vuex.Store({
       state.activeGame = game
     },
     setFriendDashboard(state, data) {
-      debugger
       state.friendDashboard = data
     }
   },

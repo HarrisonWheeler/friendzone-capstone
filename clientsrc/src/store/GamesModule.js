@@ -23,7 +23,7 @@ export default {
             }
         },
         followGame({ commit, dispatch }, payload) {
-            debugger
+
             try {
                 api.post("profile/" + payload.id + "/games", payload)
             } catch (error) {
