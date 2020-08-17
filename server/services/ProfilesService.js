@@ -35,19 +35,19 @@ async function mergeSubsIfNeeded(profile, user) {
  * Restricts changes to the body of the profile object
  * @param {any} body
  */
-function sanitizeBody(body) {
-  let writable = {
-    name: body.name,
-    phones: body.phones,
-    addresses: body.addresses,
-    picture: body.picture,
-    firstTimeUser: body.firstTimeUser,
-    rep: body.rep,
-    videoClip: body.videoClip,
-    consoles: body.consoles
-  };
-  return writable;
-}
+// function sanitizeBody(body) {
+//   let writable = {
+//     name: body.name,
+//     phones: body.phones,
+//     addresses: body.addresses,
+//     picture: body.picture,
+//     firstTimeUser: body.firstTimeUser,
+//     rep: body.rep,
+//     videoClip: body.videoClip,
+//     consoles: body.consoles
+//   };
+//   return writable;
+// }
 
 class ProfileService {
 
@@ -125,7 +125,7 @@ class ProfileService {
     return followers
   }
   async updateProfile(user, body) {
-    let update = sanitizeBody(body)
+    let update = body
     if (body.name.length > 0) {
       body.firstTimeUser = false
     }
