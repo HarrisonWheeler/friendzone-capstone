@@ -28,7 +28,7 @@ const Profile = new Schema(
     subs: [{ type: String, unique: true }],
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
-    picture: { type: String, default: "https://i1.pngguru.com/preview/760/394/363/company-idolmster-project-lacrosse-xbox-360-management-skill-idolmaster-png-clipart-thumbnail.jpg" },
+    picture: { type: String, default: "https://lh3.googleusercontent.com/proxy/Q1lEAHblBW7fiO3AUQuhsni_J3_dkQGwmfyjUI8DgkNodX3DAfSRlyZtS1XKKP18xSv_v_To8zKQtwwDve9_j2wGBCECYZL0bg_WgPJRmB2QWVrSa8R7YjYLOApbj3prPtPXUoLnproe" },
     votedNames: [{ type: String, unique: true }]
     // NOTE If you wish to add additional public properties for profiles do so here
   },

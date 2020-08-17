@@ -132,19 +132,15 @@
               class="col-1 text-danger"
               :class="profile.consoles.nintendo == 'nintendo' || !profile.consoles.nintendo ? '' : 'console-shadow'"
             >
-              <span
-                v-if="profile.consoles.nintendo == 'nintendo' || !profile.consoles.nintendo"
-                class="iconify"
-                data-icon="mdi-nintendo-switch"
-                data-inline="false"
-              ></span>
-              <span
+              <div v-if="profile.consoles.nintendo == 'nintendo' || !profile.consoles.nintendo">
+                <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
+              </div>
+              <div
                 @click="setDisplayGamerTag(profile.consoles.nintendo)"
                 v-else-if="profile.consoles.nintendo"
-                class="iconify"
-                data-icon="mdi-nintendo-switch"
-                data-inline="false"
-              ></span>
+              >
+                <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
+              </div>
             </div>
           </div>
           <h5 v-if="displayGamerTag">{{displayGamerTag}}</h5>
@@ -244,7 +240,6 @@ export default {
         id: this.profile._id,
         firstTimeUser: false,
       };
-      debugger;
       this.$store.dispatch("editProfile", payload);
     },
     setDisplayGamerTag(console) {

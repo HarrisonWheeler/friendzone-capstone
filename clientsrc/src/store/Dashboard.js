@@ -23,12 +23,12 @@ export default {
     },
 
     async votes({ commit, dispatch }, payload) {
-      let res = await api.put("profile/votes/" + payload.id, payload)
+      let res = await api.put("profile/" + payload.id + "/votes", payload)
       console.log(res);
       dispatch("getDashboard", payload.id)
     },
     async follow({ commit, dispatch }, payload) {
-      let res = await api.put("profile/following/" + payload.id, payload)
+      let res = await api.put("profile/" + payload.id + "/following", payload)
       console.log(res);
       dispatch("getDashboard", payload.id)
     },
@@ -63,7 +63,7 @@ export default {
       console.log(res);
 
       commit("setUser", res.data)
-
+      router.push({ name: "dashboard" });
     }
   }
 

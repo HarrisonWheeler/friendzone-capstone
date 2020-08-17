@@ -25,7 +25,10 @@
           </p>
           <div class="row">
             <div class="col-1">
-              <i v-if="friendData.consoles.pc == 'pc'" class="fas fa-desktop text-warning"></i>
+              <i
+                v-if="profile.consoles.pc == 'pc' || !profile.consoles.pc"
+                class="fas fa-desktop text-warning"
+              ></i>
               <i
                 @click="setDisplayGamerTag(friendData.consoles.pc)"
                 v-else-if="friendData.consoles.pc"
@@ -33,7 +36,10 @@
               ></i>
             </div>
             <div class="col-1">
-              <i v-if="friendData.consoles.xbox == 'xbox'" class="fab fa-xbox text-success"></i>
+              <i
+                v-if="profile.consoles.xbox == 'xbox' || !profile.consoles.xbox"
+                class="fab fa-xbox text-success"
+              ></i>
               <i
                 @click="setDisplayGamerTag(friendData.consoles.xbox)"
                 v-else-if="friendData.consoles.xbox"
@@ -42,7 +48,7 @@
             </div>
             <div class="col-1">
               <i
-                v-if="friendData.consoles.playstation == 'playstation'"
+                v-if="profile.consoles.playstation == 'playstation' || !profile.consoles.playstation"
                 class="fab fa-playstation text-info"
               ></i>
               <i
@@ -52,19 +58,15 @@
               ></i>
             </div>
             <div class="col-1 text-danger">
-              <span
-                v-if="friendData.consoles.nintendo == 'nintendo'"
-                class="iconify"
-                data-icon="mdi-nintendo-switch"
-                data-inline="false"
-              ></span>
-              <span
+              <div v-if="profile.consoles.nintendo == 'nintendo' || !profile.consoles.nintendo">
+                <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
+              </div>
+              <div
                 @click="setDisplayGamerTag(friendData.consoles.nintendo)"
                 v-else-if="friendData.consoles.nintendo"
-                class="iconify"
-                data-icon="mdi-nintendo-switch"
-                data-inline="false"
-              ></span>
+              >
+                <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
+              </div>
             </div>
           </div>
           <h5 v-if="displayGamerTag">{{displayGamerTag}}</h5>
@@ -119,7 +121,6 @@ export default {
   },
   methods: {
     vote(vote) {
-     
       if (this.friendData.votedNames != this.$auth.userInfo.email) {
         if (vote == "up") {
           this.friendData.rep++;

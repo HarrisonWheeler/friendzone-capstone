@@ -133,7 +133,6 @@ export default {
       };
       this.$store.dispatch("editProfile", payload);
       $("#id").modal("hide");
-      this.$router.push({ name: "dashboard" });
     },
   },
   components: { ProfileModal, vSelect },
