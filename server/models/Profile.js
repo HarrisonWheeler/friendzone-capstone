@@ -11,7 +11,7 @@ const ConsoleSchema = new Schema({
 
 const GameSchema = new Schema({
   name: { type: String, required: true },
-  gameId: { type: String, required: true },
+  gameId: { type: String, required: true, unique: true },
   backgroundImg: { type: String, required: true },
 })
 
