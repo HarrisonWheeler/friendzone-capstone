@@ -1,4 +1,4 @@
-import { api } from "./AxiosService"
+import { api, gameApi } from "./AxiosService"
 import router from '../router/index'
 
 
@@ -34,11 +34,24 @@ export default {
     },
 
     async searchDashboard({ commit, dispatch }, query) {
-      let res = await api.get('profile/name/' + query)
-      console.log(res.data[0].id);
-      commit("setFriendDashboard", res.data[0])
+      debugger
+      let profile = await api.get('profile/name/' + query)
+      // console.log(profile.data[0].id);
+      if (profile.data.length > 0) {
+        debugger
+        commit("setFriendDashboard", profile.data[0])
+        router.push({ name: 'friendDashboard', params: { id: profile.data[0].id } })
+      }
+      else {
+        debugger
+        let newQuery = query.toLowerCase().replace(/ /g, '-');
+        console.log(newQuery)
+        let game = await gameApi.get('games/' + newQuery)
+        commit("setActiveGame", game)
+        router.push({ name: 'GameDetails', params: { id: game.data.id } })
+        dispatch("getActiveGame", game.data.id)
 
-      router.push({ name: 'friendDashboard', params: { id: res.data[0].id } })
+      }
     },
     async getDashboard({ commit, dispatch }, id) {
       let res = await api.get("profile/" + id)
