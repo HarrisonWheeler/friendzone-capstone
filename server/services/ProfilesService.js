@@ -1,5 +1,6 @@
 import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors"
+import Profile from "../models/Profile";
 
 // Private Methods
 
