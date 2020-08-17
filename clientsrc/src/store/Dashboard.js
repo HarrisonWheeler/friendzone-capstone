@@ -34,16 +34,16 @@ export default {
     },
 
     async searchDashboard({ commit, dispatch }, query) {
-      debugger
+
       let profile = await api.get('profile/name/' + query)
       // console.log(profile.data[0].id);
       if (profile.data.length > 0) {
-        debugger
+
         commit("setFriendDashboard", profile.data[0])
         router.push({ name: 'friendDashboard', params: { id: profile.data[0].id } })
       }
       else {
-        debugger
+
         let newQuery = query.toLowerCase().replace(/ /g, '-');
         console.log(newQuery)
         let game = await gameApi.get('games/' + newQuery)
@@ -54,9 +54,10 @@ export default {
       }
     },
     async getDashboard({ commit, dispatch }, id) {
-      let res = await api.get("profile/" + id)
+
+      let res = await api.get("profile/user/" + id)
       console.log(res.data);
-      commit("setDashboard", res.data)
+      commit("setFriendDashboard", res.data)
     },
     async editProfile({ commit, dispatch }, payload) {
       let res = await api.put("profile/" + payload.profileId, payload)

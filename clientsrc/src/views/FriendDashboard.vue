@@ -1,6 +1,9 @@
 <template>
   <div class="friendDashboard row justify-content-center py-4 mt-3">
-    <div class="col-3 mt-4">
+    <div v-if="!friendData">
+      <h1>Loading...</h1>
+    </div>
+    <div v-if="friendData" class="col-3 mt-4">
       <div class="card shadow-lg text-left bg-secondary p-3 h-100">
         <h2 class="text-center m-3">{{friendData.name}}</h2>
         <img
@@ -26,7 +29,7 @@
           <div class="row">
             <div class="col-1">
               <i
-                v-if="profile.consoles.pc == 'pc' || !profile.consoles.pc"
+                v-if="friendData.consoles.pc == 'pc' || !friendData.consoles.pc"
                 class="fas fa-desktop text-warning"
               ></i>
               <i
@@ -37,7 +40,7 @@
             </div>
             <div class="col-1">
               <i
-                v-if="profile.consoles.xbox == 'xbox' || !profile.consoles.xbox"
+                v-if="friendData.consoles.xbox == 'xbox' || !friendData.consoles.xbox"
                 class="fab fa-xbox text-success"
               ></i>
               <i
@@ -48,7 +51,7 @@
             </div>
             <div class="col-1">
               <i
-                v-if="profile.consoles.playstation == 'playstation' || !profile.consoles.playstation"
+                v-if="friendData.consoles.playstation == 'playstation' || !friendData.consoles.playstation"
                 class="fab fa-playstation text-info"
               ></i>
               <i
@@ -58,7 +61,9 @@
               ></i>
             </div>
             <div class="col-1 text-danger">
-              <div v-if="profile.consoles.nintendo == 'nintendo' || !profile.consoles.nintendo">
+              <div
+                v-if="friendData.consoles.nintendo == 'nintendo' || !friendData.consoles.nintendo"
+              >
                 <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
               </div>
               <div
@@ -83,7 +88,7 @@
         </button>
       </div>
     </div>
-    <div class="col-8 px-0 mt-4">
+    <div v-if="friendData" class="col-8 px-0 mt-4">
       <div class="row card shadow-lg bg-secondary ml-2 mb-2 h-50 p-2">
         <h4>
           <u>GAMES FOLLOWED:</u>
