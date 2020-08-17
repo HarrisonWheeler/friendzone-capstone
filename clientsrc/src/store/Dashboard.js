@@ -6,7 +6,7 @@ import router from '../router/index'
 
 export default {
   mounted() {
-    debugger;
+
     this.$store.dispatch("getProfileGames", this.$route.params.id);
   },
   state: {
@@ -17,7 +17,7 @@ export default {
   },
   actions: {
     async getProfileGames(id) {
-      debugger
+
       let res = await api.get("profile/" + id + "/games")
 
     },
@@ -37,7 +37,7 @@ export default {
       let res = await api.get('profile/name/' + query)
       console.log(res.data[0].id);
       commit("setFriendDashboard", res.data[0])
-      debugger
+
       router.push({ name: 'friendDashboard', params: { id: res.data[0].id } })
     },
     async getDashboard({ commit, dispatch }, id) {

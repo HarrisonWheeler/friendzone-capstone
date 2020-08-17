@@ -1,14 +1,15 @@
 <template>
   <div class="game-details justify-content-center row">
-    <div class="col-11 card border border-secondary text-light m-3 shadow-lg px-0">
-      <h3 class="card-header bg-secondary">{{activeGame.name}}</h3>
-      <div class="card-body">
+    <div class="col-11 card text-light m-3 shadow-lg px-0">
+      <div class="card-body bg-gradient p-3">
+        <h3>{{activeGame.name}}</h3>
+        <hr />
         <p class="mb-2">{{activeGame.description_raw}}</p>
         <h6 class>{{activeGame.genres[0].name}}/{{activeGame.genres[1].name}}</h6>
         <h6
           :class="activeGame.rating >= 4 ? 'text-success' : 'text-danger'"
         >Rating: {{Math.floor(activeGame.rating)}}/5</h6>
-        <p class="text-warning">Metacritic Score: {{activeGame.metacritic}}</p>
+        <p class="text-warning mb-0">Metacritic Score: {{activeGame.metacritic}}</p>
         <p @click="platformVisible = !platformVisible" class="cursor">
           <u>Available Platforms</u>
         </p>
@@ -20,14 +21,23 @@
           >{{data.platform.name}}{{index < activeGame.platforms.length -1 ? ", " : ""}}</span>
         </p>
         <div class="row mx-1 justify-content-center">
-          <img :src="activeGame.background_image" class="img-thumbnail w-25 m-1" alt />
-          <video :src="activeGame.clip.clip" autoplay loop controls width="400" class="rounded"></video>
-          <img :src="activeGame.background_image_additional" class="img-thumbnail w-25 m-1" alt />
+          <img :src="activeGame.background_image" class="img-fluid rounded w-25 m-1 shadow-lg" alt />
+          <video
+            :src="activeGame.clip.clip"
+            autoplay
+            loop
+            controls
+            width="400"
+            class="rounded shadow-lg mx-2"
+          ></video>
+          <img
+            :src="activeGame.background_image_additional"
+            class="img-fluid rounded w-25 m-1 shadow-lg"
+            alt
+          />
         </div>
-      </div>
-      <div class="card-footer">
         <button
-          class="border border-info btn btn-rounded btn-outline-info btn-block"
+          class="border border-info btn btn-rounded btn-outline-info btn-block mt-3 py-1"
           @click="followGame(activeGame.id)"
         >+Follow Game</button>
       </div>
@@ -57,7 +67,6 @@ export default {
   },
   methods: {
     followGame(id) {
-      debugger;
       this.activeGame.followers += 1;
       this.$store.dispatch("followGame", {
         id: this.profile.id,
@@ -75,9 +84,21 @@ export default {
 
 <style scoped>
 .shadow-lg {
-  box-shadow: 0 0.25rem 2rem rgba(126, 126, 126, 0.616) !important;
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.616) !important;
 }
 .cursor {
   cursor: pointer;
+}
+.bg-gradient {
+  background: rgb(38, 38, 38);
+  background: linear-gradient(
+    0deg,
+    rgba(38, 38, 38, 1) 0%,
+    rgba(55, 55, 55, 1) 50%,
+    rgba(33, 32, 32, 1) 100%
+  );
+}
+.bg-gray {
+  background: rgb(56, 56, 56);
 }
 </style>
