@@ -126,16 +126,13 @@ export default {
   },
   methods: {
     vote(vote) {
-      if (this.friendData.votedNames != this.$auth.userInfo.email) {
-        if (vote == "up") {
-          this.friendData.rep++;
-        } else if (vote == "down") {
-          this.friendData.rep--;
-        }
+      debugger;
+      if (this.friendData.email != this.$auth.userInfo.email) {
         this.$store.dispatch("votes", {
           rep: this.friendData.rep,
           votedNames: this.$auth.userInfo.email,
           id: this.$route.params.id,
+          voteType: vote,
         });
       }
     },
