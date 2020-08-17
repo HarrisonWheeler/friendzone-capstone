@@ -1,5 +1,5 @@
 <template>
-  <div class="gamesMainPage row justify-content-center mt-4">
+  <div class="gamesMainPage row justify-content-center mt-4 container-fluid">
     <div class="col-10">
       <form class="text-center my-2">
         <div class="input-group mb-3 shadow-lg">
