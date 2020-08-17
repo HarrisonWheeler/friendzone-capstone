@@ -54,7 +54,7 @@ export default {
   color: #42b983;
 }
 
-.bg-image {
+body {
   background-image: url("./assets/bg-image.png");
   background-attachment: fixed;
   background-size: cover;
