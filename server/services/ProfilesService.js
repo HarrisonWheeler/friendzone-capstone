@@ -1,5 +1,6 @@
 import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors"
+import Profile from "../models/Profile";
 
 // Private Methods
 
@@ -113,8 +114,9 @@ class ProfileService {
 ​    * @param {any} body Updates to apply to user object
 ​    */
   async editRep(id, body) {
+    let val = body.voteType == 'up' ? 1 : -1
     let rep = await dbContext.Profile.findOneAndUpdate(
-      { _id: id }, { $addToSet: { votedNames: body.votedNames } }, { new: true }
+      { _id: id, votedNames: { $nin: [body.votedNames] } }, { $addToSet: { votedNames: body.votedNames }, $inc: { rep: val } }, { new: true }
     )
     return rep
   }

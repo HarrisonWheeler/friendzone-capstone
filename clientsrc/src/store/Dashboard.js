@@ -44,6 +44,7 @@ export default {
       }
       else {
         router.push({ name: 'Games' })
+
         let newQuery = query.toLowerCase().replace(/ /g, '-');
         let game = await gameApi.get('games?search=' + newQuery)
         commit("setSearchedGames", game.data.results)
@@ -51,9 +52,10 @@ export default {
       }
     },
     async getDashboard({ commit, dispatch }, id) {
-      let res = await api.get("profile/" + id)
+
+      let res = await api.get("profile/user/" + id)
       console.log(res.data);
-      commit("setDashboard", res.data)
+      commit("setFriendDashboard", res.data)
     },
     async editProfile({ commit, dispatch }, payload) {
       let res = await api.put("profile/" + payload.profileId, payload)

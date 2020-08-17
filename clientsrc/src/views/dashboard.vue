@@ -1,6 +1,9 @@
 <template>
   <div class="dashboard row justify-content-center py-4">
-    <div class="col-3 mt-4">
+    <div v-if="!profile">
+      <h1>Loading....</h1>
+    </div>
+    <div v-if="profile" class="col-3 mt-4">
       <div class="card shadow-lg text-left bg-secondary p-3 h-100">
         <div class="text-right">
           <i v-if="!editContent" @click="edit" class="fa fa-pencil fa-2x"></i>
@@ -154,7 +157,7 @@
         </p>
       </div>
     </div>
-    <div class="col-8 px-0 mt-4">
+    <div v-if="profile" class="col-8 px-0 mt-4">
       <div class="row card shadow-lg bg-secondary ml-2 mb-2 h-50 p-2">
         <h4>
           <u>GAMES FOLLOWED:</u>

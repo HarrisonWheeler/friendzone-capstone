@@ -13,7 +13,7 @@ export class ProfilesController extends BaseController {
       .use(auth0provider.getAuthorizedUserInfo)
       .get("/:id", this.getUserProfile)
       .get("", this.getProfiles)
-      .get('/:id', this.getById)
+      .get('/user/:id', this.getById)
       .get('/name/:query', this.getByName)
       .put("/:id", this.edit)
       .put("/:id/votes", this.editRep)
