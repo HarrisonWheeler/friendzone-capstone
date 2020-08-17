@@ -43,13 +43,11 @@ export default {
         router.push({ name: 'friendDashboard', params: { id: profile.data[0].id } })
       }
       else {
+        router.push({ name: 'Games' })
 
         let newQuery = query.toLowerCase().replace(/ /g, '-');
-        console.log(newQuery)
-        let game = await gameApi.get('games/' + newQuery)
-        commit("setActiveGame", game)
-        router.push({ name: 'GameDetails', params: { id: game.data.id } })
-        dispatch("getActiveGame", game.data.id)
+        let game = await gameApi.get('games?search=' + newQuery)
+        commit("setSearchedGames", game.data.results)
 
       }
     },
