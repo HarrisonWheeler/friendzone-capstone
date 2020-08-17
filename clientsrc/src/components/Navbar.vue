@@ -24,7 +24,7 @@
           <router-link :to="{ name: 'dashboard' }" class="nav-link">MY DASHBOARD</router-link>
         </li>
         <li class="nav-item" v-if="$auth.isAuthenticated">
-          <router-link class="nav-link" :to="{ name: 'games' }">GAMES</router-link>
+          <router-link class="nav-link" :to="{ name: 'Games' }">GAMES</router-link>
         </li>
       </ul>
       <button
@@ -51,13 +51,17 @@
               aria-describedby="button-addon2"
             />
             <div class="input-group-append">
-              <button class="btn btn-primary" type="button" id="button-addon2">SEARCH</button>
+              <button
+                class="btn btn-outline-primary border border-secondary"
+                type="button"
+                id="button-addon2"
+              >SEARCH</button>
             </div>
           </div>
         </form>
         <span class="navbar-text">
-          <button class="btn btn-success" @click="login" v-if="!$auth.isAuthenticated">Login</button>
-          <button class="btn btn-danger" @click="logout" v-else>logout</button>
+          <button class="btn btn-outline-success" @click="login" v-if="!$auth.isAuthenticated">LOGIN</button>
+          <button class="btn btn-outline-danger border border-danger" @click="logout" v-else>LOGOUT</button>
         </span>
       </div>
     </div>

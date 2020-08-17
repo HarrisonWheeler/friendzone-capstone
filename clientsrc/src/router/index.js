@@ -36,6 +36,12 @@ export default new Router({
       component: () => import(/* webpackChunkName: "gamedetails" */ '../views/GameDetails.vue')
     },
     {
+      path: '/games',
+      name: 'Games',
+      // @ts-ignore
+      component: () => import(/* webpackChunkName: "games" */ '../views/GamesMainPage.vue')
+    },
+    {
       path: '/dashboard/:id',
       name: 'friendDashboard',
       component: loadView("FriendDashboard.vue"),

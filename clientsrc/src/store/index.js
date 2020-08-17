@@ -19,6 +19,7 @@ export default new Vuex.Store({
     dashboard: {},
     friendDashboard: {},
 
+
   },
   mutations: {
     setUser(state, user) {
