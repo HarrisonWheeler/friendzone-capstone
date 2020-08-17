@@ -21,7 +21,8 @@
           <i class="fa fa-thumbs-o-up fa fa-2x mr-3" @click="vote('up')"></i>
           <i class="fa fa-thumbs-o-down fa fa-2x ml-3" @click="vote('down')"></i>
         </div>
-        <h5>REPUTATION: {{friendData.rep}}</h5>
+        <h5 v-if="friendData.rep">REPUTATION: {{friendData.rep}}</h5>
+        <h5 v-if="!friendData.rep">REPUTATION: 0</h5>
         <div>
           <p class="mb-1">
             <b>GAMERTAGS:</b>
