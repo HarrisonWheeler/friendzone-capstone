@@ -42,8 +42,6 @@ function sanitizeBody(body) {
     addresses: body.addresses,
     picture: body.picture,
     firstTimeUser: body.firstTimeUser,
-    following: body.following,
-    games: body.games,
     rep: body.rep,
     videoClip: body.videoClip,
     consoles: body.consoles
