@@ -15,9 +15,11 @@ export default new Vuex.Store({
     profile: {},
     games: [],
     activeGame: [],
+    searchedGames: [],
     gameDetails: {},
     dashboard: {},
     friendDashboard: {},
+
 
 
   },
@@ -35,6 +37,10 @@ export default new Vuex.Store({
     setActiveGame(state, game) {
       state.activeGame = game
     },
+    setSearchedGames(state, games) {
+      state.searchedGames = games
+    },
+
     setFriendDashboard(state, data) {
       state.friendDashboard = data
     }

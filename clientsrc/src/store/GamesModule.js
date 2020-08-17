@@ -22,6 +22,18 @@ export default {
                 console.error(error)
             }
         },
+        async getSearchedGames({ commit, dispatch }, query) {
+            try {
+                debugger
+                let newQuery = query.toLowerCase().replace(/ /g, '-');
+                console.log(newQuery)
+                let game = await gameApi.get('games?search=' + newQuery)
+                commit("setSearchedGames", game.data.results)
+            } catch (error) {
+                console.error(error);
+            }
+        },
+
         followGame({ commit, dispatch }, payload) {
 
             try {
