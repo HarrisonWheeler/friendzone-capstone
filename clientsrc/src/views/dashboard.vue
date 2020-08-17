@@ -179,7 +179,13 @@ export default {
       let payload = {
         name: this.editedUsername,
         picture: this.editedImg,
+        following: this.profile.followers,
+        games: this.profile.games,
+        rep: this.profile.rep,
+        videoClip: this.profile.videClip,
+        consoles: this.profile.consoles,
         id: this.profile._id,
+        firstTimeUser: false,
       };
       this.$store.dispatch("editProfile", payload);
     },
