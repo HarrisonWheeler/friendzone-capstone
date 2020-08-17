@@ -83,7 +83,7 @@ export default {
 
 <style scoped>
 .shadow-lg {
-  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.616) !important;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.616) !important;
 }
 .bg-gradient {
   background: rgb(38, 38, 38);
