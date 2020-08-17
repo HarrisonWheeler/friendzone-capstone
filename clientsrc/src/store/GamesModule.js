@@ -4,9 +4,9 @@ import router from '../router/index'
 
 export default {
     actions: {
-        async getGames({ commit, dispatch }) {
+        async getGames({ commit, dispatch }, page = 1) {
             try {
-                let res = await gameApi.get("games?/page_size=40")
+                let res = await gameApi.get("games?page=" + page)
                 console.log(res.data.results)
                 commit("setGames", res.data.results)
             } catch (error) {
