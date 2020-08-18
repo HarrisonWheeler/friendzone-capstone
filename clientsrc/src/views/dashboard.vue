@@ -287,16 +287,16 @@ export default {
   border-width: medium !important;
 }
 .pc-shadow {
-  text-shadow: 0 0.15rem 0.5rem rgba(226, 128, 0, 0.616) !important;
+  text-shadow: 0 0.15rem 1rem rgba(226, 128, 0, 0.616) !important;
 }
 .xbox-shadow {
-  text-shadow: 0 0.15rem 0.5rem rgba(4, 255, 67, 0.616) !important;
+  text-shadow: 0 0.15rem 1rem rgba(4, 255, 67, 0.616) !important;
 }
 .playstation-shadow {
-  text-shadow: 0 0.15rem 0.5rem rgba(60, 0, 226, 0.616) !important;
+  text-shadow: 0 0.15rem 1rem rgb(2, 162, 255) !important;
 }
 .nintendo-shadow {
-  text-shadow: 0 0.15rem 0.5rem rgba(255, 8, 8, 0.616) !important;
+  text-shadow: 0 0.15rem 1rem rgba(255, 8, 8, 0.616) !important;
 }
 .bg-gradient {
   background: rgb(38, 38, 38);
