@@ -176,17 +176,25 @@
       </div>
     </div>
     <div v-if="profile" class="col-8 px-0 mt-2">
-      <div class="row card shadow-lg bg-gradient border border-dark ml-2 mb-2 h-50 p-2">
-        <h4 class="text-shadow">
-          <u>GAMES FOLLOWED:</u>
-          <div v-for="game in profile.games" :key="game.name">
-            <div class="col-2">
-              <h4>{{game.name}}</h4>
-              <img :src="game.backgroundImg" class="img-thumbnail" width="100%" alt />
+      <div class="row shadow-lg bg-gradient border border-dark ml-2 mb-2 p-3">
+        <h4 class="col-12 text-shadow">
+          <u>GAMES FOLLOWING</u>
+        </h4>
+        <div class="row overflow width">
+          <div
+            class="card col-2 px-0 shadow-lg bg-card-gradient m-1"
+            v-for="game in profile.games"
+            :key="game.name"
+          >
+            <div class="embed-responsive embed-responsive-4by3">
+              <img :src="game.backgroundImg" class="card-img-top embed-responsive-item" alt />
+            </div>
+            <div class="card-body rounded-bottom bg-gradient p-1">
+              <h4 class="pt-3">{{game.name}}</h4>
               <p>{{followers.followers}}</p>
             </div>
           </div>
-        </h4>
+        </div>
       </div>
       <div class="row card shadow-lg bg-gradient border border-dark ml-2 my-3 h-45 p-2">
         <h4 class="text-shadow">
@@ -281,6 +289,9 @@ export default {
 
 
 <style scoped>
+.width {
+  width: 100%;
+}
 .shadow-lg {
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.616) !important;
 }
@@ -320,5 +331,12 @@ export default {
     rgba(90, 90, 90, 1) 0%,
     rgba(35, 35, 35, 1) 100%
   );
+}
+.overflow {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+::-webkit-scrollbar {
+  display: none;
 }
 </style>

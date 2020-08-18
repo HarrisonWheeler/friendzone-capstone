@@ -117,16 +117,14 @@
         </div>
       </div>
     </div>
-    <div v-if="friendData" class="col-8 mt-2">
-      <div
-        class="row justify-content-center shadow-lg bg-gradient border border-dark ml-2 mb-2 p-3"
-      >
+    <div v-if="friendData" class="col-8 px-0 mt-2">
+      <div class="row shadow-lg bg-gradient border border-dark ml-2 mb-2 p-3">
         <h4 class="col-12 text-shadow">
           <u>GAMES FOLLOWING</u>
         </h4>
-        <div class="row overflow">
+        <div class="row overflow width">
           <div
-            class="card overflow col-2 px-0 shadow-lg bg-card-gradient m-1"
+            class="card col-2 px-0 shadow-lg bg-card-gradient m-1"
             v-for="game in friendData.games"
             :key="game.name"
           >
@@ -135,7 +133,7 @@
             </div>
             <div class="card-body rounded-bottom bg-gradient p-1">
               <h4 class="pt-3">{{game.name}}</h4>
-              <p>{{followers.followers}}</p>
+              <!-- <p>{{followers.followers}}</p> -->
             </div>
           </div>
         </div>
@@ -210,6 +208,9 @@ export default {
 
 
 <style scoped>
+.width {
+  width: 100%;
+}
 .shadow-lg {
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.616) !important;
 }
