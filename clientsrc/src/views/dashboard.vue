@@ -158,14 +158,28 @@
             <h5 v-if="displayGamerTag">{{displayGamerTag}}</h5>
           </div>
           <!-- TODO followers not hard coded -->
-          <p class="mb-2 text-shadow">
+          <p v-if="profile.following.length < 1" class="mb-2 text-shadow">
             <u>
               <b>FOLLOWING</b>
             </u>
             <br />
             <b>{{profile.following.length}}</b>
           </p>
-          <p class="mb-2 text-shadow">
+          <p @click="followingModal" v-else class="mb-2 text-shadow">
+            <u>
+              <b>FOLLOWING</b>
+            </u>
+            <br />
+            <b>{{profile.following.length}}</b>
+          </p>
+          <p v-if="follows < 1" class="mb-2 text-shadow">
+            <u>
+              <b>FOLLOWERS</b>
+            </u>
+            <br />
+            <b>{{follows}}</b>
+          </p>
+          <p v-else @click="followersModal" class="mb-2 text-shadow">
             <u>
               <b>FOLLOWERS</b>
             </u>
@@ -203,6 +217,18 @@
         <h1 class="my-4 text-shadow">COMING SOON......</h1>
       </div>
     </div>
+    <ProfileModal id="id">
+      <h1 slot="header">Following</h1>
+      <div slot="body">
+        <div v-for="followingName in profile.following" :key="followingName"></div>
+      </div>
+    </ProfileModal>
+    <ProfileModal id="two">
+      <h1 slot="header">Followers</h1>
+      <div slot="body">
+        <div v-for="followingName in profile.following" :key="followingName"></div>
+      </div>
+    </ProfileModal>
   </div>
 </template>
 
@@ -281,6 +307,14 @@ export default {
       if (this.displayGamerTag == console) {
         this.displayGamerTag = "";
       } else this.displayGamerTag = console;
+    },
+    followingModal() {
+      $("#id").modal("show");
+      this.$store.dispatch("followingModal", profile.following);
+    },
+    followersModal() {
+      $("#two").modal("show");
+      this.$store.dispatch("followersModal", profile._id);
     },
   },
   components: { ProfileModal, vSelect },

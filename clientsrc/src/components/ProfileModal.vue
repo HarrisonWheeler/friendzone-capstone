@@ -2,7 +2,7 @@
   <!-- Modal -->
   <div
     class="modal fade"
-    id="id"
+    :id="id"
     tabindex="-1"
     role="dialog"
     aria-labelledby="modelTitleId"
@@ -33,6 +33,7 @@ export default {
   data() {
     return {};
   },
+  props: ["id"],
   computed: {},
   methods: {},
   components: {},
