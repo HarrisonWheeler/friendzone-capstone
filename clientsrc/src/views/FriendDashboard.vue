@@ -112,12 +112,18 @@
             <b>FOLLOWERS: {{follows}}</b>
           </p>
           <button
-            v-if="profile.email != friendData.email"
+            v-if=" !profile.following.includes(friendData._id) && profile.email != friendData.email"
             @click="follow"
             class="btn btn-block border border-info btn-outline-info mt-4"
           >
-            <b>+</b> FOLLOW
+            <b>+</b>
+            FOLLOW
           </button>
+          <button
+            v-else
+            class="btn btn-block border border-danger btn-outline-danger mt-4"
+            @click="unfollow"
+          >Unfollow</button>
         </div>
       </div>
     </div>
@@ -198,6 +204,12 @@ export default {
           following: this.$route.params.id,
         });
       }
+    },
+    unfollow() {
+      this.$store.dispatch("unfollow", {
+        id: this.profile._id,
+        following: this.$route.params.id,
+      });
     },
     setDisplayGamerTag(console) {
       if (this.displayGamerTag == console) {
