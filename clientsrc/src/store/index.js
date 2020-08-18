@@ -19,7 +19,7 @@ export default new Vuex.Store({
     gameDetails: {},
     dashboard: {},
     friendDashboard: {},
-
+    profileFollowers: 0
 
 
   },
@@ -43,6 +43,10 @@ export default new Vuex.Store({
 
     setFriendDashboard(state, data) {
       state.friendDashboard = data
+      debugger
+    },
+    setFollowers(state, data) {
+      state.profileFollowers = data
     }
   },
   actions: {
