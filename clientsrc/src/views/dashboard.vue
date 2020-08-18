@@ -29,7 +29,7 @@
           <img
             v-if="profile.picture"
             v-show="editContent"
-            class="mb-4 rounded-circle border border-dark shadow-lg img-fluid"
+            class="mb-4 mx-2 rounded-circle border border-dark shadow-lg img-fluid"
             :src="editedImg"
             aria-placeholder="Please Provide Profile image Url"
             alt
@@ -170,7 +170,7 @@
               <b>FOLLOWERS</b>
             </u>
             <br />
-            <b>0</b>
+            <b>{{follows}}</b>
           </p>
         </div>
       </div>
@@ -216,13 +216,19 @@ export default {
       editedNintendo: "",
     };
   },
-  mounted() {},
+  mounted() {
+    this.$store.dispatch("getFollowers", this.profile._id);
+    this.$store.dispatch("getMyProfile", this.profile._id);
+  },
   computed: {
     profile() {
       return this.$store.state.profile;
     },
     followers() {
       return this.$store.state.activeGame;
+    },
+    follows() {
+      return this.$store.state.profileFollowers;
     },
   },
   methods: {

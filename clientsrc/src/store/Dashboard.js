@@ -21,6 +21,10 @@ export default {
       let res = await api.get("profile/" + id + "/games")
 
     },
+    async getMyProfile({ commit, dispatch }, id) {
+      let res = await api.get("profile/" + id)
+      commit("setUser", res.data)
+    },
 
     async votes({ commit, dispatch }, payload) {
       let res = await api.put("profile/" + payload.id + "/votes", payload)
