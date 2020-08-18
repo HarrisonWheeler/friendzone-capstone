@@ -2,7 +2,9 @@
   <div id="app">
     <navbar />
     <div class="container-fluid bg-image">
-      <router-view :key="$route.fullPath" />
+      <transition name="fade">
+        <router-view :key="$route.fullPath" />
+      </transition>
     </div>
   </div>
 </template>
@@ -62,5 +64,14 @@ body {
 }
 ::-webkit-scrollbar {
   display: none;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
