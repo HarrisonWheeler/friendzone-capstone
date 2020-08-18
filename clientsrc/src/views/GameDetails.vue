@@ -73,7 +73,6 @@ export default {
   },
   methods: {
     followGame(id) {
-      debugger;
       this.activeGame.followers += 1;
       this.$store.dispatch("followGame", {
         id: this.profile.id,

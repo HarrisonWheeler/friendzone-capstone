@@ -22,6 +22,8 @@ export class ProfilesController extends BaseController {
       .put("/:id/following", this.editFollowers)
       .post('', this.create)
       .post('/:id/games', this.followGame)
+      .delete('/:id/games/:gameId', this.unfollowGame)
+
       .delete('/:id', this.delete)
   }
   async getByName(req, res, next) {
@@ -107,6 +109,15 @@ export class ProfilesController extends BaseController {
         res.status(204).send()
         return
       }
+      next(error)
+    }
+  }
+  async unfollowGame(req, res, next) {
+
+    try {
+      // @ts-ignore
+      res.send(await profilesService.unfollowGame(req.params.id, req.params.gameId))
+    } catch (error) {
       next(error)
     }
   }
