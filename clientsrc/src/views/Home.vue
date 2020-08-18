@@ -39,11 +39,11 @@ export default {
 
 <style scoped>
 .fade-in {
-  -webkit-animation: fadein 5s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 5s; /* Firefox < 16 */
-  -ms-animation: fadein 5s; /* Internet Explorer */
-  -o-animation: fadein 5s; /* Opera < 12.1 */
-  animation: fadein 5s;
+  -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 3s; /* Firefox < 16 */
+  -ms-animation: fadein 3s; /* Internet Explorer */
+  -o-animation: fadein 3s; /* Opera < 12.1 */
+  animation: fadein 3s;
 }
 @keyframes fadein {
   from {

@@ -200,8 +200,8 @@
             v-for="game in profile.games"
             :key="game.name"
           >
-            <div class="embed-responsive embed-responsive-4by3">
-              <img :src="game.backgroundImg" class="card-img-top embed-responsive-item" alt />
+            <div>
+              <img :src="game.backgroundImg" class="card-img-top img-fluid game-size" alt />
             </div>
             <div class="card-body rounded-bottom bg-gradient p-1">
               <h4 class="pt-3">{{game.name}}</h4>
@@ -376,6 +376,11 @@ export default {
 .img-size {
   height: 12rem;
   width: 12rem;
+  object-fit: cover;
+  object-position: center;
+}
+.game-size {
+  min-height: 10rem;
   object-fit: cover;
   object-position: center;
 }
