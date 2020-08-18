@@ -9,11 +9,15 @@
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
-      <div class="modal-content bg-light p-2">
-        <div class="modal-header">
-          <slot name="header">Create Your Profile</slot>
+      <div class="modal-content bg-gradient shadow-lg p-3">
+        <div class="modal-header text-light">
+          <slot name="header">
+            <h5 class="shadow-lg">
+              <u>CREATE YOUR PROFILE</u>
+            </h5>
+          </slot>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <span class="text-danger" aria-hidden="true">&times;</span>
           </button>
         </div>
         <slot class="bg-secondary" name="body" />
@@ -37,4 +41,15 @@ export default {
 
 
 <style scoped>
+.bg-gradient {
+  background: rgb(90, 90, 90);
+  background: radial-gradient(
+    circle,
+    rgba(90, 90, 90, 1) 0%,
+    rgba(35, 35, 35, 1) 100%
+  );
+}
+.shadow-lg {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.616) !important;
+}
 </style>

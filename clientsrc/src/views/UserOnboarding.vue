@@ -1,60 +1,40 @@
 <template>
   <div class="dashboard row justify-content-center py-4 mt-3">
-    <!-- <div class="col-3 mt-4">
-      <div class="card shadow-lg text-left bg-secondary p-3 h-100">
-        <h2>ENTER NAME HERE...</h2>
-        <img class="mb-4" src="//placehold.it/200x200" alt />
-        <h5>REP SCORE:</h5>
-        <p>GAMERTAGS:</p>
-        <p>FOLLOWERS:</p>
-        <p>FOLLOWING:</p>
-      </div>
+    <div class="col-12 shadow-lg px-0">
+      <img class="img-fluid mt-1" src="../assets/game-image.jpg" alt />
+      <div class="card"></div>
     </div>
-    <div class="col-8 px-0 mt-4">
-      <div class="row card shadow-lg bg-secondary ml-2 mb-2 h-50 p-2">
-        <h4>
-          <u>GAMES FOLLOWED:</u>
-        </h4>
-      </div>
-      <div class="row card shadow-lg bg-secondary ml-2 h-50 p-2">
-        <h4>
-          <u>MY GAME CLIPS:</u>
-        </h4>
-        <h1>COMING SOON......</h1>
-      </div>
-    </div>-->
-    <h1>ONBOARDING</h1>
     <profileModal id="id">
       <div slot="body">
         <input
           v-model="userName"
           type="text"
-          class="form-control text-wrap my-2"
+          class="form-control text-wrap my-2 shadow-lg"
           placeholder="Enter Username...."
         />
         <input
           v-model="imgUrl"
           type="text"
-          class="form-control text-wrap"
+          class="form-control text-wrap shadow-lg"
           placeholder="Enter Profile Picture Url...."
         />
         <div class="input-group">
           <input
             v-model="targetTag"
             type="text"
-            class="form-control my-2"
+            class="form-control my-2 shadow-lg"
             aria-label="Text input with dropdown button"
             placeholder="Enter GamerTag...."
           />
           <div class="input-group-prepend my-2">
             <button
-              class="btn btn-dark dropdown-toggle"
+              class="btn btn-secondary rounded-right dropdown-toggle shadow-lg"
               type="button"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
             >PICK YOUR PLATFORM</button>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu bg-gradient shadow-lg">
               <a class="dropdown-item" v-if="gamerTags.pc == 'pc' " @click="saveTag('pc')">PC</a>
               <a
                 class="dropdown-item"
@@ -74,7 +54,7 @@
             </div>
           </div>
         </div>
-        <button @click="editProfile" class="btn btn-success btn-block py-1">Submit</button>
+        <button @click="editProfile" class="btn btn-secondary shadow-lg btn-block py-2 my-3">SUBMIT</button>
       </div>
     </profileModal>
   </div>
@@ -142,7 +122,7 @@ export default {
 
 <style scoped>
 .shadow-lg {
-  box-shadow: 0 0.25rem 1.2rem rgba(126, 126, 126, 0.616) !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.616) !important;
 }
 .option-height {
   height: 2rem;

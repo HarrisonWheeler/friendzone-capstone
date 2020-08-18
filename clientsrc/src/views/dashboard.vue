@@ -1,165 +1,183 @@
 <template>
-  <div class="dashboard row justify-content-center py-4">
+  <div class="dashboard row justify-content-center text-light py-2">
     <div v-if="!profile">
       <h1>Loading....</h1>
     </div>
-    <div v-if="profile" class="col-3 mt-4">
-      <div class="card shadow-lg text-left bg-secondary p-3 h-100">
-        <div class="text-right">
-          <i v-if="!editContent" @click="edit" class="fa fa-pencil fa-2x"></i>
-          <i v-if="editContent" @click="saveContent" class="fa fa-floppy-o fa-2x"></i>
-        </div>
-        <h2 v-show="!editContent" class="text-center m-2">{{profile.name}}</h2>
-        <h2 v-show="editContent" v-if="!editContent" class="text-center m-2">{{editedUsername}}</h2>
-        <input
-          v-if="editContent"
-          type="text"
-          class="form-control mb-3"
-          v-model="editedUsername"
-          required
-        />
-        <img
-          v-if="profile.picture"
-          v-show="!editContent"
-          class="mb-4 rounded-circle border border-dark img-fluid"
-          :src="profile.picture"
-          alt
-        />
-        <img
-          v-if="profile.picture"
-          v-show="editContent"
-          class="mb-4 rounded-circle border border-dark img-fluid"
-          :src="editedImg"
-          aria-placeholder="Please Provide Profile image Url"
-          alt
-        />
-        <img
-          v-if="!profile.picture"
-          class="mb-4 rounded-circle"
-          src="https://lh3.googleusercontent.com/proxy/Q1lEAHblBW7fiO3AUQuhsni_J3_dkQGwmfyjUI8DgkNodX3DAfSRlyZtS1XKKP18xSv_v_To8zKQtwwDve9_j2wGBCECYZL0bg_WgPJRmB2QWVrSa8R7YjYLOApbj3prPtPXUoLnproe"
-        />
+    <div v-if="profile" class="col-3 mt-2">
+      <div class="card shadow-lg text-center bg-gradient border border-dark p-3 h-100">
+        <div class="card shadow-lg bg-card-gradient p-2">
+          <div class="text-right">
+            <i v-if="!editContent" @click="edit" class="fa fa-pencil fa-1x"></i>
+            <i v-if="editContent" @click="saveContent" class="fa fa-floppy-o fa-1x"></i>
+          </div>
+          <h1 v-show="!editContent" class="text-center text-shadow mb-3">{{profile.name}}</h1>
+          <h1 v-show="editContent" v-if="!editContent" class="text-center m-3">{{editedUsername}}</h1>
+          <input
+            v-if="editContent"
+            type="text"
+            class="form-control mb-3"
+            v-model="editedUsername"
+            required
+          />
+          <img
+            v-if="profile.picture"
+            v-show="!editContent"
+            class="mb-4 mx-2 rounded-circle border border-dark shadow-lg img-fluid"
+            :src="profile.picture"
+            alt
+          />
+          <img
+            v-if="profile.picture"
+            v-show="editContent"
+            class="mb-4 rounded-circle border border-dark shadow-lg img-fluid"
+            :src="editedImg"
+            aria-placeholder="Please Provide Profile image Url"
+            alt
+          />
+          <img
+            v-if="!profile.picture"
+            class="mb-4 rounded-circle"
+            src="https://lh3.googleusercontent.com/proxy/Q1lEAHblBW7fiO3AUQuhsni_J3_dkQGwmfyjUI8DgkNodX3DAfSRlyZtS1XKKP18xSv_v_To8zKQtwwDve9_j2wGBCECYZL0bg_WgPJRmB2QWVrSa8R7YjYLOApbj3prPtPXUoLnproe"
+          />
 
-        <input
-          v-if="editContent"
-          type="text"
-          class="form-control mb-3"
-          v-model="editedImg"
-          required
-        />
+          <input
+            v-if="editContent"
+            type="text"
+            class="form-control mb-3"
+            v-model="editedImg"
+            required
+          />
 
-        <div v-if="editContent" class="my-3">
-          <p class="mb-1">
-            <b>GAMERTAGS:</b>
-          </p>
-          <div class>
-            <div class="row">
-              <div class="col-12 mt-3">
-                <i class="fas fa-desktop text-warning"></i>
+          <div v-if="editContent" class="my-3">
+            <p class="mb-1">
+              <b>GAMERTAGS:</b>
+            </p>
+            <div class>
+              <div class="row">
+                <div class="col-12 mt-3">
+                  <i class="fas fa-desktop text-warning"></i>
 
-                <input v-model="editedPc" type="text" />
+                  <input v-model="editedPc" type="text" />
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-12 mt-3">
-                <i class="fab fa-xbox text-success"></i>
+              <div class="row">
+                <div class="col-12 mt-3">
+                  <i class="fab fa-xbox text-success"></i>
 
-                <input v-model="editedXbox" type="text" />
+                  <input v-model="editedXbox" type="text" />
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-12 mt-3">
-                <i class="fab fa-playstation text-info"></i>
+              <div class="row">
+                <div class="col-12 mt-3">
+                  <i class="fab fa-playstation text-info"></i>
 
-                <input v-model="editedPlaystation" type="text" />
+                  <input v-model="editedPlaystation" type="text" />
+                </div>
               </div>
-            </div>
-            <div class="row text-danger">
-              <div class="col-12 mt-3">
-                <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
+              <div class="row text-danger">
+                <div class="col-12 mt-3">
+                  <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
 
-                <input v-model="editedNintendo" type="text" />
+                  <input v-model="editedNintendo" type="text" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <h5>REPUTATION: {{profile.rep}}</h5>
-        <div v-if="!editContent">
-          <p class="mb-1">
-            <b>GAMERTAGS:</b>
-          </p>
-          <div class="row">
-            <div
-              class="col-1"
-              :class="profile.consoles.pc == 'pc' || !profile.consoles.pc ? '' : 'console-shadow'"
-            >
-              <i
-                v-if="profile.consoles.pc == 'pc' || !profile.consoles.pc"
-                class="fas fa-desktop text-warning"
-              ></i>
-              <i
-                @click="setDisplayGamerTag(profile.consoles.pc)"
-                v-else-if="profile.consoles.pc"
-                class="fas fa-desktop text-warning"
-              ></i>
-            </div>
-            <div
-              class="col-1"
-              :class="profile.consoles.xbox == 'xbox' || !profile.consoles.xbox ? '' : 'console-shadow'"
-            >
-              <i
-                v-if="profile.consoles.xbox == 'xbox' || !profile.consoles.xbox"
-                class="fab fa-xbox text-success"
-              ></i>
-              <i
-                @click="setDisplayGamerTag(profile.consoles.xbox)"
-                v-else-if="profile.consoles.xbox"
-                class="fab fa-xbox text-success"
-              ></i>
-            </div>
-            <div
-              class="col-1"
-              :class="profile.consoles.playstation == 'playstation' || !profile.consoles.playstation ? '' : 'console-shadow'"
-            >
-              <i
-                v-if="profile.consoles.playstation == 'playstation' || !profile.consoles.playstation"
-                class="fab fa-playstation text-info"
-              ></i>
-              <i
-                @click="setDisplayGamerTag(profile.consoles.playstation)"
-                v-else-if="profile.consoles.playstation"
-                class="fab fa-playstation text-info"
-              ></i>
-            </div>
-            <div
-              class="col-1 text-danger"
-              :class="profile.consoles.nintendo == 'nintendo' || !profile.consoles.nintendo ? '' : 'console-shadow'"
-            >
-              <div v-if="profile.consoles.nintendo == 'nintendo' || !profile.consoles.nintendo">
-                <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
+          <h5 class="mb-2 text-shadow">
+            <u>
+              <b>REPUTATION</b>
+            </u>
+            <br />
+            <b>{{profile.rep}}</b>
+          </h5>
+          <div v-if="!editContent">
+            <p class="mb-1 text-shadow">
+              <u>
+                <b>GAMERTAGS</b>
+              </u>
+            </p>
+            <div class="row justify-content-center mb-2">
+              <div
+                class="col-1"
+                :class="profile.consoles.pc == 'pc' || !profile.consoles.pc ? '' : 'pc-shadow'"
+              >
+                <i
+                  v-if="profile.consoles.pc == 'pc' || !profile.consoles.pc"
+                  class="fas fa-desktop text-warning"
+                ></i>
+                <i
+                  @click="setDisplayGamerTag(profile.consoles.pc)"
+                  v-else-if="profile.consoles.pc"
+                  class="fas fa-desktop text-warning"
+                ></i>
               </div>
               <div
-                @click="setDisplayGamerTag(profile.consoles.nintendo)"
-                v-else-if="profile.consoles.nintendo"
+                class="col-1"
+                :class="profile.consoles.xbox == 'xbox' || !profile.consoles.xbox ? '' : 'xbox-shadow'"
               >
-                <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
+                <i
+                  v-if="profile.consoles.xbox == 'xbox' || !profile.consoles.xbox"
+                  class="fab fa-xbox text-success"
+                ></i>
+                <i
+                  @click="setDisplayGamerTag(profile.consoles.xbox)"
+                  v-else-if="profile.consoles.xbox"
+                  class="fab fa-xbox text-success"
+                ></i>
+              </div>
+              <div
+                class="col-1"
+                :class="profile.consoles.playstation == 'playstation' || !profile.consoles.playstation ? '' : 'playstation-shadow'"
+              >
+                <i
+                  v-if="profile.consoles.playstation == 'playstation' || !profile.consoles.playstation"
+                  class="fab fa-playstation text-info"
+                ></i>
+                <i
+                  @click="setDisplayGamerTag(profile.consoles.playstation)"
+                  v-else-if="profile.consoles.playstation"
+                  class="fab fa-playstation text-info"
+                ></i>
+              </div>
+              <div
+                class="col-1 text-danger"
+                :class="profile.consoles.nintendo == 'nintendo' || !profile.consoles.nintendo ? '' : 'nintendo-shadow'"
+              >
+                <div v-if="profile.consoles.nintendo == 'nintendo' || !profile.consoles.nintendo">
+                  <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
+                </div>
+                <div
+                  @click="setDisplayGamerTag(profile.consoles.nintendo)"
+                  v-else-if="profile.consoles.nintendo"
+                >
+                  <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
+                </div>
               </div>
             </div>
+            <h5 v-if="displayGamerTag">{{displayGamerTag}}</h5>
           </div>
-          <h5 v-if="displayGamerTag">{{displayGamerTag}}</h5>
+          <!-- TODO followers not hard coded -->
+          <p class="mb-2 text-shadow">
+            <u>
+              <b>FOLLOWING</b>
+            </u>
+            <br />
+            <b>{{profile.following.length}}</b>
+          </p>
+          <p class="mb-2 text-shadow">
+            <u>
+              <b>FOLLOWERS</b>
+            </u>
+            <br />
+            <b>0</b>
+          </p>
         </div>
-        <!-- TODO followers not hard coded -->
-        <p class="mb-1">
-          <b>FOLLOWING: {{profile.following.length}}</b>
-        </p>
-        <p class="mb-1">
-          <b>FOLLOWERS: 0</b>
-        </p>
       </div>
     </div>
-    <div v-if="profile" class="col-8 px-0 mt-4">
-      <div class="row card shadow-lg bg-secondary ml-2 mb-2 h-50 p-2">
-        <h4>
+    <div v-if="profile" class="col-8 px-0 mt-2">
+      <div class="row card shadow-lg bg-gradient border border-dark ml-2 mb-2 h-50 p-2">
+        <h4 class="text-shadow">
           <u>GAMES FOLLOWED:</u>
           <div v-for="game in profile.games" :key="game.name">
             <div class="col-2">
@@ -170,11 +188,11 @@
           </div>
         </h4>
       </div>
-      <div class="row card shadow-lg bg-secondary ml-2 my-3 h-50 p-2">
-        <h4>
+      <div class="row card shadow-lg bg-gradient border border-dark ml-2 my-3 h-45 p-2">
+        <h4 class="text-shadow">
           <u>MY GAME CLIPS:</u>
         </h4>
-        <h1 class="my-4">COMING SOON......</h1>
+        <h1 class="my-4 text-shadow">COMING SOON......</h1>
       </div>
     </div>
   </div>
@@ -260,12 +278,41 @@ export default {
 .shadow-lg {
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.616) !important;
 }
+.text-shadow {
+  text-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.616) !important;
+}
 
 .border-dark {
-  border-color: #272b30 !important;
+  border-color: #000000 !important;
   border-width: medium !important;
 }
-.console-shadow {
-  box-shadow: 0 0 0.25rem rgba(204, 198, 198, 0.616) !important;
+.pc-shadow {
+  text-shadow: 0 0.15rem 0.5rem rgba(226, 128, 0, 0.616) !important;
+}
+.xbox-shadow {
+  text-shadow: 0 0.15rem 0.5rem rgba(4, 255, 67, 0.616) !important;
+}
+.playstation-shadow {
+  text-shadow: 0 0.15rem 0.5rem rgba(60, 0, 226, 0.616) !important;
+}
+.nintendo-shadow {
+  text-shadow: 0 0.15rem 0.5rem rgba(255, 8, 8, 0.616) !important;
+}
+.bg-gradient {
+  background: rgb(38, 38, 38);
+  background: linear-gradient(
+    0deg,
+    rgba(38, 38, 38, 1) 0%,
+    rgba(55, 55, 55, 1) 50%,
+    rgba(33, 32, 32, 1) 100%
+  );
+}
+.bg-card-gradient {
+  background: rgb(90, 90, 90);
+  background: radial-gradient(
+    circle,
+    rgba(90, 90, 90, 1) 0%,
+    rgba(35, 35, 35, 1) 100%
+  );
 }
 </style>
