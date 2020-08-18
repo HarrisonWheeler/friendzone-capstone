@@ -60,4 +60,7 @@ body {
   background-size: cover;
   min-height: 100vh;
 }
+::-webkit-scrollbar {
+  display: none;
+}
 </style>
