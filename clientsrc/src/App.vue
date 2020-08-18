@@ -2,7 +2,7 @@
   <div id="app">
     <navbar />
     <div class="container-fluid bg-image">
-      <router-view />
+      <router-view :key="$route.fullPath" />
     </div>
   </div>
 </template>

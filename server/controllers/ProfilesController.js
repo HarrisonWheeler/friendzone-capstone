@@ -15,6 +15,7 @@ export class ProfilesController extends BaseController {
       .get("", this.getProfiles)
       .get('/user/:id', this.getById)
       .get('/name/:query', this.getByName)
+      .get('/:id/followers', this.getFollowers)
       .put("/:id", this.edit)
       .put("/:id/votes", this.editRep)
       .put('/:id', this.edit)
@@ -44,6 +45,14 @@ export class ProfilesController extends BaseController {
     try {
       let profile = await profilesService.getProfiles();
       res.send(profile);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async getFollowers(req, res, next) {
+    try {
+      let followers = await profilesService.getFollowers(req.params.id);
+      res.send({ data: followers });
     } catch (error) {
       next(error);
     }

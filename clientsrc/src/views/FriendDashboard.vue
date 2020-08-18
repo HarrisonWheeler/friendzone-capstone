@@ -82,7 +82,7 @@
           <b>FOLLOWING: {{friendData.following.length}}</b>
         </p>
         <p class="mb-1">
-          <b>FOLLOWERS: 0</b>
+          <b>FOLLOWERS: {{follows}}</b>
         </p>
         <button @click="follow" class="btn btn-block border border-info btn-outline-info mt-4">
           <b>+</b> FOLLOW
@@ -116,6 +116,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getDashboard", this.$route.params.id);
+    this.$store.dispatch("getFollowers", this.$route.params.id);
   },
   computed: {
     friendData() {
@@ -123,6 +124,9 @@ export default {
     },
     profile() {
       return this.$store.state.profile;
+    },
+    follows() {
+      return this.$store.state.profileFollowers;
     },
   },
   methods: {
@@ -141,8 +145,8 @@ export default {
       if (this.friendData.following != this.$auth.userInfo.email) {
         this.$store.dispatch("follow", {
           // rep: this.friendData.rep
-          following: this.profile._id,
-          id: this.$route.params.id,
+          id: this.profile._id,
+          following: this.$route.params.id,
         });
       }
     },

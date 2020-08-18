@@ -30,16 +30,21 @@ export default {
     async follow({ commit, dispatch }, payload) {
       let res = await api.put("profile/" + payload.id + "/following", payload)
       console.log(res);
-      dispatch("getDashboard", payload.id)
+      dispatch("getFollowers", payload.following)
     },
-
+    async getFollowers({ commit, dispatch }, id) {
+      let res = await api.get('profile/' + id + '/followers')
+      console.log(res.data);
+      commit("setFollowers", res.data.data)
+    },
     async searchDashboard({ commit, dispatch }, query) {
 
       let profile = await api.get('profile/name/' + query)
       // console.log(profile.data[0].id);
       if (profile.data.length > 0) {
 
-        commit("setFriendDashboard", profile.data[0])
+        // commit("setFriendDashboard", profile.data[0])
+        debugger
         router.push({ name: 'friendDashboard', params: { id: profile.data[0].id } })
       }
       else {

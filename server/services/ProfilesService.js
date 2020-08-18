@@ -52,6 +52,7 @@ async function mergeSubsIfNeeded(profile, user) {
 
 class ProfileService {
 
+
   async followGame(id, body) {
     // REVIEW get the profile and check if they already have the game
 
@@ -63,7 +64,10 @@ class ProfileService {
       name: name
     })
     return friendProfile
-
+  }
+  async getFollowers(id) {
+    let followerCount = await dbContext.Profile.find({ following: id }).count()
+    return followerCount
   }
   /**
    * Provided an array of user emails will return an array of user profiles with email picture and name
