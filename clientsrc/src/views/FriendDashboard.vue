@@ -177,7 +177,6 @@ export default {
   },
   methods: {
     vote(vote) {
-      debugger;
       if (this.friendData.email != this.$auth.userInfo.email) {
         this.$store.dispatch("votes", {
           rep: this.friendData.rep,

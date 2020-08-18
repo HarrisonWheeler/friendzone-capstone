@@ -48,7 +48,7 @@ export default {
       if (profile.data.length > 0) {
 
         // commit("setFriendDashboard", profile.data[0])
-        debugger
+
         router.push({ name: 'friendDashboard', params: { id: profile.data[0].id } })
       }
       else {

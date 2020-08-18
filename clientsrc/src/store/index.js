@@ -43,7 +43,7 @@ export default new Vuex.Store({
 
     setFriendDashboard(state, data) {
       state.friendDashboard = data
-      debugger
+
     },
     setFollowers(state, data) {
       state.profileFollowers = data
