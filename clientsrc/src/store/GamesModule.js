@@ -14,6 +14,7 @@ export default {
             }
         },
         async getActiveGame({ commit, dispatch }, gameId) {
+
             try {
                 let res = await gameApi.get("games/" + gameId)
                 console.log(res.data);
@@ -24,7 +25,7 @@ export default {
         },
         async getSearchedGames({ commit, dispatch }, query) {
             try {
-                debugger
+
                 let newQuery = query.toLowerCase().replace(/ /g, '-');
                 console.log(newQuery)
                 let game = await gameApi.get('games?search=' + newQuery)
@@ -34,10 +35,20 @@ export default {
             }
         },
 
-        followGame({ commit, dispatch }, payload) {
+        async followGame({ commit, dispatch }, payload) {
 
             try {
-                api.post("profile/" + payload.id + "/games", payload)
+                let res = await api.post("profile/" + payload.id + "/games", payload)
+                commit("setUser", res.data)
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async unfollowGame({ commit, dispatch }, payload) {
+
+            try {
+                let res = await api.delete("profile/" + payload.id + "/games", payload)
+                commit("setUser", res.data)
             } catch (error) {
                 console.error(error);
             }

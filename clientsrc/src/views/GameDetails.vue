@@ -37,9 +37,15 @@
           />
         </div>
         <button
+          v-if="!profile.games.some(game => game.gameId == activeGame.id)"
           class="border border-info btn btn-rounded btn-outline-info btn-block mt-3 py-1"
           @click="followGame(activeGame.id)"
         >+Follow Game</button>
+        <button
+          v-else
+          class="border border-info btn btn-rounded btn-outline-info btn-block mt-3 py-1"
+          @click="unfollowGame(activeGame.id)"
+        >Unfollow Game</button>
       </div>
     </div>
   </div>
@@ -67,6 +73,7 @@ export default {
   },
   methods: {
     followGame(id) {
+      debugger;
       this.activeGame.followers += 1;
       this.$store.dispatch("followGame", {
         id: this.profile.id,
@@ -74,6 +81,16 @@ export default {
         gameId: this.activeGame.id,
         backgroundImg: this.activeGame.background_image,
         followers: +1,
+      });
+    },
+    unfollowGame(id) {
+      this.activeGame.followers -= 1;
+      this.$store.dispatch("unfollowGame", {
+        id: this.profile.id,
+        name: this.activeGame.name,
+        gameId: this.activeGame.id,
+        backgroundImg: this.activeGame.background_image,
+        followers: -1,
       });
     },
   },
