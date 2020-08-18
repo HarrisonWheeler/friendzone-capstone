@@ -47,7 +47,7 @@ export default {
         async unfollowGame({ commit, dispatch }, payload) {
 
             try {
-                let res = await api.delete("profile/" + payload.id + "/games", payload)
+                let res = await api.delete("profile/" + payload.id + "/games/" + payload.gameId)
                 commit("setUser", res.data)
             } catch (error) {
                 console.error(error);

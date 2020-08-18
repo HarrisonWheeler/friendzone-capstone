@@ -54,10 +54,14 @@ class ProfileService {
 
 
   async followGame(id, body) {
-    // REVIEW get the profile and check if they already have the game
 
     return await dbContext.Profile.findOneAndUpdate({ _id: id, "games.gameId": { $ne: body.gameId } },
       { $addToSet: { "games": body } }, { new: true, upsert: true })
+  }
+  async unfollowGame(id, gameId) {
+
+    return await dbContext.Profile.findOneAndUpdate({ _id: id, "games.gameId": gameId },
+      { $pull: { games: { gameId: gameId } } }, { new: true })
   }
   async getByName(name) {
     let friendProfile = await dbContext.Profile.find({
