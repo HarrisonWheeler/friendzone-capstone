@@ -22,14 +22,14 @@
           <img
             v-if="profile.picture"
             v-show="!editContent"
-            class="mb-4 mx-2 rounded-circle border border-dark shadow-lg img-fluid"
+            class="mb-4 mx-auto rounded-circle border border-dark shadow-lg img-fluid img-size"
             :src="profile.picture"
             alt
           />
           <img
             v-if="profile.picture"
             v-show="editContent"
-            class="mb-4 mx-2 rounded-circle border border-dark shadow-lg img-fluid"
+            class="mb-4 mx-auto rounded-circle border border-dark shadow-lg img-fluid img-size"
             :src="editedImg"
             aria-placeholder="Please Provide Profile image Url"
             alt
@@ -338,5 +338,11 @@ export default {
 }
 ::-webkit-scrollbar {
   display: none;
+}
+.img-size {
+  height: 12rem;
+  width: 12rem;
+  object-fit: cover;
+  object-position: center;
 }
 </style>

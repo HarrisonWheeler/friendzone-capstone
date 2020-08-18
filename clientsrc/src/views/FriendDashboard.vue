@@ -9,13 +9,13 @@
           <h2 class="text-center text-shadow mb-3">{{friendData.name}}</h2>
           <img
             v-if="friendData.picture"
-            class="mb-4 mx-2 rounded-circle border border-dark shadow-lg img-fluid"
+            class="mb-4 mx-auto rounded-circle border border-dark shadow-lg img-fluid img-size"
             :src="friendData.picture"
             alt
           />
           <img
             v-if="!friendData.picture"
-            class="mb-2 rounded-circle img-fluid"
+            class="mb-2 mx-auto rounded-circle img-fluid img-size"
             src="https://lh3.googleusercontent.com/proxy/fprp02E8T3_-8ChbSQT-gCogAMmtkcdEKqXjXhGgqS4xdhYgRsVAkajQcNdoSbRZbhm0IqbsYX6Uo-QH46-FkqQ2jizN63jkexMk7ZOzR70AiSsuC1j_1IsZI8xzTIPtrBLXVicq"
           />
           <div v-if="profile.email != friendData.email" class="text-center mb-3">
@@ -260,5 +260,11 @@ export default {
 }
 ::-webkit-scrollbar {
   display: none;
+}
+.img-size {
+  height: 12rem;
+  width: 12rem;
+  object-fit: cover;
+  object-position: center;
 }
 </style>
