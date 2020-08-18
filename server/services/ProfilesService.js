@@ -63,6 +63,7 @@ class ProfileService {
     return await dbContext.Profile.findOneAndUpdate({ _id: id, "games.gameId": gameId },
       { $pull: { games: { gameId: gameId } } }, { new: true })
   }
+
   async getByName(name) {
     let friendProfile = await dbContext.Profile.find({
       name: name
@@ -132,6 +133,15 @@ class ProfileService {
     let followers = await dbContext.Profile.findOneAndUpdate(
       { _id: id }, { $addToSet: { following: body.following } }, { new: true }
     )
+    return followers
+  }
+  async deleteFollower(id, followingId) {
+    let followers = await dbContext.Profile.findOneAndUpdate(
+      { _id: id }, { $pull: { following: followingId } }, { new: true }
+    )
+    if (!followers) {
+      throw new BadRequest("Invalid ID or you do not have permission to unfollow");
+    }
     return followers
   }
   async updateProfile(user, body) {

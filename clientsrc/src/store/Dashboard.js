@@ -34,7 +34,16 @@ export default {
     async follow({ commit, dispatch }, payload) {
       let res = await api.put("profile/" + payload.id + "/following", payload)
       console.log(res);
+      commit("setUser", res.data)
       dispatch("getFollowers", payload.following)
+
+    },
+    async unfollow({ commit, dispatch }, payload) {
+      let res = await api.delete("profile/" + payload.id + "/following/" + payload.following)
+      console.log(res);
+      commit("setUser", res.data)
+      dispatch("getFollowers", payload.following)
+
     },
     async getFollowers({ commit, dispatch }, id) {
       let res = await api.get('profile/' + id + '/followers')

@@ -23,7 +23,7 @@ export class ProfilesController extends BaseController {
       .post('', this.create)
       .post('/:id/games', this.followGame)
       .delete('/:id/games/:gameId', this.unfollowGame)
-
+      .delete("/:id/following/:followingId", this.deleteFollower)
       .delete('/:id', this.delete)
   }
   async getByName(req, res, next) {
@@ -92,6 +92,12 @@ export class ProfilesController extends BaseController {
   async editFollowers(req, res, next) {
     try {
       let data = await profilesService.editFollowers(req.params.id, req.body)
+      res.send(data)
+    } catch (error) { next(error) }
+  }
+  async deleteFollower(req, res, next) {
+    try {
+      let data = await profilesService.deleteFollower(req.params.id, req.params.followingId)
       res.send(data)
     } catch (error) { next(error) }
   }
