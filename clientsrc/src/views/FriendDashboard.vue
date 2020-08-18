@@ -18,7 +18,7 @@
             class="mb-2 rounded-circle img-fluid"
             src="https://lh3.googleusercontent.com/proxy/fprp02E8T3_-8ChbSQT-gCogAMmtkcdEKqXjXhGgqS4xdhYgRsVAkajQcNdoSbRZbhm0IqbsYX6Uo-QH46-FkqQ2jizN63jkexMk7ZOzR70AiSsuC1j_1IsZI8xzTIPtrBLXVicq"
           />
-          <div class="text-center mb-3">
+          <div v-if="profile.email != friendData.email" class="text-center mb-3">
             <i class="fa fa-thumbs-o-up fa fa-2x mr-3" @click="vote('up')"></i>
             <i class="fa fa-thumbs-o-down fa fa-2x ml-3" @click="vote('down')"></i>
           </div>
@@ -111,7 +111,11 @@
           <p class="mb-2 text-shadow">
             <b>FOLLOWERS: {{follows}}</b>
           </p>
-          <button @click="follow" class="btn btn-block border border-info btn-outline-info mt-4">
+          <button
+            v-if="profile.email != friendData.email"
+            @click="follow"
+            class="btn btn-block border border-info btn-outline-info mt-4"
+          >
             <b>+</b> FOLLOW
           </button>
         </div>
