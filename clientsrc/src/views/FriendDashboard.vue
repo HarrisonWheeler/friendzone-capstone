@@ -3,7 +3,7 @@
     <div v-if="!friendData">
       <h1>Loading...</h1>
     </div>
-    <div v-if="friendData" class="col-3 mt-2">
+    <div v-if="friendData" class="col-12 col-md-3 mt-2">
       <div class="card shadow-lg text-center bg-gradient border border-dark p-3">
         <div class="card shadow-lg bg-card-gradient p-2">
           <h2 class="text-center text-shadow mb-3">{{friendData.name}}</h2>
@@ -127,14 +127,14 @@
         </div>
       </div>
     </div>
-    <div v-if="friendData" class="col-8 px-0 mt-2">
-      <div class="row shadow-lg bg-gradient border border-dark ml-2 mb-2 p-3">
+    <div v-if="friendData" class="col-10 col-md-8 px-0 mt-2">
+      <div class="row shadow-lg bg-gradient border border-dark ml-md-2 mb-2 p-3">
         <h4 class="col-12 text-shadow">
           <u>GAMES FOLLOWING</u>
         </h4>
-        <div class="row overflow width">
+        <div class="row overflow width mx-1">
           <div
-            class="card col-2 px-0 shadow-lg bg-card-gradient m-1"
+            class="card col-6 col-md-2 px-0 shadow-lg bg-card-gradient m-1"
             v-for="game in friendData.games"
             :key="game.name"
           >
@@ -148,7 +148,7 @@
           </div>
         </div>
       </div>
-      <div class="row card shadow-lg bg-gradient borde border-dark ml-2 my-3 h-45 p-2">
+      <div class="row card shadow-lg bg-gradient borde border-dark ml-md-2 my-3 h-45 p-2">
         <h4 class="text-shadow">
           <u>MY GAME CLIPS:</u>
         </h4>

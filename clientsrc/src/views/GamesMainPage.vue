@@ -1,7 +1,7 @@
 <template>
   <div class="gamesMainPage row justify-content-center mt-4 container-fluid">
     <div class="col-10">
-      <form class="text-center my-2" @submit="findGames">
+      <form class="text-center my-2 ml-2 ml-md-0" @submit="findGames">
         <div class="input-group mb-3 shadow-lg">
           <div class="input-group-prepend">
             <button class="btn btn-primary" type="button" id="button-addon2">SEARCH</button>
@@ -18,7 +18,7 @@
       </form>
       <button
         type="button"
-        class="btn btn-primary text-center shadow-lg px-1"
+        class="btn btn-primary text-center shadow-lg py-2 px-2 ml-3"
         data-toggle="button"
         aria-pressed="false"
         autocomplete="off"
@@ -29,7 +29,7 @@
       </button>
       <button
         type="button"
-        class="btn btn-primary text-center shadow-lg"
+        class="btn btn-primary text-center shadow-lg ml-2 py-2 px-4"
         data-toggle="button"
         aria-pressed="false"
         autocomplete="off"
@@ -39,10 +39,10 @@
         <i class="fa fa-angle-double-right fa fa-1x"></i>
       </button>
     </div>
-    <div class="row justify-content-center" v-if="searchGames.length > 0">
+    <div class="row justify-content-center ml-3 ml-md-0" v-if="searchGames.length > 0">
       <games v-for="game in searchGames" :gameData="game" :key="game.id" />
     </div>
-    <div class="row justify-content-center" v-else>
+    <div class="row justify-content-center ml-3 ml-md-0" v-else>
       <games v-for="game in games" :gameData="game" :key="game.id" />
     </div>
   </div>

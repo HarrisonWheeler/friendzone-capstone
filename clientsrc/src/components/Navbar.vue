@@ -1,5 +1,7 @@
 <template>
-  <nav class="navbar sticky-top navbar-expand-lg navbar-secondary bg-gradient shadow-lg p-2">
+  <nav
+    class="navbar container-fluid sticky-top navbar-expand-lg navbar-secondary bg-gradient shadow-lg p-2"
+  >
     <a class="navbar-brand" href="#">
       <h3>FRIENDZONE</h3>
     </a>

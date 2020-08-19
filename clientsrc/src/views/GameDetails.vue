@@ -21,18 +21,22 @@
           >{{data.platform.name}}{{index < activeGame.platforms.length -1 ? ", " : ""}}</span>
         </p>
         <div class="row mx-1 justify-content-center">
-          <img :src="activeGame.background_image" class="img-fluid rounded w-25 m-1 shadow-lg" alt />
+          <img
+            :src="activeGame.background_image"
+            class="img-fluid rounded w-25 m-md-1 shadow-lg"
+            alt
+          />
           <video
             :src="activeGame.clip.clip"
             autoplay
             loop
             controls
             width="400"
-            class="rounded shadow-lg mx-2"
+            class="rounded shadow-md-lg p-4 p-md-0 mx-4 mx-md-2"
           ></video>
           <img
             :src="activeGame.background_image_additional"
-            class="img-fluid rounded w-25 m-1 shadow-lg"
+            class="img-fluid rounded w-25 m-md-1 shadow-lg"
             alt
           />
         </div>

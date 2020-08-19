@@ -1,5 +1,5 @@
 <template>
-  <div class="card rounded games col-2 text-white m-2 shadow-lg px-0">
+  <div class="card rounded games col-12 col-md-2 text-white m-2 shadow-lg px-0">
     <div class="embed-responsive embed-responsive-4by3">
       <img
         :src="gameData.background_image"
