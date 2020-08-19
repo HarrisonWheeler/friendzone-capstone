@@ -51,6 +51,11 @@ async function mergeSubsIfNeeded(profile, user) {
 // }
 
 class ProfileService {
+  async getFollowingNames(body) {
+    let names = await dbContext.Profile.find({ _id: body })
+
+    return names
+  }
 
 
   async followGame(id, body) {
@@ -71,7 +76,7 @@ class ProfileService {
     return friendProfile
   }
   async getFollowers(id) {
-    let followerCount = await dbContext.Profile.find({ following: id }).count()
+    let followerCount = await dbContext.Profile.find({ following: id }).select("name picture")
     return followerCount
   }
   /**
@@ -112,7 +117,7 @@ class ProfileService {
   async getProfile(user) {
     let profile = await dbContext.Profile.findOne({
       email: user.email
-    });
+    }).populate("following", "name picture");
     profile = await createProfileIfNeeded(profile, user);
     await mergeSubsIfNeeded(profile, user);
     return profile;
