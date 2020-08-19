@@ -201,11 +201,16 @@
             :key="game.name"
           >
             <div>
-              <img :src="game.backgroundImg" class="card-img-top img-fluid game-size" alt />
+              <img
+                :src="game.backgroundImg"
+                class="card-img-top img-fluid game-size cursor"
+                alt
+                @click="openDeetz(game.gameId)"
+              />
             </div>
             <div class="card-body rounded-bottom bg-gradient p-1">
               <h4 class="pt-3">{{game.name}}</h4>
-              <p>{{followers.followers}}</p>
+              <p>Followers: {{gameFollowers}}</p>
             </div>
           </div>
         </div>
@@ -234,7 +239,6 @@
 
 
 <script>
-import vSelect from "vue-select";
 import ProfileModal from "../components/ProfileModal";
 export default {
   name: "dashboard",
@@ -263,6 +267,9 @@ export default {
     },
     follows() {
       return this.$store.state.profileFollowers;
+    },
+    gameFollowers() {
+      return this.$store.state.gameFollowers;
     },
   },
   methods: {
@@ -316,8 +323,11 @@ export default {
       $("#two").modal("show");
       this.$store.dispatch("followersModal", profile._id);
     },
+    openDeetz(id) {
+      this.$router.push({ name: "GameDetails", params: { id: id } });
+    },
   },
-  components: { ProfileModal, vSelect },
+  components: { ProfileModal },
 };
 </script>
 
@@ -383,5 +393,8 @@ export default {
   min-height: 10rem;
   object-fit: cover;
   object-position: center;
+}
+.cursor {
+  cursor: pointer;
 }
 </style>
