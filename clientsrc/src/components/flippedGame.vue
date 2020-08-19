@@ -1,5 +1,5 @@
 <template>
-  <div class="flip-container col-12 col-md-2 px-0 my-4" :class="{flip: flipped}">
+  <div class="flip-container m-3" :class="{flip: flipped}">
     <div class="flipper">
       <div class="front card rounded flippedGame text-white shadow-lg">
         <div class="embed-responsive embed-responsive-4by3">
@@ -132,16 +132,16 @@ img.embed-responsive-item {
 .flip-container,
 .front,
 .back {
-  width: 15rem;
+  width: min(90vw, 20rem);
   height: 26rem;
 }
 /* flip speed goes here */
 .flipper {
-  transition: 0.6s;
+  transition: 0.5s;
   transform-style: preserve-3d;
   position: relative;
 }
-/* hide back of pane during swap */
+/* hide back of pane5 during swap */
 .front,
 .back {
   backface-visibility: hidden;
