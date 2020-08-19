@@ -42,12 +42,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto"></ul>
-        <form class="form-inline my-2 my-lg-0 mx-1" @submit.prevent="findProfiles">
+        <form class="form-inline my-2 my-lg-0 mx-1" @submit.prevent="onInput">
           <div class="input-group border-primary">
-            <input
+            <autocomplete
               v-model="query"
+              :items="profiles"
               type="text"
-              class="form-control"
+              @input="onInput"
+              @result="onResult"
+              input-class="form-control"
               placeholder="Search..."
               aria-label="Recipient's username"
               aria-describedby="button-addon2"
@@ -55,7 +58,7 @@
             <div class="input-group-append">
               <button
                 class="btn btn-outline-primary border border-secondary"
-                type="button"
+                type="submit"
                 id="button-addon2"
               >SEARCH</button>
             </div>
@@ -72,7 +75,8 @@
 
 <script>
 import axios from "axios";
-
+import { api, gameApi } from "../store/AxiosService";
+import Autocomplete from "../components/Autocomplete";
 let _api = axios.create({
   baseURL: "https://localhost:3000",
   withCredentials: true,
@@ -82,6 +86,7 @@ export default {
   data() {
     return {
       query: "",
+      profiles: [],
     };
   },
   methods: {
@@ -101,6 +106,72 @@ export default {
       this.$store.dispatch("searchDashboard", this.query);
       this.query = "";
     },
+    onInput(query) {
+      this.autocompleteError = "";
+      if (!query.length) {
+        return;
+      }
+      if (this.delay) {
+        clearTimeout(this.delay);
+      }
+      this.delay = setTimeout(async () => {
+        this.profiles = [];
+        this.delay = null;
+        await this.findUsers(query);
+        await this.findGames(query);
+      }, 250);
+    },
+    async findUsers(query) {
+      let res = await api.get("profile/find?q=" + query);
+      this.profiles = res.data.map((u) => {
+        return {
+          text: u.name,
+          profile: true,
+          html: `<div class="d-flex align-items-center">
+              <img class="mr-1" src="${u.picture}"/>
+              <b class="mr-1">${u.name}</b>
+            </div>
+          `,
+          data: u,
+        };
+      });
+    },
+    async findGames(query) {
+      let newQuery = query.toLowerCase().replace(/ /g, "-");
+      let res = await gameApi.get("games?search=" + newQuery);
+      this.profiles = [
+        ...this.profiles,
+        ...res.data.results.map((u) => {
+          return {
+            text: u.name,
+            html: `<div class="d-flex align-items-center">
+              <img class="mr-1" src="${u.background_image}"/>
+              <b class="mr-1">${u.name}</b>
+            </div>
+          `,
+            data: u,
+            game: true,
+          };
+        }),
+      ];
+    },
+    async onResult(selected) {
+      if (selected.result.profile) {
+        return this.$router.push({
+          name: "friendDashboard",
+          params: { id: selected.result.data._id },
+        });
+      } else if (selected.result.game) {
+        return this.$router.push({
+          name: "GameDetails",
+          params: { id: selected.result.data.id },
+        });
+      }
+      console.log("you picked something", arguments);
+    },
+  },
+  components: {
+    Autocomplete,
   },
 };
 </script>

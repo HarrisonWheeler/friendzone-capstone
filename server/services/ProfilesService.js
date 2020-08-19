@@ -57,6 +57,20 @@ class ProfileService {
 
     return names
   }
+  async findProfiles(str = "") {
+    let filter = new RegExp(str, "ig");
+    let q = {
+      $match: {
+        $or: [{ name: filter }, { email: filter }],
+      },
+    };
+    let profiles = await dbContext.Profile
+      .aggregate([q])
+      .project("email picture name")
+      .collation({ locale: "en_US", strength: 1 })
+      .exec()
+    return profiles;
+  }
 
 
   async followGame(id, body) {
