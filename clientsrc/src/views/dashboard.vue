@@ -195,6 +195,9 @@
           <u>GAMES FOLLOWING</u>
         </h4>
         <div class="row overflow width mx-1">
+          <FollowedGames v-for="game in profile.games" :key="game.id" :gameData="game" />
+        </div>
+        <!-- <div class="row overflow width mx-1">
           <div
             class="card col-6 col-md-2 px-0 shadow-lg bg-card-gradient m-1"
             v-for="game in profile.games"
@@ -213,7 +216,7 @@
               <p>Followers: {{gameFollowers}}</p>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
       <div class="row card shadow-lg bg-gradient border border-dark ml-md-2 my-3 h-45 p-2">
         <h4 class="text-shadow">
@@ -254,6 +257,7 @@
 
 <script>
 import ProfileModal from "../components/ProfileModal";
+import FollowedGames from "../components/FollowedGames";
 export default {
   name: "dashboard",
   data() {
@@ -340,11 +344,8 @@ export default {
       $("#two").modal("hide");
       this.$router.push({ name: "friendDashboard", params: { id: userId } });
     },
-    openDeetz(id) {
-      this.$router.push({ name: "GameDetails", params: { id: id } });
-    },
   },
-  components: { ProfileModal },
+  components: { ProfileModal, FollowedGames },
 };
 </script>
 
