@@ -11,6 +11,7 @@ export class ProfilesController extends BaseController {
     super("api/profile");
     this.router
       .use(auth0provider.getAuthorizedUserInfo)
+      .get("/find", this.findProfiles)
       .get("/:id", this.getUserProfile)
       .get("", this.getProfiles)
       .get('/user/:id', this.getById)
@@ -26,6 +27,7 @@ export class ProfilesController extends BaseController {
       .delete("/:id/following/:followingId", this.deleteFollower)
       .delete('/:id', this.delete)
   }
+
 
   async getFollowingNames(req, res, next) {
     try {
@@ -49,6 +51,14 @@ export class ProfilesController extends BaseController {
       res.send(profile);
     } catch (error) {
       next(error);
+    }
+  }
+  async findProfiles(req, res, next) {
+    try {
+      let profiles = await profilesService.findProfiles(req.query.q)
+      res.send(profiles)
+    } catch (error) {
+      next(error)
     }
   }
   async getProfiles(req, res, next) {
