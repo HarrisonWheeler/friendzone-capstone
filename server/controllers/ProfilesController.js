@@ -26,6 +26,14 @@ export class ProfilesController extends BaseController {
       .delete("/:id/following/:followingId", this.deleteFollower)
       .delete('/:id', this.delete)
   }
+
+  async getFollowingNames(req, res, next) {
+    try {
+      let data = await profilesService.getFollowingNames(req.body)
+      res.send(data)
+    } catch (error) { next(error) }
+  }
+
   async getByName(req, res, next) {
     try {
       let name = req.params.query

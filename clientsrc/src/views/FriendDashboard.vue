@@ -109,7 +109,7 @@
             <b>FOLLOWING: {{friendData.following.length}}</b>
           </p>
           <p class="mb-2 text-shadow">
-            <b>FOLLOWERS: {{follows}}</b>
+            <b>FOLLOWERS: {{follows.length}}</b>
           </p>
           <button
             v-if=" !profile.following.includes(friendData._id) && profile.email != friendData.email"
@@ -139,11 +139,16 @@
             :key="game.name"
           >
             <div class>
-              <img :src="game.backgroundImg" class="card-img-top img-fluid game-size" alt />
+              <img
+                :src="game.backgroundImg"
+                class="card-img-top img-fluid game-size cursor"
+                alt
+                @click="openDeetz(game.gameId)"
+              />
             </div>
             <div class="card-body rounded-bottom bg-gradient p-1">
               <h4 class="pt-3">{{game.name}}</h4>
-              <!-- <p>{{followers.followers}}</p> -->
+              <p>Followers:</p>
             </div>
           </div>
         </div>
@@ -170,6 +175,7 @@ export default {
   mounted() {
     this.$store.dispatch("getDashboard", this.$route.params.id);
     this.$store.dispatch("getFollowers", this.$route.params.id);
+    this.$store.dispatch("getMyProfile", this.profile._id);
   },
   computed: {
     friendData() {
@@ -215,6 +221,9 @@ export default {
       if (this.displayGamerTag == console) {
         this.displayGamerTag = "";
       } else this.displayGamerTag = console;
+    },
+    openDeetz(id) {
+      this.$router.push({ name: "GameDetails", params: { id: id } });
     },
   },
   components: {},
@@ -284,5 +293,8 @@ export default {
   min-height: 10rem;
   object-fit: cover;
   object-position: center;
+}
+.cursor {
+  cursor: pointer;
 }
 </style>

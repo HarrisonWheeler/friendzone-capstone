@@ -177,14 +177,14 @@
               <b>FOLLOWERS</b>
             </u>
             <br />
-            <b>{{follows}}</b>
+            <b>{{follows.length}}</b>
           </p>
           <p v-else @click="followersModal" class="mb-2 text-shadow">
             <u>
               <b>FOLLOWERS</b>
             </u>
             <br />
-            <b>{{follows}}</b>
+            <b>{{follows.length}}</b>
           </p>
         </div>
       </div>
@@ -201,11 +201,16 @@
             :key="game.name"
           >
             <div>
-              <img :src="game.backgroundImg" class="card-img-top img-fluid game-size" alt />
+              <img
+                :src="game.backgroundImg"
+                class="card-img-top img-fluid game-size cursor"
+                alt
+                @click="openDeetz(game.gameId)"
+              />
             </div>
             <div class="card-body rounded-bottom bg-gradient p-1">
               <h4 class="pt-3">{{game.name}}</h4>
-              <p>{{followers.followers}}</p>
+              <p>Followers: {{gameFollowers}}</p>
             </div>
           </div>
         </div>
@@ -220,13 +225,27 @@
     <ProfileModal id="id">
       <h1 slot="header">Following</h1>
       <div slot="body">
-        <div v-for="followingName in profile.following" :key="followingName"></div>
+        <div class="row">
+          <div v-for="user in profile.following" :key="user.id">
+            <div class="col-6">
+              <img class="img-fluid" v-if="user.picture" :src="user.picture" />
+              <h1 @click="routeToDash(user._id)" class="text-left">{{user.name}}</h1>
+            </div>
+          </div>
+        </div>
       </div>
     </ProfileModal>
     <ProfileModal id="two">
       <h1 slot="header">Followers</h1>
       <div slot="body">
-        <div v-for="followingName in profile.following" :key="followingName"></div>
+        <div class="row">
+          <div v-for="user in follows" :key="user.id">
+            <div class="col-6">
+              <img class="img-fluid" v-if="user.picture" :src="user.picture" />
+              <h1 @click="routeToDash(user._id)" class="text-left">{{user.name}}</h1>
+            </div>
+          </div>
+        </div>
       </div>
     </ProfileModal>
   </div>
@@ -234,7 +253,6 @@
 
 
 <script>
-import vSelect from "vue-select";
 import ProfileModal from "../components/ProfileModal";
 export default {
   name: "dashboard",
@@ -263,6 +281,9 @@ export default {
     },
     follows() {
       return this.$store.state.profileFollowers;
+    },
+    gameFollowers() {
+      return this.$store.state.gameFollowers;
     },
   },
   methods: {
@@ -310,14 +331,20 @@ export default {
     },
     followingModal() {
       $("#id").modal("show");
-      this.$store.dispatch("followingModal", profile.following);
     },
     followersModal() {
       $("#two").modal("show");
-      this.$store.dispatch("followersModal", profile._id);
+    },
+    routeToDash(userId) {
+      $("#id").modal("hide");
+      $("#two").modal("hide");
+      this.$router.push({ name: "friendDashboard", params: { id: userId } });
+    },
+    openDeetz(id) {
+      this.$router.push({ name: "GameDetails", params: { id: id } });
     },
   },
-  components: { ProfileModal, vSelect },
+  components: { ProfileModal },
 };
 </script>
 
@@ -383,5 +410,8 @@ export default {
   min-height: 10rem;
   object-fit: cover;
   object-position: center;
+}
+.cursor {
+  cursor: pointer;
 }
 </style>

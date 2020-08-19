@@ -20,9 +20,8 @@ export default new Vuex.Store({
     dashboard: {},
     friendDashboard: {},
     profileFollowers: 0,
-    flipped: false
-
-
+    flipped: false,
+    gameFollowers: 0
   },
   mutations: {
     setFlipped(state, flipped) {
@@ -30,7 +29,6 @@ export default new Vuex.Store({
     },
     setUser(state, user) {
       state.profile = user
-
     },
     setDashboard(state, data) {
       state.dashboard = data
@@ -44,13 +42,14 @@ export default new Vuex.Store({
     setSearchedGames(state, games) {
       state.searchedGames = games
     },
-
     setFriendDashboard(state, data) {
       state.friendDashboard = data
-
     },
     setFollowers(state, data) {
       state.profileFollowers = data
+    },
+    setGameFollowers(state, data) {
+      state.gameFollowers = data
     }
   },
   actions: {
