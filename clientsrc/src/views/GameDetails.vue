@@ -121,4 +121,12 @@ export default {
 .bg-gray {
   background: rgb(56, 56, 56);
 }
+@media only screen and (max-width: 768px) {
+  .w-25 {
+    width: 100% !important;
+  }
+  video {
+    width: 115%;
+  }
+}
 </style>

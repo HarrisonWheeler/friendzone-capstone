@@ -103,6 +103,7 @@ export default {
 .text-height {
   font-size: 4.34375rem;
 }
+
 .sub-height {
   font-size: 2.5rem;
 }
@@ -112,6 +113,14 @@ export default {
 @supports (-webkit-text-stroke: 1px black) {
   .outline {
     -webkit-text-stroke: 1.25px rgb(0, 0, 0);
+  }
+}
+@media only screen and (max-width: 768px) {
+  .text-height {
+    font-size: 3rem;
+  }
+  .sub-height {
+    font-size: 1.5rem;
   }
 }
 </style>
