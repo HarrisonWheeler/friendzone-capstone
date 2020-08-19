@@ -36,10 +36,11 @@ export default {
         },
 
         async followGame({ commit, dispatch }, payload) {
-
+            debugger
             try {
                 let res = await api.post("profile/" + payload.id + "/games", payload)
                 commit("setUser", res.data)
+                commit("setGameFollowers", payload.followers)
             } catch (error) {
                 console.error(error);
             }

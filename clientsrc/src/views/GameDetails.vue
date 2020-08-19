@@ -47,7 +47,7 @@
         >+Follow Game</button>
         <button
           v-else
-          class="border border-info btn btn-rounded btn-outline-info btn-block mt-3 py-1"
+          class="border border-danger btn btn-rounded btn-outline-danger btn-block mt-3 py-1"
           @click="unfollowGame(activeGame.id)"
         >Unfollow Game</button>
       </div>
