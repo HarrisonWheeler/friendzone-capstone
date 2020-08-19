@@ -51,13 +51,13 @@ export default {
     },
     async searchDashboard({ commit, dispatch }, query) {
 
-      let profile = await api.get('profile/name/' + query)
+      let profile = await api.get("profile/name" + query)
       // console.log(profile.data[0].id);
       if (profile.data.length > 0) {
 
         // commit("setFriendDashboard", profile.data[0])
 
-        router.push({ name: 'friendDashboard', params: { id: profile.data[0].id } })
+        router.push({ name: 'friendDashboard', params: { _id: profile.data[0].id } })
       }
       else {
         router.push({ name: 'Games' })
