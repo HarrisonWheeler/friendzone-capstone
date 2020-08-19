@@ -30,6 +30,7 @@ export default {
                 console.log(newQuery)
                 let game = await gameApi.get('games?search=' + newQuery)
                 commit("setSearchedGames", game.data.results)
+                commit("setFlipped", true)
             } catch (error) {
                 console.error(error);
             }
@@ -55,5 +56,18 @@ export default {
                 console.error(error);
             }
         },
+        async showFollowedGames({ commit, dispatch }, gameId) {
+            try {
+                let res = await api.get("profile/games/" + gameId + "/users")
+                console.log(res.data);
+                let payload = {
+                    gameId: gameId,
+                    data: res.data
+                }
+                commit("setGameFollowers", payload)
+            } catch (error) {
+                console.error(error)
+            }
+        }
     },
 }

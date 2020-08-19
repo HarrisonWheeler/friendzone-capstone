@@ -51,6 +51,7 @@ async function mergeSubsIfNeeded(profile, user) {
 // }
 
 class ProfileService {
+
   async getFollowingNames(body) {
     let names = await dbContext.Profile.find({ _id: body })
 
@@ -174,6 +175,12 @@ class ProfileService {
       { runValidators: true, setDefaultsOnInsert: true, new: true }
     );
     return profile;
+  }
+  async showFollowedGames(gameId) {
+    // let followers = await dbContext.Profile.find({ "games.gameId": { $in: [gameId] } }).select("name picture")
+    let followers = await dbContext.Profile.aggregate().match({ "games.gameId": gameId }).project("name picture")
+    // let followers = await dbContext.Profile.find({ "games.gameId": gameId }).count()
+    return followers
   }
 }
 export const profilesService = new ProfileService();

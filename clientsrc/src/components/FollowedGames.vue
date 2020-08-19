@@ -1,0 +1,113 @@
+<template>
+  <div class="followed-games card col-6 col-lg-2 px-0 shadow-lg bg-card-gradient m-1">
+    <div>
+      <img
+        :src="gameData.backgroundImg"
+        class="card-img-top img-fluid game-size cursor"
+        alt
+        @click="openDeetz(gameData.gameId)"
+      />
+    </div>
+    <div class="card-body rounded-bottom bg-gradient p-1">
+      <h4 class="pt-3">{{gameData.name}}</h4>
+      <p>
+        <u>Followers</u>
+        <br />
+        {{followedGames.length}}
+      </p>
+    </div>
+  </div>
+</template>
+
+
+<script>
+export default {
+  name: "followed-games",
+  props: ["gameData"],
+  data() {
+    return {};
+  },
+  mounted() {
+    this.$store.dispatch("showFollowedGames", this.gameData.gameId);
+  },
+  computed: {
+    followedGames() {
+      return this.$store.state.gameFollowers[this.gameData.gameId];
+    },
+  },
+  methods: {
+    openDeetz(id) {
+      this.$router.push({ name: "GameDetails", params: { id: id } });
+    },
+  },
+  components: {},
+};
+</script>
+
+
+<style scoped>
+.width {
+  width: 100%;
+}
+.shadow-lg {
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.616) !important;
+}
+.text-shadow {
+  text-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.616) !important;
+}
+
+.border-dark {
+  border-color: #000000 !important;
+  border-width: medium !important;
+}
+.pc-shadow {
+  text-shadow: 0 0.15rem 1rem rgba(226, 128, 0, 0.616) !important;
+}
+.xbox-shadow {
+  text-shadow: 0 0.15rem 1rem rgba(4, 255, 67, 0.616) !important;
+}
+.playstation-shadow {
+  text-shadow: 0 0.15rem 1rem rgb(2, 162, 255) !important;
+}
+.nintendo-shadow {
+  text-shadow: 0 0.15rem 1rem rgba(255, 8, 8, 0.616) !important;
+}
+.bg-gradient {
+  background: rgb(38, 38, 38);
+  background: linear-gradient(
+    0deg,
+    rgba(38, 38, 38, 1) 0%,
+    rgba(55, 55, 55, 1) 50%,
+    rgba(33, 32, 32, 1) 100%
+  );
+}
+.bg-card-gradient {
+  background: rgb(90, 90, 90);
+  background: radial-gradient(
+    circle,
+    rgba(90, 90, 90, 1) 0%,
+    rgba(35, 35, 35, 1) 100%
+  );
+}
+.overflow {
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.img-size {
+  height: 12rem;
+  width: 12rem;
+  object-fit: cover;
+  object-position: center;
+}
+.game-size {
+  min-height: 10rem;
+  object-fit: cover;
+  object-position: center;
+}
+.cursor {
+  cursor: pointer;
+}
+</style>

@@ -8,8 +8,10 @@
       />
     </div>
     <div class="card-body rounded-bottom bg-gradient p-2">
-      <h3 class="mt-1">{{gameData.name}}</h3>
-      <p class="mb-0">{{gameData.genres[0].name}}/{{gameData.genres[1].name}}</p>
+      <h3 class="mt-1">{{gameData.name || ''}}</h3>
+      <p
+        class="mb-0"
+      >{{gameData.genres[0] ? gameData.genres[0].name:''}}{{gameData.genres[1] ?'/'+ gameData.genres[1].name:''}}</p>
       <p
         class="mb-0"
         :class="gameData.rating >= 4 ? 'text-success' : 'text-danger'"
@@ -21,8 +23,8 @@
       <p class="mb-2" v-show="platformVisible">
         <span
           v-for="(data,index) in gameData.platforms"
-          :key="data.platform.name"
-        >{{data.platform.name}}{{index < gameData.platforms.length -1 ? ", " : ""}}</span>
+          :key="JSON.stringify(data.platform)"
+        >{{data.platform ? data.platform.name: ''}}{{index < gameData.platforms.length -1 ? ", " : ""}}</span>
       </p>
     </div>
   </div>
