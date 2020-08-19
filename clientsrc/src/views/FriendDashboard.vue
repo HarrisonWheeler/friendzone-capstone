@@ -109,7 +109,7 @@
             <b>FOLLOWING: {{friendData.following.length}}</b>
           </p>
           <p class="mb-2 text-shadow">
-            <b>FOLLOWERS: {{follows}}</b>
+            <b>FOLLOWERS: {{follows.length}}</b>
           </p>
           <button
             v-if=" !profile.following.includes(friendData._id) && profile.email != friendData.email"
@@ -175,6 +175,7 @@ export default {
   mounted() {
     this.$store.dispatch("getDashboard", this.$route.params.id);
     this.$store.dispatch("getFollowers", this.$route.params.id);
+    this.$store.dispatch("getMyProfile", this.profile._id);
   },
   computed: {
     friendData() {
