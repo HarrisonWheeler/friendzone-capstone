@@ -41,7 +41,7 @@
     </div>
 
     <div class="col-12">
-      <div class="row justify-content-center ml-3 ml-md-0">
+      <div class="d-flex flex-wrap justify-content-center">
         <flippedGame
           v-for="(game,index) in games"
           :gameData="game"

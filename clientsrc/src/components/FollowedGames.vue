@@ -1,5 +1,5 @@
 <template>
-  <div class="followed-games card col-6 col-lg-2 px-0 shadow-lg bg-card-gradient m-1">
+  <div class="followed-games card col-12 col-md-6 col-lg-3 px-0 shadow-lg bg-card-gradient m-1">
     <div>
       <img
         :src="gameData.backgroundImg"
