@@ -1,5 +1,5 @@
 <template>
-  <div class="gamesMainPage row justify-content-center mt-4 container-fluid">
+  <div class="gamesMainPage row justify-content-center mt-4">
     <div class="col-10">
       <form class="text-center my-2 ml-2 ml-md-0" @submit="findGames">
         <div class="input-group mb-3 shadow-lg">
@@ -39,18 +39,23 @@
         <i class="fa fa-angle-double-right fa fa-1x"></i>
       </button>
     </div>
-    <div class="row justify-content-center ml-3 ml-md-0" v-if="searchGames.length > 0">
-      <games v-for="game in searchGames" :gameData="game" :key="game.id" />
-    </div>
-    <div class="row justify-content-center ml-3 ml-md-0" v-else>
-      <games v-for="game in games" :gameData="game" :key="game.id" />
+
+    <div class="col-12">
+      <div class="row justify-content-center ml-3 ml-md-0">
+        <flippedGame
+          v-for="(game,index) in games"
+          :gameData="game"
+          :searchedGameData="searchGames[index]"
+          :key="game.id"
+        />
+      </div>
     </div>
   </div>
 </template>
 
-
 <script>
-import Games from "../components/Games";
+import flippedGame from "../components/flippedGame";
+
 export default {
   name: "gamesMainPage",
   data() {
@@ -82,19 +87,20 @@ export default {
       this.$store.dispatch("getGames", this.page);
     },
     findGames() {
+      this.$store.commit("setFlipped", false);
       this.searchedGames = true;
       this.$store.dispatch("getSearchedGames", this.query);
       this.query = "";
     },
   },
   components: {
-    Games,
+    flippedGame,
   },
 };
 </script>
 
 
-<style scoped>
+<style  scoped>
 .shadow-lg {
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.616) !important;
 }
