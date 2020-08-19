@@ -20,9 +20,14 @@ export default new Vuex.Store({
     dashboard: {},
     friendDashboard: {},
     profileFollowers: 0,
-    gameFollowers: {}
+    gameFollowers: {},
+    flipped: false,
+
   },
   mutations: {
+    setFlipped(state, flipped) {
+      state.flipped = flipped
+    },
     setUser(state, user) {
       state.profile = user
     },

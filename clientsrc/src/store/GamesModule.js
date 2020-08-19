@@ -30,6 +30,7 @@ export default {
                 console.log(newQuery)
                 let game = await gameApi.get('games?search=' + newQuery)
                 commit("setSearchedGames", game.data.results)
+                commit("setFlipped", true)
             } catch (error) {
                 console.error(error);
             }
