@@ -10,17 +10,38 @@
     </div>
     <div class="card-body rounded-bottom bg-gradient p-1">
       <h4 class="pt-3">{{gameData.name}}</h4>
-      <p>
+      <p v-if="!followedGames">
+        <u>Followers</u>
+        <br />0
+      </p>
+      <p @click="gameModal('modal'+ gameData.gameId)" v-else>
         <u>Followers</u>
         <br />
         {{followedGames.length}}
       </p>
     </div>
+    <ProfileModal :id=" 'modal'+ gameData.gameId">
+      <h1 slot="header">Following</h1>
+      <div slot="body">
+        <div class="row">
+          <div v-for="user in followedGames" :key="user.id">
+            <div class="col-12">
+              <img class="img-fluid" v-if="user.picture" :src="user.picture" />
+              <h1
+                @click="routeToDash(user._id,'modal'+ gameData.gameId )"
+                class="text-left"
+              >{{user.name}}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ProfileModal>
   </div>
 </template>
 
 
 <script>
+import ProfileModal from "../components/ProfileModal";
 export default {
   name: "followed-games",
   props: ["gameData"],
@@ -39,8 +60,16 @@ export default {
     openDeetz(id) {
       this.$router.push({ name: "GameDetails", params: { id: id } });
     },
+    gameModal(id) {
+      $("#" + id).modal("show");
+    },
+    routeToDash(userId, modalId) {
+      $("#" + modalId).modal("hide");
+
+      this.$router.push({ name: "friendDashboard", params: { id: userId } });
+    },
   },
-  components: {},
+  components: { ProfileModal },
 };
 </script>
 
