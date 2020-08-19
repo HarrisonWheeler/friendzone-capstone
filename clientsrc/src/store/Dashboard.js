@@ -47,7 +47,6 @@ export default {
     },
     async getFollowers({ commit, dispatch }, id) {
       let res = await api.get('profile/' + id + '/followers')
-      console.log(res.data);
       commit("setFollowers", res.data.data)
     },
     async searchDashboard({ commit, dispatch }, query) {

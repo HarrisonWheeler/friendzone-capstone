@@ -20,7 +20,7 @@ export default new Vuex.Store({
     dashboard: {},
     friendDashboard: {},
     profileFollowers: 0,
-    gameFollowers: 0
+    gameFollowers: {}
   },
   mutations: {
     setUser(state, user) {
@@ -44,8 +44,10 @@ export default new Vuex.Store({
     setFollowers(state, data) {
       state.profileFollowers = data
     },
-    setGameFollowers(state, data) {
-      state.gameFollowers = data
+    setGameFollowers(state, payload) {
+      Vue.set(state.gameFollowers, payload.gameId, payload.data.data)
+      // Vue.set(state.games[payload.gameId], payload.gameId, payload.data.data)
+      console.log(state.gameFollowers);
     }
   },
   actions: {
