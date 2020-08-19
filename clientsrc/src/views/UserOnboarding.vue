@@ -54,6 +54,39 @@
             </div>
           </div>
         </div>
+        <div v-if="gamerTags.pc != 'pc' " class="row text-left">
+          <div class="col-12 mt-3">
+            <h5 class="mx-2 text-warning">
+              <i class="fas fa-desktop text-warning"></i>
+              :
+              {{gamerTags.pc}}
+            </h5>
+          </div>
+        </div>
+        <div v-if="gamerTags.xbox != 'xbox' " class="row text-left">
+          <div class="col-12 mt-3">
+            <h5 class="mx-2 text-success">
+              <i class="fab fa-xbox text-success"></i>
+              : {{gamerTags.xbox}}
+            </h5>
+          </div>
+        </div>
+        <div v-if="gamerTags.playstation != 'playstation' " class="row text-left">
+          <div class="col-12 mt-3">
+            <h5 class="mx-2 text-info">
+              <i class="fab fa-playstation text-info"></i>
+              : {{gamerTags.playstation}}
+            </h5>
+          </div>
+        </div>
+        <div v-if="gamerTags.nintendo != 'nintendo' " class="row text-left text-danger">
+          <div class="col-12 mt-3">
+            <h5 class="mx-2 text-danger">
+              <span class="iconify" data-icon="mdi-nintendo-switch" data-inline="false"></span>
+              : {{gamerTags.nintendo}}
+            </h5>
+          </div>
+        </div>
         <button @click="editProfile" class="btn btn-secondary shadow-lg btn-block py-2 my-3">SUBMIT</button>
       </div>
     </profileModal>
