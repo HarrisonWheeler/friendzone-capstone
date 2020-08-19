@@ -177,14 +177,14 @@
               <b>FOLLOWERS</b>
             </u>
             <br />
-            <b>{{follows}}</b>
+            <b>{{follows.length}}</b>
           </p>
           <p v-else @click="followersModal" class="mb-2 text-shadow">
             <u>
               <b>FOLLOWERS</b>
             </u>
             <br />
-            <b>{{follows}}</b>
+            <b>{{follows.length}}</b>
           </p>
         </div>
       </div>
@@ -220,13 +220,27 @@
     <ProfileModal id="id">
       <h1 slot="header">Following</h1>
       <div slot="body">
-        <div v-for="followingName in profile.following" :key="followingName"></div>
+        <div class="row">
+          <div v-for="user in profile.following" :key="user.id">
+            <div class="col-6">
+              <img class="img-fluid" v-if="user.picture" :src="user.picture" />
+              <h1 @click="routeToDash(user._id)" class="text-left">{{user.name}}</h1>
+            </div>
+          </div>
+        </div>
       </div>
     </ProfileModal>
     <ProfileModal id="two">
       <h1 slot="header">Followers</h1>
       <div slot="body">
-        <div v-for="followingName in profile.following" :key="followingName"></div>
+        <div class="row">
+          <div v-for="user in follows" :key="user.id">
+            <div class="col-6">
+              <img class="img-fluid" v-if="user.picture" :src="user.picture" />
+              <h1 @click="routeToDash(user._id)" class="text-left">{{user.name}}</h1>
+            </div>
+          </div>
+        </div>
       </div>
     </ProfileModal>
   </div>
@@ -310,11 +324,14 @@ export default {
     },
     followingModal() {
       $("#id").modal("show");
-      this.$store.dispatch("followingModal", profile.following);
     },
     followersModal() {
       $("#two").modal("show");
-      this.$store.dispatch("followersModal", profile._id);
+    },
+    routeToDash(userId) {
+      $("#id").modal("hide");
+      $("#two").modal("hide");
+      this.$router.push({ name: "friendDashboard", params: { id: userId } });
     },
   },
   components: { ProfileModal, vSelect },
