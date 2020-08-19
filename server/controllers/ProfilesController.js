@@ -16,6 +16,7 @@ export class ProfilesController extends BaseController {
       .get('/user/:id', this.getById)
       .get('/name/:query', this.getByName)
       .get('/:id/followers', this.getFollowers)
+      .get("/games/:gameId/users", this.showFollowedGames)
       .put("/:id", this.edit)
       .put("/:id/votes", this.editRep)
       .put('/:id', this.edit)
@@ -131,6 +132,14 @@ export class ProfilesController extends BaseController {
     try {
       // @ts-ignore
       res.send(await profilesService.unfollowGame(req.params.id, req.params.gameId))
+    } catch (error) {
+      next(error)
+    }
+  }
+  async showFollowedGames(req, res, next) {
+    try {
+      let data = await profilesService.showFollowedGames(req.params.gameId)
+      res.json({ data: data })
     } catch (error) {
       next(error)
     }
