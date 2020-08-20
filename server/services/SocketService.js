@@ -1,5 +1,11 @@
 import SocketIO from "socket.io";
 import auth0provider from "@bcwdev/auth0provider";
+import { dbContext } from "../db/DbContext";
+
+let rooms = {
+
+}
+
 class SocketService {
   io = SocketIO();
   /**
@@ -21,9 +27,11 @@ class SocketService {
   async Authenticate(socket, bearerToken) {
     try {
       let user = await auth0provider.getUserInfoFromBearerToken(bearerToken);
+      let profile = await dbContext.Profile.find({ email: user.email.toLowerCase() });
       socket["user"] = user;
+      socket["profile"] = profile  //dont send user!!!!
       socket.join(user.id);
-      socket.emit("AUTHENTICATED");
+      socket.emit("AUTHENTICATED", user);
       this.io.emit("UserConnected", user.id);
     } catch (e) {
       socket.emit("error", e);
@@ -32,10 +40,15 @@ class SocketService {
 
   /**
    * @param {SocketIO.Socket} socket
-   * @param {string} room
+   * @param {{gameId:string}} room
    */
   JoinRoom(socket, room) {
-    socket.join(room);
+    socket.join(room.gameId);
+    rooms[room.gameId] = rooms[room.gameId] || new SocketRoom
+    // @ts-ignore
+    rooms[room.gameId].profiles.push(socket.profile)
+    socket.emit("roomData", rooms[room.gameId])
+    //socket.profile
   }
   /**
    * @param {SocketIO.Socket} socket
@@ -57,8 +70,9 @@ class SocketService {
     } catch (e) { }
   }
 
-  messageRoom(room, eventName, payload) {
+  messageRoom(socket, { room, eventName, payload }) {
     this.io.to(room).emit(eventName, payload);
+    //add message to rooms dictionary
   }
 
   _onConnect() {
@@ -102,8 +116,16 @@ class SocketService {
       message: "Successfully Connected"
     });
   }
-}
 
+}
+class SocketRoom {
+  constructor(name) {
+    this.name = name
+    this.profiles = []
+    this.messages = []
+
+  }
+}
 const socketService = new SocketService();
 
 export default socketService;
