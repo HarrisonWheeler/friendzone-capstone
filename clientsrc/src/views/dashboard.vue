@@ -235,7 +235,7 @@
             <div class="row text-left p-3 m-2 shadow-lg card cursor bg-card-gradient">
               <h2 @click="routeToDash(user._id)" class="mb-0 text-shadow">
                 <img
-                  class="img-thumbnail w-25 rounded shadow-lg"
+                  class="img-fluid w-25 rounded shadow-lg"
                   v-if="user.picture"
                   :src="user.picture"
                 />
@@ -256,7 +256,7 @@
             <div class="row text-left p-3 m-2 shadow-lg card cursor bg-card-gradient">
               <h2 @click="routeToDash(user._id)" class="mb-0 text-shadow">
                 <img
-                  class="img-thumbnail w-25 rounded shadow-lg"
+                  class="img-fluid w-25 rounded shadow-lg"
                   v-if="user.picture"
                   :src="user.picture"
                 />

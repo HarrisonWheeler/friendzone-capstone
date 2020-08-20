@@ -15,7 +15,9 @@
         <br />0
       </p>
       <p class="cursor hover" @click="gameModal('modal'+ gameData.gameId)" v-else>
-        <u>FOLLOWERS</u>
+        <b>
+          <u>FOLLOWERS</u>
+        </b>
         <br />
         {{followedGames.length}}
       </p>
@@ -28,7 +30,7 @@
             <div class="row text-left p-3 m-2 shadow-lg card cursor bg-card-gradient">
               <h1 @click="routeToDash(user._id,'modal'+ gameData.gameId )" class="text-left">
                 <img
-                  class="img-thumbnail w-25 rounded shadow-lg"
+                  class="img-fluid w-25 rounded shadow-lg"
                   v-if="user.picture"
                   :src="user.picture"
                 />
