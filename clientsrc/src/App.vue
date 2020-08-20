@@ -19,6 +19,7 @@ export default {
       await onAuth();
       this.$store.dispatch("setBearer", this.$auth.bearer);
       this.$store.dispatch("getProfile");
+      this.$store.dispatch("initializeSocket");
     } catch (err) {
       this.$router.push({ name: "home" });
     }

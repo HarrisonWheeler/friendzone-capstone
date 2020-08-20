@@ -6,7 +6,7 @@ import dashBoardModule from "../store/Dashboard"
 import profileModule from "../store/Profile"
 import gamesModule from "../store/GamesModule"
 import { profileService } from './ProfileService'
-
+import { socketStore } from './SocketStore'
 Vue.use(Vuex)
 
 
@@ -22,9 +22,13 @@ export default new Vuex.Store({
     profileFollowers: 0,
     gameFollowers: {},
     flipped: false,
+    activeRoom: {}
 
   },
   mutations: {
+    setActiveRoom(state, data) {
+      state.activeRoom = data
+    },
     setFlipped(state, flipped) {
       state.flipped = flipped
     },
@@ -87,6 +91,7 @@ export default new Vuex.Store({
   modules: {
     dashBoardModule,
     profileModule,
-    gamesModule
+    gamesModule,
+    socketStore
   }
 })

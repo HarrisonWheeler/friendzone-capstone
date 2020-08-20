@@ -40,14 +40,20 @@
             alt
           />
         </div>
+        <chat-room :gameData="activeGame.id" />
+        <button
+          class="border border-success btn btn-rounded btn-outline-success btn-block mt-3 py-1"
+          @click="joinChat"
+        >JOIN CHAT</button>
+
         <button
           v-if="!profile.games.some(game => game.gameId == activeGame.id)"
-          class="border border-info btn btn-rounded btn-outline-info btn-block mt-3 py-1"
+          class="border border-info btn btn-rounded btn-outline-info btn-block mt-1 py-1"
           @click="followGame(activeGame.id)"
         >+Follow Game</button>
         <button
           v-else
-          class="border border-danger btn btn-rounded btn-outline-danger btn-block mt-3 py-1"
+          class="border border-danger btn btn-rounded btn-outline-danger btn-block mt-1 py-1"
           @click="unfollowGame(activeGame.id)"
         >Unfollow Game</button>
       </div>
@@ -57,6 +63,7 @@
 
 
 <script>
+import chatRoom from "..//components/ChatRoom";
 export default {
   name: "game-details",
   data() {
@@ -76,6 +83,14 @@ export default {
     },
   },
   methods: {
+    joinChat() {
+      let payload = {
+        gameId: this.activeGame.id,
+        name: this.activeGame.name,
+      };
+      this.$store.dispatch("joinRoom", payload);
+    },
+
     followGame(id) {
       this.activeGame.followers += 1;
       this.$store.dispatch("followGame", {
@@ -97,7 +112,9 @@ export default {
       });
     },
   },
-  components: {},
+  components: {
+    chatRoom,
+  },
 };
 </script>
 
