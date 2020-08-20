@@ -16,7 +16,7 @@ export default {
       let res = await api.get("user/" + email.toLowerCase())
 
       console.log(res.data);
-      dispatch("getDashboard", res.data)
+      commit("setUser", res.data)
     },
     async getOtherProfile({ commit, dispatch }, id) {
       let res = await api.get("user")
