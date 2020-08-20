@@ -9,7 +9,7 @@
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
-      <div class="modal-content bg-gradient shadow-lg p-3">
+      <div class="modal-content bg-gradient shadow-lg p-3 border border-dark">
         <div class="modal-header text-light">
           <slot name="header">
             <h5 class="shadow-lg">
@@ -52,5 +52,9 @@ export default {
 }
 .shadow-lg {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.616) !important;
+}
+.border-dark {
+  border-color: #000000 !important;
+  border-width: medium !important;
 }
 </style>

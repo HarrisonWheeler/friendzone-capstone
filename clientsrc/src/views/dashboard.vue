@@ -109,7 +109,7 @@
                 <i
                   @click="setDisplayGamerTag(profile.consoles.pc)"
                   v-else-if="profile.consoles.pc"
-                  class="fas fa-desktop text-warning"
+                  class="fas fa-desktop text-warning cursor hover"
                 ></i>
               </div>
               <div
@@ -123,7 +123,7 @@
                 <i
                   @click="setDisplayGamerTag(profile.consoles.xbox)"
                   v-else-if="profile.consoles.xbox"
-                  class="fab fa-xbox text-success"
+                  class="fab fa-xbox text-success cursor hover"
                 ></i>
               </div>
               <div
@@ -137,11 +137,11 @@
                 <i
                   @click="setDisplayGamerTag(profile.consoles.playstation)"
                   v-else-if="profile.consoles.playstation"
-                  class="fab fa-playstation text-info"
+                  class="fab fa-playstation text-info cursor hover"
                 ></i>
               </div>
               <div
-                class="col-1 text-danger"
+                class="col-1 text-danger cursor hover"
                 :class="profile.consoles.nintendo == 'nintendo' || !profile.consoles.nintendo ? '' : 'nintendo-shadow'"
               >
                 <div v-if="profile.consoles.nintendo == 'nintendo' || !profile.consoles.nintendo">
@@ -158,28 +158,28 @@
             <h5 v-if="displayGamerTag">{{displayGamerTag}}</h5>
           </div>
           <!-- TODO followers not hard coded -->
-          <p v-if="profile.following.length < 1" class="mb-2 text-shadow">
+          <p v-if="profile.following.length < 1" class="mb-2 text-shadow cursor hover">
             <u>
               <b>FOLLOWING</b>
             </u>
             <br />
             <b>{{profile.following.length}}</b>
           </p>
-          <p @click="followingModal" v-else class="mb-2 text-shadow">
+          <p @click="followingModal" v-else class="mb-2 text-shadow cursor hover">
             <u>
               <b>FOLLOWING</b>
             </u>
             <br />
             <b>{{profile.following.length}}</b>
           </p>
-          <p v-if="follows < 1" class="mb-2 text-shadow">
+          <p v-if="follows < 1" class="mb-2 text-shadow cursor hover">
             <u>
               <b>FOLLOWERS</b>
             </u>
             <br />
             <b>{{follows.length}}</b>
           </p>
-          <p v-else @click="followersModal" class="mb-2 text-shadow">
+          <p v-else @click="followersModal" class="mb-2 text-shadow cursor hover">
             <u>
               <b>FOLLOWERS</b>
             </u>
@@ -226,26 +226,42 @@
       </div>
     </div>
     <ProfileModal id="id">
-      <h1 slot="header">Following</h1>
+      <h1 class="text-shadow" slot="header">
+        <u>FOLLOWING</u>
+      </h1>
       <div slot="body">
-        <div class="row">
+        <div class="col-12">
           <div v-for="user in profile.following" :key="user.id">
-            <div class="col-6">
-              <img class="img-fluid" v-if="user.picture" :src="user.picture" />
-              <h1 @click="routeToDash(user._id)" class="text-left">{{user.name}}</h1>
+            <div class="row text-left p-3 m-2 shadow-lg card cursor bg-card-gradient">
+              <h2 @click="routeToDash(user._id)" class="mb-0 text-shadow">
+                <img
+                  class="img-thumbnail w-25 rounded shadow-lg"
+                  v-if="user.picture"
+                  :src="user.picture"
+                />
+                {{user.name}}
+              </h2>
             </div>
           </div>
         </div>
       </div>
     </ProfileModal>
     <ProfileModal id="two">
-      <h1 slot="header">Followers</h1>
+      <h1 slot="header">
+        <u>FOLLOWERS</u>
+      </h1>
       <div slot="body">
-        <div class="row">
+        <div class="col-12">
           <div v-for="user in follows" :key="user.id">
-            <div class="col-6">
-              <img class="img-fluid" v-if="user.picture" :src="user.picture" />
-              <h1 @click="routeToDash(user._id)" class="text-left">{{user.name}}</h1>
+            <div class="row text-left p-3 m-2 shadow-lg card cursor bg-card-gradient">
+              <h2 @click="routeToDash(user._id)" class="mb-0 text-shadow">
+                <img
+                  class="img-thumbnail w-25 rounded shadow-lg"
+                  v-if="user.picture"
+                  :src="user.picture"
+                />
+                {{user.name}}
+              </h2>
             </div>
           </div>
         </div>
@@ -414,5 +430,9 @@ export default {
 }
 .cursor {
   cursor: pointer;
+}
+.hover:hover {
+  font-size: 1rem;
+  text-shadow: 0 0.75rem 0.75rem rgba(0, 0, 0, 0.616) !important;
 }
 </style>

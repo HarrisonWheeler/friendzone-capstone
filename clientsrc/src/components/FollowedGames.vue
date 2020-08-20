@@ -11,11 +11,11 @@
     <div class="card-body rounded-bottom bg-gradient p-1">
       <h4 class="pt-3">{{gameData.name}}</h4>
       <p v-if="!followedGames">
-        <u>Followers</u>
+        <u>FOLLOWERS</u>
         <br />0
       </p>
-      <p @click="gameModal('modal'+ gameData.gameId)" v-else>
-        <u>Followers</u>
+      <p class="cursor hover" @click="gameModal('modal'+ gameData.gameId)" v-else>
+        <u>FOLLOWERS</u>
         <br />
         {{followedGames.length}}
       </p>
@@ -138,5 +138,9 @@ export default {
 }
 .cursor {
   cursor: pointer;
+}
+.hover:hover {
+  font-size: 1rem;
+  text-shadow: 0 0.75rem 0.75rem rgba(0, 0, 0, 0.616) !important;
 }
 </style>

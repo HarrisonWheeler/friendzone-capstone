@@ -18,7 +18,7 @@
       </form>
       <button
         type="button"
-        class="btn btn-primary text-center shadow-lg py-2 px-2 ml-3"
+        class="btn btn-primary text-center shadow-lg py-1 px-2 ml-1"
         data-toggle="button"
         aria-pressed="false"
         autocomplete="off"
@@ -29,7 +29,7 @@
       </button>
       <button
         type="button"
-        class="btn btn-primary text-center shadow-lg ml-2 py-2 px-4"
+        class="btn btn-primary text-center shadow-lg mr-4 py-1 px-4"
         data-toggle="button"
         aria-pressed="false"
         autocomplete="off"
@@ -68,6 +68,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getGames");
+    this.$store.commit("setFlipped", false);
   },
   computed: {
     games() {
