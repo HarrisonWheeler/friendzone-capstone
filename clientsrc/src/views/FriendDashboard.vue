@@ -105,22 +105,36 @@
             <h5 v-if="displayGamerTag">{{displayGamerTag}}</h5>
           </div>
           <!-- TODO followers not hard coded -->
-          <p class="mb-2 text-shadow">
-            <b>
-              <u>FOLLOWING</u>
-              <br />
-              {{friendData.following.length}}
-            </b>
+          <p v-if="friendData.following.length < 1" class="mb-2 text-shadow">
+            <u>
+              <b>FOLLOWING</b>
+            </u>
+            <br />
+            <b>{{friendData.following.length}}</b>
           </p>
-          <p class="mb-2 text-shadow">
-            <b>
-              <u>FOLLOWERS</u>
-              <br />
-              {{follows.length}}
-            </b>
+          <p @click="followingModal" v-else class="mb-2 text-shadow">
+            <u>
+              <b>FOLLOWING</b>
+            </u>
+            <br />
+            <b>{{friendData.following.length}}</b>
+          </p>
+          <p v-if="follows < 1" class="mb-2 text-shadow">
+            <u>
+              <b>FOLLOWERS</b>
+            </u>
+            <br />
+            <b>{{follows.length}}</b>
+          </p>
+          <p v-else @click="followersModal" class="mb-2 text-shadow">
+            <u>
+              <b>FOLLOWERS</b>
+            </u>
+            <br />
+            <b>{{follows.length}}</b>
           </p>
           <button
-            v-if="!profile.following.some(followed => followed.id == friendData._id)"
+            v-if="!friendData.following.some(followed => followed.id == friendData._id)"
             @click="follow"
             class="btn btn-block border border-info btn-outline-info mt-4"
           >
@@ -141,24 +155,7 @@
           <u>GAMES FOLLOWING</u>
         </h4>
         <div class="row overflow width shadow-lg mx-1">
-          <div
-            class="card col-12 col-md-6 col-lg-3 px-0 shadow-lg bg-card-gradient m-1"
-            v-for="game in friendData.games"
-            :key="game.name"
-          >
-            <div class>
-              <img
-                :src="game.backgroundImg"
-                class="card-img-top img-fluid game-size cursor"
-                alt
-                @click="openDeetz(game.gameId)"
-              />
-            </div>
-            <div class="card-body rounded-bottom bg-gradient p-1">
-              <h4 class="pt-3">{{game.name}}</h4>
-              <p>FOLLOWERS:</p>
-            </div>
-          </div>
+          <FollowedGames v-for="game in friendData.games" :key="game.id" :gameData="game" />
         </div>
       </div>
       <div class="row card shadow-lg bg-gradient borde border-dark ml-md-2 my-3 h-45 p-2">
@@ -168,11 +165,39 @@
         <h1 class="my-4 text-shadow">COMING SOON......</h1>
       </div>
     </div>
+    <ProfileModal id="id">
+      <h1 slot="header">Following</h1>
+      <div slot="body">
+        <div class="row">
+          <div v-for="user in friendData.following" :key="user.id">
+            <div class="col-6">
+              <img class="img-fluid" v-if="user.picture" :src="user.picture" />
+              <h1 @click="routeToDash(user._id)" class="text-left">{{user.name}}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ProfileModal>
+    <ProfileModal id="two">
+      <h1 slot="header">Followers</h1>
+      <div slot="body">
+        <div class="row">
+          <div v-for="user in follows" :key="user.id">
+            <div class="col-6">
+              <img class="img-fluid" v-if="user.picture" :src="user.picture" />
+              <h1 @click="routeToDash(user._id)" class="text-left">{{user.name}}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ProfileModal>
   </div>
 </template>
 
 
 <script>
+import FollowedGames from "../components/FollowedGames";
+import ProfileModal from "../components/ProfileModal";
 export default {
   name: "friendDashboard",
   data() {
@@ -207,6 +232,7 @@ export default {
           votedNames: this.$auth.userInfo.email,
           id: this.$route.params.id,
           voteType: vote,
+          voterRep: this.profile.rep,
         });
       }
     },
@@ -233,8 +259,22 @@ export default {
     openDeetz(id) {
       this.$router.push({ name: "GameDetails", params: { id: id } });
     },
+    followingModal() {
+      $("#id").modal("show");
+    },
+    followersModal() {
+      $("#two").modal("show");
+    },
+    routeToDash(userId) {
+      $("#id").modal("hide");
+      $("#two").modal("hide");
+      this.$router.push({ name: "friendDashboard", params: { id: userId } });
+    },
   },
-  components: {},
+  components: {
+    ProfileModal,
+    FollowedGames,
+  },
 };
 </script>
 

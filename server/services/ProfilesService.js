@@ -102,7 +102,7 @@ class ProfileService {
     return await dbContext.Profile.find()
   }
   async getById(id) {
-    let data = await dbContext.Profile.findOne({ _id: id })
+    let data = await (await dbContext.Profile.findOne({ _id: id })).populate("name picture")
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this user")
     }
@@ -144,6 +144,9 @@ class ProfileService {
      */
   async editRep(id, body) {
     let val = body.voteType == 'up' ? 1 : -1
+    if (body.voterRep > 10) {
+      val = val * Math.floor((body.voterRep * .25))
+    }
     let rep = await dbContext.Profile.findOneAndUpdate(
       { _id: id, votedNames: { $nin: [body.votedNames] } }, { $addToSet: { votedNames: body.votedNames }, $inc: { rep: val } }, { new: true }
     )
