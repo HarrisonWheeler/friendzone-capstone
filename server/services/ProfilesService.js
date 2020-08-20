@@ -152,7 +152,7 @@ class ProfileService {
   async editFollowers(id, body) {
     let followers = await dbContext.Profile.findOneAndUpdate(
       { _id: id }, { $addToSet: { following: body.following } }, { new: true }
-    )
+    ).populate("following", "name picture")
     return followers
   }
   async deleteFollower(id, followingId) {

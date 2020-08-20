@@ -120,7 +120,7 @@
             </b>
           </p>
           <button
-            v-if=" !profile.following.includes(friendData._id) && profile.email != friendData.email"
+            v-if="!profile.following.some(followed => followed.id == friendData._id)"
             @click="follow"
             class="btn btn-block border border-info btn-outline-info mt-4"
           >

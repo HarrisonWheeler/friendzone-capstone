@@ -11,7 +11,7 @@ export class ProfilesController extends BaseController {
     super("api/profile");
     this.router
       .use(auth0provider.getAuthorizedUserInfo)
-      .get("/find", this.findProfiles)
+      .get("/find", this.findProfiles) // search in nav bar
       .get("/:id", this.getUserProfile)
       .get("", this.getProfiles)
       .get('/user/:id', this.getById)
@@ -20,7 +20,6 @@ export class ProfilesController extends BaseController {
       .get("/games/:gameId/users", this.showFollowedGames)
       .put("/:id", this.edit)
       .put("/:id/votes", this.editRep)
-      .put('/:id', this.edit)
       .put("/:id/following", this.editFollowers)
       .post('', this.create)
       .post('/:id/games', this.followGame)
