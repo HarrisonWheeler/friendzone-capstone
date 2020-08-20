@@ -21,16 +21,19 @@
       </p>
     </div>
     <ProfileModal :id=" 'modal'+ gameData.gameId">
-      <h1 slot="header">Following</h1>
+      <h1 class="text-shadow" slot="header">FOLLOWING</h1>
       <div slot="body">
-        <div class="row">
+        <div class="col-12">
           <div v-for="user in followedGames" :key="user.id">
-            <div class="col-12">
-              <img class="img-fluid" v-if="user.picture" :src="user.picture" />
-              <h1
-                @click="routeToDash(user._id,'modal'+ gameData.gameId )"
-                class="text-left"
-              >{{user.name}}</h1>
+            <div class="row text-left p-3 m-2 shadow-lg card cursor bg-card-gradient">
+              <h1 @click="routeToDash(user._id,'modal'+ gameData.gameId )" class="text-left">
+                <img
+                  class="img-thumbnail w-25 rounded shadow-lg"
+                  v-if="user.picture"
+                  :src="user.picture"
+                />
+                {{user.name}}
+              </h1>
             </div>
           </div>
         </div>
