@@ -102,7 +102,7 @@ class ProfileService {
     return await dbContext.Profile.find()
   }
   async getById(id) {
-    let data = await dbContext.Profile.findOne({ _id: id })
+    let data = await (await dbContext.Profile.findOne({ _id: id })).populate("name picture")
     if (!data) {
       throw new BadRequest("Invalid ID or you do not own this user")
     }
