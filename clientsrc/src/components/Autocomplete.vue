@@ -10,7 +10,12 @@
       @keydown.enter="onEnter"
       :placeholder="placeholder"
     />
-    <ul id="autocomplete-results" v-show="isOpen" class="autocomplete-results" ref="resultbox">
+    <ul
+      id="autocomplete-results"
+      v-show="isOpen"
+      class="autocomplete-results bg-gradient"
+      ref="resultbox"
+    >
       <li class="loading" v-if="isLoading">Loading results...</li>
       <li
         :tabIndex="i"
@@ -137,12 +142,15 @@ export default {
   position: relative;
 }
 .autocomplete-results {
+  position: absolute;
   padding: 0;
   margin: 0;
   border: 1px solid #eeeeee;
   height: 120px;
   overflow: auto;
   width: 100%;
+  background-color: gray;
+  color: #eeeeee;
 }
 .autocomplete-result {
   list-style: none;
@@ -156,8 +164,8 @@ export default {
 }
 .autocomplete-result.is-active,
 .autocomplete-result:hover {
-  background-color: var(--primary);
-  color: var(--light);
+  background-color: silver;
+  color: gold;
 }
 .autocomplete-results::-webkit-scrollbar {
   width: 6px;
@@ -167,5 +175,13 @@ export default {
 }
 .autocomplete-results::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 6px var(--dark);
+}
+.bg-gradient {
+  background: rgb(90, 90, 90);
+  background: radial-gradient(
+    circle,
+    rgba(90, 90, 90, 1) 0%,
+    rgba(35, 35, 35, 1) 100%
+  );
 }
 </style>
