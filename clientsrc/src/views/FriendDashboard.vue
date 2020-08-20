@@ -134,7 +134,7 @@
             <b>{{follows.length}}</b>
           </p>
           <button
-            v-if="!friendData.following.some(followed => followed.id == friendData._id)"
+            v-if="!profile.following.some(followed => followed.id == friendData._id)"
             @click="follow"
             class="btn btn-block border border-info btn-outline-info mt-4"
           >
