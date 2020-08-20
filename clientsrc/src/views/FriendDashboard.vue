@@ -106,10 +106,18 @@
           </div>
           <!-- TODO followers not hard coded -->
           <p class="mb-2 text-shadow">
-            <b>FOLLOWING: {{friendData.following.length}}</b>
+            <b>
+              <u>FOLLOWING</u>
+              <br />
+              {{friendData.following.length}}
+            </b>
           </p>
           <p class="mb-2 text-shadow">
-            <b>FOLLOWERS: {{follows.length}}</b>
+            <b>
+              <u>FOLLOWERS</u>
+              <br />
+              {{follows.length}}
+            </b>
           </p>
           <button
             v-if="!profile.following.some(followed => followed.id == friendData._id)"
@@ -123,7 +131,7 @@
             v-else
             class="btn btn-block border border-danger btn-outline-danger mt-4"
             @click="unfollow"
-          >Unfollow</button>
+          >UNFOLLOW</button>
         </div>
       </div>
     </div>
@@ -132,9 +140,9 @@
         <h4 class="col-12 text-shadow">
           <u>GAMES FOLLOWING</u>
         </h4>
-        <div class="row overflow width mx-1">
+        <div class="row overflow width shadow-lg mx-1">
           <div
-            class="card col-6 col-md-2 px-0 shadow-lg bg-card-gradient m-1"
+            class="card col-12 col-md-6 col-lg-3 px-0 shadow-lg bg-card-gradient m-1"
             v-for="game in friendData.games"
             :key="game.name"
           >
@@ -148,7 +156,7 @@
             </div>
             <div class="card-body rounded-bottom bg-gradient p-1">
               <h4 class="pt-3">{{game.name}}</h4>
-              <p>Followers:</p>
+              <p>FOLLOWERS:</p>
             </div>
           </div>
         </div>

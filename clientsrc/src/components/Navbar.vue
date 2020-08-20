@@ -3,7 +3,7 @@
     class="navbar container-fluid sticky-top navbar-expand-lg navbar-secondary bg-gradient shadow-lg p-2"
   >
     <a class="navbar-brand" href="#">
-      <h3>FRIENDZONE</h3>
+      <h3 class="text-shadow">FRIENDZONE</h3>
     </a>
     <button
       class="navbar-toggler"
@@ -20,13 +20,13 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
       <ul class="navbar-nav mr-auto text-light">
         <li class="nav-item">
-          <router-link :to="{ name: 'home' }" class="nav-link">HOME</router-link>
+          <router-link :to="{ name: 'home' }" class="nav-link text-shadow">HOME</router-link>
         </li>
         <li class="nav-item" v-if="$auth.isAuthenticated">
-          <router-link :to="{ name: 'dashboard' }" class="nav-link">MY DASHBOARD</router-link>
+          <router-link :to="{ name: 'dashboard' }" class="nav-link text-shadow">MY DASHBOARD</router-link>
         </li>
         <li class="nav-item" v-if="$auth.isAuthenticated">
-          <router-link class="nav-link" :to="{ name: 'Games' }">GAMES</router-link>
+          <router-link class="nav-link text-shadow" :to="{ name: 'Games' }">GAMES</router-link>
         </li>
       </ul>
       <button
@@ -42,7 +42,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto"></ul>
-        <form class="form-inline my-2 my-lg-0 mx-1" @submit.prevent="onInput">
+        <form class="form-inline my-2 my-lg-0 mx-1 shadow-lg" @submit.prevent="onInput">
           <div class="input-group border-primary">
             <autocomplete
               v-model="query"
@@ -65,8 +65,16 @@
           </div>
         </form>
         <span class="navbar-text">
-          <button class="btn btn-outline-success" @click="login" v-if="!$auth.isAuthenticated">LOGIN</button>
-          <button class="btn btn-outline-danger border border-danger" @click="logout" v-else>LOGOUT</button>
+          <button
+            class="btn btn-outline-success shadow-lg"
+            @click="login"
+            v-if="!$auth.isAuthenticated"
+          >LOGIN</button>
+          <button
+            class="btn btn-outline-danger border border-danger shadow-lg"
+            @click="logout"
+            v-else
+          >LOGOUT</button>
         </span>
       </div>
     </div>
@@ -201,5 +209,8 @@ export default {
     rgba(55, 55, 55, 1) 50%,
     rgba(33, 32, 32, 1) 100%
   );
+}
+.text-shadow {
+  text-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.616) !important;
 }
 </style>
