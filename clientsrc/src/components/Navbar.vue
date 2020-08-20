@@ -20,13 +20,13 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
       <ul class="navbar-nav mr-auto text-light">
         <li class="nav-item">
-          <router-link :to="{ name: 'home' }" class="nav-link text-shadow">HOME</router-link>
+          <router-link :to="{ name: 'home' }" class="nav-link text-shadow hover">HOME</router-link>
         </li>
         <li class="nav-item" v-if="$auth.isAuthenticated">
-          <router-link :to="{ name: 'dashboard' }" class="nav-link text-shadow">MY DASHBOARD</router-link>
+          <router-link :to="{ name: 'dashboard' }" class="nav-link text-shadow hover">MY DASHBOARD</router-link>
         </li>
         <li class="nav-item" v-if="$auth.isAuthenticated">
-          <router-link class="nav-link text-shadow" :to="{ name: 'Games' }">GAMES</router-link>
+          <router-link class="nav-link text-shadow hover" :to="{ name: 'Games' }">GAMES</router-link>
         </li>
       </ul>
       <button
@@ -212,5 +212,9 @@ export default {
 }
 .text-shadow {
   text-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.616) !important;
+}
+.hover:hover {
+  font-size: 1rem;
+  text-shadow: 0 0.75rem 0.75rem rgba(0, 0, 0, 0.616) !important;
 }
 </style>
