@@ -22,10 +22,14 @@ export default new Vuex.Store({
     profileFollowers: 0,
     gameFollowers: {},
     flipped: false,
-    activeRoom: {}
+    activeRoom: {},
+    messages: []
 
   },
   mutations: {
+    setMessages(state, data) {
+      state.messages = data
+    },
     setActiveRoom(state, data) {
       state.activeRoom = data
     },
