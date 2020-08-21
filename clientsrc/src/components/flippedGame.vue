@@ -6,7 +6,7 @@
           <div class="embed-responsive embed-responsive-4by3">
             <img
               :src="gameData.background_image"
-              class="card-img-top embed-responsive-item"
+              class="card-img-top embed-responsive-item cursor"
               @click="openDeetz(gameData.id)"
             />
           </div>
@@ -21,7 +21,7 @@
             >Rating: {{Math.floor(gameData.rating)}}/5</p>
             <p class="text-warning mb-0">Metacritic Score: {{gameData.metacritic}}</p>
             <p class="mb-2" @click="platformVisible = !platformVisible">
-              <u>Available Platforms</u>
+              <u class="cursor">Available Platforms</u>
             </p>
             <p class="mb-2" v-show="platformVisible">
               <span
@@ -35,7 +35,7 @@
           <div class="embed-responsive embed-responsive-4by3">
             <img
               :src="searchedGameData.background_image"
-              class="card-img-top embed-responsive-item"
+              class="card-img-top embed-responsive-item cursor"
               @click="openDeetz(searchedGameData.id)"
             />
           </div>
@@ -50,7 +50,7 @@
             >Rating: {{Math.floor(searchedGameData.rating)}}/5</p>
             <p class="text-warning mb-0">Metacritic Score: {{searchedGameData.metacritic}}</p>
             <p class="mb-2" @click="platformVisible = !platformVisible">
-              <u>Available Platforms</u>
+              <u class="cursor">Available Platforms</u>
             </p>
             <p class="mb-2" v-show="platformVisible">
               <span
@@ -99,7 +99,7 @@ export default {
 </script>
 
 
-<style  scoped>
+<style scoped>
 .shadow-lg {
   box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.616) !important;
 }
@@ -169,5 +169,8 @@ img.embed-responsive-item {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+.cursor {
+  cursor: pointer;
 }
 </style>

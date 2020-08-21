@@ -19,8 +19,8 @@
             src="https://lh3.googleusercontent.com/proxy/fprp02E8T3_-8ChbSQT-gCogAMmtkcdEKqXjXhGgqS4xdhYgRsVAkajQcNdoSbRZbhm0IqbsYX6Uo-QH46-FkqQ2jizN63jkexMk7ZOzR70AiSsuC1j_1IsZI8xzTIPtrBLXVicq"
           />
           <div v-if="profile.email != friendData.email" class="text-center mb-3">
-            <i class="fa fa-thumbs-o-up fa fa-2x mr-3" @click="vote('up')"></i>
-            <i class="fa fa-thumbs-o-down fa fa-2x ml-3" @click="vote('down')"></i>
+            <i class="fa fa-thumbs-o-up fa fa-2x mr-3 cursor" @click="vote('up')"></i>
+            <i class="fa fa-thumbs-o-down fa fa-2x ml-3 cursor" @click="vote('down')"></i>
           </div>
           <h5 v-if="friendData.rep" class="mb-2 text-shadow">
             <u>

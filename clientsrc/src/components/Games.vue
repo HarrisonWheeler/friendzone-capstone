@@ -3,7 +3,7 @@
     <div class="embed-responsive embed-responsive-4by3">
       <img
         :src="gameData.background_image"
-        class="card-img-top embed-responsive-item"
+        class="card-img-top embed-responsive-item cursor"
         @click="openDeetz(gameData.id)"
       />
     </div>
@@ -18,7 +18,7 @@
       >Rating: {{Math.floor(gameData.rating)}}/5</p>
       <p class="text-warning mb-0">Metacritic Score: {{gameData.metacritic}}</p>
       <p class="mb-2" @click="platformVisible = !platformVisible">
-        <u>Available Platforms</u>
+        <u class="cursor">Available Platforms</u>
       </p>
       <p class="mb-2" v-show="platformVisible">
         <span
@@ -82,5 +82,8 @@ img.embed-responsive-item {
     rgba(90, 90, 90, 1) 0%,
     rgba(35, 35, 35, 1) 100%
   );
+}
+.cursor {
+  cursor: pointer;
 }
 </style>

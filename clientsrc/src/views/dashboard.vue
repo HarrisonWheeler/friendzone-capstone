@@ -7,8 +7,8 @@
       <div class="card shadow-lg text-center bg-gradient border border-dark p-3 h-100">
         <div class="card shadow-lg bg-card-gradient p-2">
           <div class="text-right">
-            <i v-if="!editContent" @click="edit" class="fa fa-pencil fa-1x"></i>
-            <i v-if="editContent" @click="saveContent" class="fa fa-floppy-o fa-1x"></i>
+            <i v-if="!editContent" @click="edit" class="fa fa-pencil fa-1x cursor"></i>
+            <i v-if="editContent" @click="saveContent" class="fa fa-floppy-o fa-1x cursor"></i>
           </div>
           <h1 v-show="!editContent" class="text-center text-shadow mb-3">{{profile.name}}</h1>
           <h1 v-show="editContent" v-if="!editContent" class="text-center m-3">{{editedUsername}}</h1>
@@ -157,7 +157,6 @@
             </div>
             <h5 v-if="displayGamerTag">{{displayGamerTag}}</h5>
           </div>
-          <!-- TODO followers not hard coded -->
           <p v-if="profile.following.length < 1" class="mb-2 text-shadow cursor hover">
             <u>
               <b>FOLLOWING</b>
