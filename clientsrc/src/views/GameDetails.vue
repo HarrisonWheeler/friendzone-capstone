@@ -40,15 +40,25 @@
             alt
           />
         </div>
-        <chat-room :gameData="activeGame.id" />
-        <button
-          class="border border-success btn btn-rounded btn-outline-success btn-block mt-3 py-1"
-          @click="joinChat"
-        >JOIN CHAT</button>
-
+        <chat-room
+          v-if="joinedChat && profile.games.some(game => game.gameId == activeGame.id)"
+          :gameData="activeGame.id"
+        />
+        <div v-if="profile.games.some(game => game.gameId == activeGame.id)">
+          <button
+            v-if="!joinedChat"
+            class="border border-success btn btn-rounded btn-outline-success btn-block mt-3 py-1"
+            @click="joinChat"
+          >JOIN CHAT</button>
+          <button
+            v-else
+            class="border border-warning btn btn-rounded btn-outline-warning btn-block mt-3 py-1"
+            @click="joinedChat = !joinedChat"
+          >HIDE CHAT</button>
+        </div>
         <button
           v-if="!profile.games.some(game => game.gameId == activeGame.id)"
-          class="border border-info btn btn-rounded btn-outline-info btn-block mt-1 py-1"
+          class="border border-info btn btn-rounded btn-outline-info btn-block mt-3 py-1"
           @click="followGame(activeGame.id)"
         >+Follow Game</button>
         <button
@@ -69,6 +79,7 @@ export default {
   data() {
     return {
       platformVisible: false,
+      joinedChat: false,
     };
   },
   mounted() {
@@ -84,6 +95,8 @@ export default {
   },
   methods: {
     joinChat() {
+      this.$store.state.messages = [];
+      this.joinedChat = true;
       let payload = {
         gameId: this.activeGame.id,
         name: this.activeGame.name,

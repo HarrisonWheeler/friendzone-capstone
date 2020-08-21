@@ -48,6 +48,7 @@ class SocketService {
     // @ts-ignore
     rooms[room.gameId].profiles.push(socket.profile)
     socket.emit("roomData", rooms[room.gameId])
+    socket.broadcast.emit("userConnected",)
     //socket.profile
   }
   /**
@@ -71,7 +72,7 @@ class SocketService {
   }
 
   messageRoom(socket, { room, eventName, payload }) {
-    this.io.to(room).emit(eventName, payload);
+    this.io.to(room).emit(eventName, { message: payload, profile: socket.profile });
     //add message to rooms dictionary
   }
 

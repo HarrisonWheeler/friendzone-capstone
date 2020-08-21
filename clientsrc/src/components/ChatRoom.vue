@@ -1,30 +1,38 @@
 <template>
-  <div class="chat-room card shadow-lg pb-1 px-3 pt-3 bg-gradient">
-    <div class="card bg-white border border-dark overflow p-1 height shadow-lg">
+  <div class="chat-room card border border-dark shadow-lg pb-1 px-4 pt-3 m-4 bg-light">
+    <div
+      class="card bg-white border border-dark p-1 mx-md-4 height shadow-lg text-dark"
+      style="overflow:auto;"
+      id="chatWindow"
+    >
       <div v-for="m in messages" :key="m.id" class="chat-message">
-        <p>{{profile.name}}: {{m}}</p>
+        <p v-if="m.profile[0].name != profile.name" class="text-left ml-4">
+          {{m.profile[0].name}}
+          <br />
+          <span class="badge badge-pill badge-success text-height">{{m.message}}</span>
+        </p>
+        <p v-else class="text-right mr-4">
+          {{m.profile[0].name}}
+          <br />
+          <span class="badge badge-pill badge-info text-height">{{m.message}}</span>
+        </p>
       </div>
     </div>
     <form @submit="sendMessage">
-      <div class="input-group mb-1 mb-4">
+      <div class="input-group my-3 rounded shadow-lg">
         <input
           v-model="newChat"
           type="text"
-          class="form-control py-0 my-2"
+          class="form-control py-0 border border-dark"
           placeholder="Enter New Message..."
           aria-label="Recipient's username"
           aria-describedby="button-addon2"
         />
         <div class="input-group-append">
-          <button class="btn btn-secondary my-2" type="submit" id="button-addon2">SEND</button>
+          <button class="btn btn-dark" type="submit" id="button-addon2">SEND</button>
         </div>
       </div>
     </form>
-    <button
-      type="button"
-      class="btn btn-outline-danger py-1 mb-4 border border-danger"
-      @click="leaveChat"
-    >LEAVE CHAT</button>
   </div>
 </template>
 
@@ -46,17 +54,24 @@ export default {
       return this.$store.state.activeRoom;
     },
     messages() {
-      return this.$store.state.messages;
+      if (this.$store.state.messages.length > 0) {
+        let chatWindow = document.getElementById("chatWindow");
+        this.$nextTick(function () {
+          chatWindow.scrollTo(0, chatWindow.scrollHeight);
+        });
+        return this.$store.state.messages;
+      } else {
+        return this.$store.state.messages;
+      }
     },
   },
   methods: {
-    leaveChat() {},
     sendMessage() {
-      debugger;
       this.$store.dispatch("sendMessage", {
         room: this.gameData,
         eventName: "newMessage",
         payload: this.newChat,
+        profile: this.profile,
       });
       this.newChat = "";
     },
@@ -80,10 +95,17 @@ export default {
   );
 }
 .height {
-  min-height: 25vh;
+  min-height: 35vh;
+  max-height: 35vh;
 }
 .border-dark {
   border-color: #000000 !important;
   border-width: medium !important;
 }
-</style>
+.overflow {
+  overflow: auto;
+}
+.text-height {
+  font-size: 1.5rem;
+}
+</style></style></style></style></style></style></style></style></style></style></style></style></style></style></style></style></style>

@@ -37,7 +37,6 @@ export default {
         },
 
         async followGame({ commit, dispatch }, payload) {
-            debugger
             try {
                 let res = await api.post("profile/" + payload.id + "/games", payload)
                 commit("setUser", res.data)
