@@ -20,13 +20,18 @@ export const socketStore = {
                 console.log(roomData);
                 store.commit("setActiveRoom", roomData)
             })
-            socket.on("newMessage", (data) => { console.log(data); })
+            socket.on("newMessage", (data) => {
+                console.log(data);
+                let messages = [...store.state.messages, data]
+                store.commit("setMessages", messages)
+            })
             //registers event listeners for emits from socketservice
             // socket.on("newCar", car => {
             //     commit("addCar", car)
             // })
         },
         sendMessage({ commit, dispatch }, data) {
+
             socket.emit("dispatch", { action: "messageRoom", data: data })
         },
         joinRoom({ commit, dispatch }, payload) {
