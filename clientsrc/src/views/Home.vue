@@ -23,6 +23,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getGames");
+    setTimeout(() => window.scrollTo(0, 0), 75);
   },
   computed: {
     games() {
