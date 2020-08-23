@@ -6,16 +6,18 @@
       id="chatWindow"
     >
       <div v-for="m in messages" :key="m.id" class="chat-message">
-        <p v-if="m.profile[0].name != profile.name" class="text-left ml-4">
+        <h6 v-if="m.profile[0].name != profile.name" class="text-left ml-4" @click="timer = !timer">
           {{m.profile[0].name}}
           <br />
-          <span class="badge badge-pill badge-success text-height">{{m.message}}</span>
-        </p>
-        <p v-else class="text-right mr-4">
+          <small v-if="timer">{{new Date(m.time).toLocaleString()}}</small>
+          <small class="badge badge-pill badge-success text-height">{{m.message}}</small>
+        </h6>
+        <h6 v-else class="text-right mr-4" @click="timer = !timer">
           {{m.profile[0].name}}
           <br />
-          <span class="badge badge-pill badge-info text-height">{{m.message}}</span>
-        </p>
+          <small class="badge badge-pill badge-info text-height">{{m.message}}</small>
+          <small v-if="timer">{{new Date(m.time).toLocaleString()}}</small>
+        </h6>
       </div>
     </div>
     <form @submit="sendMessage">
@@ -44,6 +46,7 @@ export default {
   data() {
     return {
       newChat: "",
+      timer: false,
     };
   },
   computed: {
@@ -72,6 +75,7 @@ export default {
         eventName: "newMessage",
         payload: this.newChat,
         profile: this.profile,
+        time: new Date(),
       });
       this.newChat = "";
     },
@@ -108,4 +112,4 @@ export default {
 .text-height {
   font-size: 1.5rem;
 }
-</style></style></style></style></style></style></style></style></style></style></style></style></style></style></style></style></style>
+</style>

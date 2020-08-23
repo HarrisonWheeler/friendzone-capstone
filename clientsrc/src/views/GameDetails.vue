@@ -28,8 +28,6 @@
           />
           <video
             :src="activeGame.clip.clip"
-            autoplay
-            loop
             controls
             width="400"
             class="rounded shadow-md-lg p-4 p-md-0 mx-4 mx-md-2"
@@ -100,6 +98,7 @@ export default {
       let payload = {
         gameId: this.activeGame.id,
         name: this.activeGame.name,
+        user: this.profile.name,
       };
       this.$store.dispatch("joinRoom", payload);
     },
