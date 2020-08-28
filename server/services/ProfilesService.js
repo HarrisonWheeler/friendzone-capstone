@@ -142,15 +142,19 @@ class ProfileService {
      * @param {any} user Auth0 user object
      * @param {any} body Updates to apply to user object
      */
+
   async editRep(id, body) {
-    let val = body.voteType == 'up' ? 1 : -1
+    let val = body.voted.voteType
     if (body.voterRep > 10) {
       val = val * Math.floor((body.voterRep * .25))
     }
-    let rep = await dbContext.Profile.findOneAndUpdate(
-      { _id: id, votedNames: { $nin: [body.votedNames] } }, { $addToSet: { votedNames: body.votedNames }, $inc: { rep: val } }, { new: true }
-    )
+    let rep = await dbContext.Profile.findOneAndUpdate({ _id: id, "voted.name": { $ne: body.voted.name } },
+      { $addToSet: { "voted": body.voted }, $inc: { "rep": val } }, { new: true, upsert: true })
+    if (!rep) {
+      throw new BadRequest("Something went wrong")
+    }
     return rep
+
   }
   async editFollowers(id, body) {
     let followers = await dbContext.Profile.findOneAndUpdate(

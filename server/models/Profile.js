@@ -14,7 +14,10 @@ const GameSchema = new Schema({
   gameId: { type: String, required: true, unique: true },
   backgroundImg: { type: String, required: true },
 })
-
+const VotedSchema = new Schema({
+  name: { type: String, required: true },
+  voteType: { type: Number, required: true }
+})
 const Profile = new Schema(
   {
 
@@ -29,7 +32,7 @@ const Profile = new Schema(
     email: { type: String, lowercase: true, unique: true },
     name: { type: String, required: true },
     picture: { type: String, default: "https://lh3.googleusercontent.com/proxy/Q1lEAHblBW7fiO3AUQuhsni_J3_dkQGwmfyjUI8DgkNodX3DAfSRlyZtS1XKKP18xSv_v_To8zKQtwwDve9_j2wGBCECYZL0bg_WgPJRmB2QWVrSa8R7YjYLOApbj3prPtPXUoLnproe" },
-    votedNames: [{ type: String, unique: true }]
+    voted: [{ type: VotedSchema }]
 
   },
   { timestamps: true, toJSON: { virtuals: true } }

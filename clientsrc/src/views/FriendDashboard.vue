@@ -18,9 +18,18 @@
             class="mb-2 mx-auto rounded-circle img-fluid img-size"
             src="https://lh3.googleusercontent.com/proxy/fprp02E8T3_-8ChbSQT-gCogAMmtkcdEKqXjXhGgqS4xdhYgRsVAkajQcNdoSbRZbhm0IqbsYX6Uo-QH46-FkqQ2jizN63jkexMk7ZOzR70AiSsuC1j_1IsZI8xzTIPtrBLXVicq"
           />
+          <!-- v-if="!profile.following.some(followed => followed.id == friendData._id)" -->
           <div v-if="profile.email != friendData.email" class="text-center mb-3">
-            <i class="fa fa-thumbs-o-up fa fa-2x mr-3 cursor" @click="vote('up')"></i>
-            <i class="fa fa-thumbs-o-down fa fa-2x ml-3 cursor" @click="vote('down')"></i>
+            <i
+              :class="voteUp() ? 'votedGreen' : ''"
+              class="fa fa-thumbs-o-up fa fa-2x mr-3 cursor"
+              @click="vote(1)"
+            ></i>
+            <i
+              :class="voteDown() ? 'votedRed' : ''"
+              class="fa fa-thumbs-o-down fa fa-2x ml-3 cursor"
+              @click="vote(-1)"
+            ></i>
           </div>
           <h5 v-if="friendData.rep" class="mb-2 text-shadow">
             <u>
@@ -133,19 +142,21 @@
             <br />
             <b>{{follows.length}}</b>
           </p>
-          <button
-            v-if="!profile.following.some(followed => followed.id == friendData._id)"
-            @click="follow"
-            class="btn btn-block border border-info btn-outline-info mt-4"
-          >
-            <b>+</b>
-            FOLLOW
-          </button>
-          <button
-            v-else
-            class="btn btn-block border border-danger btn-outline-danger mt-4"
-            @click="unfollow"
-          >UNFOLLOW</button>
+          <div v-if="profile.email != friendData.email">
+            <button
+              v-if="!profile.following.some(followed => followed.id == friendData._id)"
+              @click="follow"
+              class="btn btn-block border border-info btn-outline-info mt-4"
+            >
+              <b>+</b>
+              FOLLOW
+            </button>
+            <button
+              v-else
+              class="btn btn-block border border-danger btn-outline-danger mt-4"
+              @click="unfollow"
+            >UNFOLLOW</button>
+          </div>
         </div>
       </div>
     </div>
@@ -238,15 +249,15 @@ export default {
   },
   methods: {
     vote(vote) {
-      if (this.friendData.email != this.$auth.userInfo.email) {
-        this.$store.dispatch("votes", {
-          rep: this.friendData.rep,
-          votedNames: this.$auth.userInfo.email,
-          id: this.$route.params.id,
+      let payload = {
+        voted: {
+          name: this.$auth.userInfo.email,
           voteType: vote,
-          voterRep: this.profile.rep,
-        });
-      }
+        },
+        voterRep: this.profile.rep,
+        id: this.$route.params.id,
+      };
+      this.$store.dispatch("votes", payload);
     },
     follow() {
       if (this.friendData.following != this.$auth.userInfo.email) {
@@ -281,6 +292,22 @@ export default {
       $("#id").modal("hide");
       $("#two").modal("hide");
       this.$router.push({ name: "friendDashboard", params: { id: userId } });
+    },
+    voteUp() {
+      let test = this.friendData.voted.some((user) =>
+        user.name == this.profile.email && user.voteType == 1
+          ? "votedGreen"
+          : ""
+      );
+
+      return test;
+    },
+    voteDown() {
+      let test = this.friendData.voted.some((user) =>
+        user.name == this.profile.email && user.voteType == -1 ? "votedRed" : ""
+      );
+
+      return test;
     },
   },
   components: {
@@ -367,6 +394,17 @@ export default {
   text-shadow: 0 0rem 0.75rem rgb(1, 218, 1) !important;
 }
 .fa-thumbs-o-down:hover {
+  color: red;
+  font-size: 3rem;
+  text-shadow: 0 0rem 0.75rem red !important;
+}
+
+.votedGreen {
+  color: rgb(1, 218, 1);
+  font-size: 3rem;
+  text-shadow: 0 0rem 0.75rem rgb(1, 218, 1) !important;
+}
+.votedRed {
   color: red;
   font-size: 3rem;
   text-shadow: 0 0rem 0.75rem red !important;
