@@ -2,6 +2,7 @@ import SocketIO from "socket.io";
 import auth0provider from "@bcwdev/auth0provider";
 import { dbContext } from "../db/DbContext";
 
+
 let rooms = {
 
 }
@@ -40,9 +41,11 @@ class SocketService {
 
   /**
    * @param {SocketIO.Socket} socket
-   * @param {{gameId:string}} room
+   * @param {{gameId:string,user:string}} room
+   * 
    */
   JoinRoom(socket, room) {
+
     socket.join(room.gameId);
     rooms[room.gameId] = rooms[room.gameId] || new SocketRoom
     // @ts-ignore
@@ -50,6 +53,7 @@ class SocketService {
     socket.emit("roomData", rooms[room.gameId])
     socket.broadcast.emit("userConnected")
     socket.emit("sendMessage")
+    this.io.emit("new-user", { message: "Friendzone Bot:  " + room.user + " joined room" })
     //socket.profile
   }
   /**

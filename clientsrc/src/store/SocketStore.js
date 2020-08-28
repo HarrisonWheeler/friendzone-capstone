@@ -25,6 +25,16 @@ export const socketStore = {
                 let messages = [...store.state.messages, data]
                 store.commit("setMessages", messages)
             })
+            socket.on("new-user", user => {
+                debugger
+                let messages = [...store.state.messages, user]
+                store.commit("setMessages", messages)
+            })
+            //registers event listeners for emits from socketservice
+            // socket.on("newCar", car => {
+            //     commit("addCar", car)
+            // })
+
         },
         sendMessage({ commit, dispatch }, data) {
 

@@ -6,14 +6,23 @@
       id="chatWindow"
     >
       <div v-for="m in messages" :key="m.id" class="chat-message">
-        <h6 v-if="m.profile[0].name != profile.name" class="text-left ml-4" @click="timer = !timer">
+        <h6
+          v-if="m.profile && m.profile[0].name != profile.name"
+          class="text-left ml-4"
+          @click="timer = !timer"
+        >
           {{m.profile[0].name}}
           <br />
           <small v-if="timer">{{new Date(m.time).toLocaleString()}}</small>
           <small class="badge badge-pill badge-success text-height">{{m.message}}</small>
         </h6>
-        <h6 v-else class="text-right mr-4" @click="timer = !timer">
+        <h6 v-else-if="m.profile " class="text-right mr-4" @click="timer = !timer">
           {{m.profile[0].name}}
+          <br />
+          <small class="badge badge-pill badge-info text-height">{{m.message}}</small>
+          <small v-if="timer">{{new Date(m.time).toLocaleString()}}</small>
+        </h6>
+        <h6 v-else class="text-right mr-4" @click="timer = !timer">
           <br />
           <small class="badge badge-pill badge-info text-height">{{m.message}}</small>
           <small v-if="timer">{{new Date(m.time).toLocaleString()}}</small>
