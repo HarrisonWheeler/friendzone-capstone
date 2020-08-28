@@ -79,6 +79,7 @@ export default {
   },
   methods: {
     sendMessage() {
+      event.preventDefault();
       this.$store.dispatch("sendMessage", {
         room: this.gameData,
         eventName: "newMessage",

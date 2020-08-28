@@ -34,6 +34,7 @@ export const socketStore = {
             // socket.on("newCar", car => {
             //     commit("addCar", car)
             // })
+
         },
         sendMessage({ commit, dispatch }, data) {
 
