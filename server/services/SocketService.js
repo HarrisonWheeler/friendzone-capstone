@@ -53,7 +53,7 @@ class SocketService {
     socket.emit("roomData", rooms[room.gameId])
     socket.broadcast.emit("userConnected")
     socket.emit("sendMessage")
-    this.io.emit("new-user", { message: room.user + " joined room" })
+    this.io.emit("new-user", { message: "Friendzone Bot:  " + room.user + " joined room" })
     //socket.profile
   }
   /**
