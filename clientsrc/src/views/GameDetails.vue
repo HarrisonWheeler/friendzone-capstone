@@ -38,10 +38,12 @@
             alt
           />
         </div>
-        <chat-room
-          v-if="joinedChat && profile.games.some(game => game.gameId == activeGame.id)"
-          :gameData="activeGame.id"
-        />
+        <div class="row justify-content-center">
+          <chat-room
+            v-if="joinedChat && profile.games.some(game => game.gameId == activeGame.id)"
+            :gameData="activeGame.id"
+          />
+        </div>
         <div v-if="profile.games.some(game => game.gameId == activeGame.id)">
           <button
             v-if="!joinedChat"
