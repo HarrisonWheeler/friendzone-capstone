@@ -3,6 +3,7 @@ import swal from "sweetalert2"
 export default class SwalService {
 
   static toast(title = "Unfollow") {
+    // @ts-ignore
     swal.fire({
       title: title,
       type: "success",
