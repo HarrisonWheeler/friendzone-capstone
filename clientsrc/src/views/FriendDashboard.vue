@@ -266,6 +266,7 @@ export default {
           id: this.profile._id,
           following: this.$route.params.id,
         });
+        swal.toast("Followed");
       }
     },
     unfollow() {
@@ -273,7 +274,7 @@ export default {
         id: this.profile._id,
         following: this.$route.params.id,
       });
-      swal.toast("unfollowed");
+      swal.toast("Unfollowed");
     },
     setDisplayGamerTag(console) {
       if (this.displayGamerTag == console) {

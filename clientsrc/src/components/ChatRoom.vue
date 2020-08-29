@@ -20,7 +20,7 @@
         <h6 v-else-if="m.profile " class="text-right mr-2" @click="timer = !timer">
           {{m.profile[0].name}}
           <br />
-          <small class="badge badge-pill badge-info text-height p-3">{{m.message}}</small>
+          <small class="badge badge-pill badge-info text-height cursor p-3">{{m.message}}</small>
           <small v-if="timer">{{new Date(m.time).toLocaleString()}}</small>
         </h6>
         <h6 v-else class="text-right bot-height mr-1" @click="timer = !timer">
@@ -139,6 +139,9 @@ export default {
   word-break: break-all;
   display: inline-table;
   white-space: normal;
+}
+.cursor {
+  cursor: pointer;
 }
 @media only screen and (max-width: 768px) {
   .text-height {
