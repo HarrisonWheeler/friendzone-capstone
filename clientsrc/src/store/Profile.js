@@ -12,12 +12,6 @@ export default {
 
   },
   actions: {
-    // async getMyProfile({ commit, dispatch }, email) {
-    //   let res = await api.get("user/" + email.toLowerCase())
-
-    //   console.log(res.data);
-    //   commit("setUser", res.data)
-    // },
     async getOtherProfile({ commit, dispatch }, id) {
       let res = await api.get("user")
       console.log(res.data);

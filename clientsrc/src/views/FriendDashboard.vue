@@ -263,7 +263,6 @@ export default {
     follow() {
       if (this.friendData.following != this.$auth.userInfo.email) {
         this.$store.dispatch("follow", {
-          // rep: this.friendData.rep
           id: this.profile._id,
           following: this.$route.params.id,
         });

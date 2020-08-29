@@ -73,7 +73,6 @@ export default {
       }
     },
     filterResults() {
-      // first uncapitalize all the things
       this.results = this.items.filter((item) => {
         return item.text.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
       });

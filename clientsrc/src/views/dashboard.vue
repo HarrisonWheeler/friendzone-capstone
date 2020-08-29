@@ -192,26 +192,6 @@
         <div class="row overflow width mx-1">
           <FollowedGames v-for="game in profile.games" :key="game.id" :gameData="game" />
         </div>
-        <!-- <div class="row overflow width mx-1">
-          <div
-            class="card col-6 col-md-2 px-0 shadow-lg bg-card-gradient m-1"
-            v-for="game in profile.games"
-            :key="game.name"
-          >
-            <div>
-              <img
-                :src="game.backgroundImg"
-                class="card-img-top img-fluid game-size cursor"
-                alt
-                @click="openDeetz(game.gameId)"
-              />
-            </div>
-            <div class="card-body rounded-bottom bg-gradient p-1">
-              <h4 class="pt-3">{{game.name}}</h4>
-              <p>Followers: {{gameFollowers}}</p>
-            </div>
-          </div>
-        </div>-->
       </div>
       <div class="row card shadow-lg bg-gradient border border-dark ml-md-2 my-3 h-45 p-2">
         <h4 class="text-shadow">

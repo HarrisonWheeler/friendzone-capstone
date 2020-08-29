@@ -82,14 +82,6 @@ export default {
     },
   },
   methods: {
-    // platforms() {
-    //   let platforms = [];
-    //   let gamePlatforms = this.gameData.platforms;
-    //   for (let i = 0; i < gamePlatforms.length; i++) {
-    //     platforms.push(this.gameData.platforms[i].platform.name);
-    //   }
-    //   return platforms.toString();
-    // },
     openDeetz(id) {
       this.$router.push({ name: "GameDetails", params: { id: id } });
     },
@@ -104,9 +96,6 @@ export default {
   box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.616) !important;
 }
 
-/* .bg-secondary-trans {
-  background-color: #e0e0e004 !important;
-} */
 .card {
   border: none;
 }
