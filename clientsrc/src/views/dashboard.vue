@@ -299,7 +299,7 @@ export default {
       return this.$store.state.activeGame;
     },
     follows() {
-      return this.$store.state.profileFollowers;
+      return this.$store.state.profileFollowers || [];
     },
     gameFollowers() {
       return this.$store.state.gameFollowers;

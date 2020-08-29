@@ -58,7 +58,7 @@ export default {
   },
   computed: {
     followedGames() {
-      return this.$store.state.gameFollowers[this.gameData.gameId];
+      return this.$store.state.gameFollowers[this.gameData.gameId] || [];
     },
   },
   methods: {

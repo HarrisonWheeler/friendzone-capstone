@@ -241,7 +241,7 @@ export default {
       return this.$store.state.profile;
     },
     follows() {
-      return this.$store.state.profileFollowers;
+      return this.$store.state.profileFollowers || [];
     },
     followers() {
       return this.$store.state.activeGame;

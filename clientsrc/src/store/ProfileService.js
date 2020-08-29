@@ -21,7 +21,6 @@ class ProfileService {
         const profile = res.data
 
         store.commit('setUser', profile)
-        store.dispatch("authenticateSocket")
         this.listeners.forEach(fn => fn(profile))
         this.listeners = []
         status = "done"

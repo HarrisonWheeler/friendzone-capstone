@@ -14,6 +14,7 @@ export const socketStore = {
 
             socket.on("CONNECTED", data => {
                 console.log(data.message + " Let the villany commence")
+                dispatch("authenticateSocket")
             })
             socket.on("AUTHENTICATED", (user) => { console.log(user) })
             socket.on("roomData", (roomData) => {
