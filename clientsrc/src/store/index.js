@@ -12,13 +12,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    profile: {},
+    profile: { consoles: {}, following: [], voted: [] },
     games: [],
     activeGame: [],
     searchedGames: [],
     gameDetails: {},
     dashboard: {},
-    friendDashboard: {},
+    friendDashboard: { consoles: {}, following: [], voted: [] },
     profileFollowers: 0,
     gameFollowers: {},
     flipped: false,

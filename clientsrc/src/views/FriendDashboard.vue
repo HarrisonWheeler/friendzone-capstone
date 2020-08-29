@@ -96,7 +96,7 @@
               </div>
               <div
                 class="col-1 text-danger cursor hover"
-                :class="friendData.consoles.nintendo == 'nintendo' || !profile.consoles.nintendo ? '' : 'nintendo-shadow'"
+                :class="friendData.consoles.nintendo == 'nintendo' || !friendData.consoles.nintendo ? '' : 'nintendo-shadow'"
               >
                 <div
                   v-if="friendData.consoles.nintendo == 'nintendo' || !friendData.consoles.nintendo"
