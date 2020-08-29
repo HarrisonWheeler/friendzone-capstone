@@ -12,7 +12,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    profile: { consoles: {}, following: [], voted: [] },
+    profile: { games: [], consoles: {}, following: [], voted: [] },
     games: [],
     activeGame: [],
     searchedGames: [],

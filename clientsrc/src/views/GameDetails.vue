@@ -27,6 +27,7 @@
             alt
           />
           <video
+            v-if="activeGame.clip"
             :src="activeGame.clip.clip"
             controls
             width="400"
