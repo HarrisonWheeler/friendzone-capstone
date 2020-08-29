@@ -85,6 +85,7 @@
 import axios from "axios";
 import { api, gameApi } from "../store/AxiosService";
 import Autocomplete from "../components/Autocomplete";
+import swal from "../components/SwalService.js";
 let _api = axios.create({
   baseURL: "https://localhost:3000",
   withCredentials: true,
@@ -105,9 +106,11 @@ export default {
       this.$router.push({ name: "dashboard" });
       console.log("this.$auth.user: ");
       console.log(this.$auth.user);
+      swal.toast("Logged In!");
     },
     async logout() {
       await this.$auth.logout({ returnTo: window.location.origin });
+      swal.toast("Logged Out!");
     },
 
     findProfiles() {

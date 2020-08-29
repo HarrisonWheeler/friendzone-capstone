@@ -74,6 +74,7 @@
 
 <script>
 import chatRoom from "..//components/ChatRoom";
+import swal from "../components/SwalService.js";
 export default {
   name: "game-details",
   data() {
@@ -114,6 +115,7 @@ export default {
         backgroundImg: this.activeGame.background_image,
         followers: +1,
       });
+      swal.toast("Followed");
     },
     unfollowGame(id) {
       this.activeGame.followers -= 1;
@@ -124,6 +126,7 @@ export default {
         backgroundImg: this.activeGame.background_image,
         followers: -1,
       });
+      swal.toast("Unfollowed", "");
     },
   },
   components: {

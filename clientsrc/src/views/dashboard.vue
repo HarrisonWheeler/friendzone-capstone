@@ -269,6 +269,7 @@
 <script>
 import ProfileModal from "../components/ProfileModal";
 import FollowedGames from "../components/FollowedGames";
+import swal from "../components/SwalService.js";
 export default {
   name: "dashboard",
   data() {
@@ -338,6 +339,7 @@ export default {
         firstTimeUser: false,
       };
       this.$store.dispatch("editProfile", payload);
+      swal.toast("Saved Changes!");
     },
     setDisplayGamerTag(console) {
       if (this.displayGamerTag == console) {

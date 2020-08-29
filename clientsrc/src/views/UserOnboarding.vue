@@ -95,7 +95,6 @@
 
 
 <script>
-import vSelect from "vue-select";
 import ProfileModal from "../components/ProfileModal";
 export default {
   name: "dashboard",

@@ -221,6 +221,7 @@
 <script>
 import FollowedGames from "../components/FollowedGames";
 import ProfileModal from "../components/ProfileModal";
+import swal from "../components/SwalService.js";
 export default {
   name: "friendDashboard",
   data() {
@@ -273,6 +274,7 @@ export default {
         id: this.profile._id,
         following: this.$route.params.id,
       });
+      swal.toast("unfollowed");
     },
     setDisplayGamerTag(console) {
       if (this.displayGamerTag == console) {
