@@ -27,7 +27,6 @@ export const socketStore = {
                 store.commit("setMessages", messages)
             })
             socket.on("new-user", user => {
-                debugger
                 let messages = [...store.state.messages, user]
                 store.commit("setMessages", messages)
             })

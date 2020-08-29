@@ -55,7 +55,6 @@ export default new Router({
         async function isNew() {
           if (!store.state.profile.id) {
             return await profileService.getProfile((profile) => {
-              debugger
               if (profile.firstTimeUser) {
                 return next("/onBoarding")
               }
