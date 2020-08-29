@@ -34,11 +34,7 @@
             aria-placeholder="Please Provide Profile image Url"
             alt
           />
-          <img
-            v-if="!profile.picture"
-            class="mb-4 rounded-circle"
-            src="https://lh3.googleusercontent.com/proxy/Q1lEAHblBW7fiO3AUQuhsni_J3_dkQGwmfyjUI8DgkNodX3DAfSRlyZtS1XKKP18xSv_v_To8zKQtwwDve9_j2wGBCECYZL0bg_WgPJRmB2QWVrSa8R7YjYLOApbj3prPtPXUoLnproe"
-          />
+          <img v-if="!profile.picture" class="mb-4 rounded-circle" src />
 
           <input
             v-if="editContent"

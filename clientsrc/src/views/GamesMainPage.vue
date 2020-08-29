@@ -1,7 +1,7 @@
 <template>
   <div class="gamesMainPage row justify-content-center mt-4">
     <div class="col-10">
-      <form class="text-center my-2 ml-2 ml-md-0" @submit="findGames">
+      <form class="text-center my-2 ml-2 ml-md-0" @submit.prevent="findGames">
         <div class="input-group mb-3 shadow-lg">
           <div class="input-group-prepend">
             <button class="btn btn-primary" type="button" id="button-addon2">SEARCH</button>
