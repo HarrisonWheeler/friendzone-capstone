@@ -147,7 +147,7 @@ export default {
       $("#id").modal("hide");
     },
   },
-  components: { ProfileModal, vSelect },
+  components: { ProfileModal },
 };
 </script>
 

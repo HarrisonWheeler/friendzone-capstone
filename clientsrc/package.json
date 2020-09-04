@@ -12,6 +12,7 @@
     "bootstrap": "^4.4.1",
     "sass": "^1.25.0",
     "sass-loader": "^8.0.2",
+    "sweetalert2": "^9.17.2",
     "vue": "^2.5.17",
     "vue-flip": "^1.0.2",
     "vue-flipper": "^1.0.0",
