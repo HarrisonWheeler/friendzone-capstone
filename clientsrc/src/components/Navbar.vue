@@ -106,6 +106,7 @@ export default {
       this.$router.push({ name: "dashboard" });
       console.log("this.$auth.user: ");
       console.log(this.$auth.user);
+      this.$store.dispatch("initializeSocket");
       swal.toast("Logged In!");
     },
     async logout() {
