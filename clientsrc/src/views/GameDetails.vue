@@ -5,7 +5,9 @@
         <h3>{{activeGame.name}}</h3>
         <hr />
         <p class="mb-2">{{activeGame.description_raw}}</p>
-        <h6 class>{{activeGame.genres[0].name}}/{{activeGame.genres[1].name}}</h6>
+        <h6
+          class
+        >{{activeGame.genres[0] ? activeGame.genres[0].name: ''}}{{activeGame.genres[1] ? activeGame.genres[1].name: ''}}</h6>
         <h6
           :class="activeGame.rating >= 4 ? 'text-success' : 'text-danger'"
         >Rating: {{Math.floor(activeGame.rating)}}/5</h6>
