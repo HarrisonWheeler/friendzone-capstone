@@ -82,14 +82,10 @@
 </template>
 
 <script>
-import axios from "axios";
-import { api, gameApi } from "../store/AxiosService";
+import { api } from "../store/AxiosService";
 import Autocomplete from "../components/Autocomplete";
 import swal from "../components/SwalService.js";
-let _api = axios.create({
-  baseURL: "https://localhost:3000",
-  withCredentials: true,
-});
+
 export default {
   name: "Navbar",
   data() {
@@ -149,11 +145,10 @@ export default {
       });
     },
     async findGames(query) {
-      let newQuery = query.toLowerCase().replace(/ /g, "-");
-      let res = await gameApi.get("games?search=" + newQuery);
+      let game = await this.$store.dispatch('getSearchedGames', query)
       this.profiles = [
         ...this.profiles,
-        ...res.data.results.map((u) => {
+        ...game.data.results.map((u) => {
           return {
             text: u.name,
             html: `<div class="d-flex align-items-center">

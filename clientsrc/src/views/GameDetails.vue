@@ -1,7 +1,7 @@
 <template>
   <div class="game-details justify-content-center row">
     <div class="col-11 card text-light m-3 shadow-lg px-0">
-      <div class="card-body bg-gradient p-3">
+      <div class="card-body bg-gradient p-3" v-if="activeGame">
         <h3>{{activeGame.name}}</h3>
         <hr />
         <p class="mb-2">{{activeGame.description_raw}}</p>
