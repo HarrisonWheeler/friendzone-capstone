@@ -14,7 +14,7 @@ export default new Vuex.Store({
   state: {
     profile: { games: [], consoles: {}, following: [], voted: [] },
     games: [],
-    activeGame: [],
+    activeGame: null,
     searchedGames: [],
     gameDetails: {},
     dashboard: {},

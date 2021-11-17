@@ -1,26 +1,33 @@
 <template>
-  <div class="game-details justify-content-center row">
+  <div class="game-details justify-content-center row" v-if="activeGame">
     <div class="col-11 card text-light m-3 shadow-lg px-0">
-      <div class="card-body bg-gradient p-3" v-if="activeGame">
-        <h3>{{activeGame.name}}</h3>
+      <div class="card-body bg-gradient p-3">
+        <h3>{{ activeGame.name }}</h3>
         <hr />
-        <p class="mb-2">{{activeGame.description_raw}}</p>
-        <h6
-          class
-        >{{activeGame.genres[0] ? activeGame.genres[0].name: ''}}{{activeGame.genres[1] ? activeGame.genres[1].name: ''}}</h6>
-        <h6
-          :class="activeGame.rating >= 4 ? 'text-success' : 'text-danger'"
-        >Rating: {{Math.floor(activeGame.rating)}}/5</h6>
-        <p class="text-warning mb-0">Metacritic Score: {{activeGame.metacritic}}</p>
+        <p
+          class="mb-2 text-left cursor"
+          :class="{ 'game-description': hiddenText }"
+          @click="hiddenText = !hiddenText"
+        >
+          {{ activeGame.description_raw }}
+        </p>
+        <h6 :class="activeGame.rating >= 4 ? 'text-success' : 'text-danger'">
+          Rating: {{ Math.floor(activeGame.rating) }}/5
+        </h6>
+        <p class="text-warning mb-0">
+          Metacritic Score: {{ activeGame.metacritic }}
+        </p>
         <p @click="platformVisible = !platformVisible" class="cursor">
           <u>Available Platforms</u>
         </p>
         <p v-if="platformVisible">
           <span
-            v-for="(data,index) in activeGame.platforms"
+            v-for="(data, index) in activeGame.platforms"
             :key="data.platform.name"
             class
-          >{{data.platform.name}}{{index < activeGame.platforms.length -1 ? ", " : ""}}</span>
+            >{{ data.platform.name
+            }}{{ index < activeGame.platforms.length - 1 ? ", " : "" }}</span
+          >
         </p>
         <div class="row mx-1 justify-content-center">
           <img
@@ -43,32 +50,69 @@
         </div>
         <div class="row justify-content-center">
           <chat-room
-            v-if="joinedChat && profile.games.some(game => game.gameId == activeGame.id)"
+            v-if="
+              joinedChat &&
+              profile.games.some((game) => game.gameId == activeGame.id)
+            "
             :gameData="activeGame.id"
           />
         </div>
-        <div v-if="profile.games.some(game => game.gameId == activeGame.id)">
-          <button
-            v-if="!joinedChat"
-            class="border border-success btn btn-rounded btn-outline-success btn-block mt-3 py-1"
-            @click="joinChat"
-          >JOIN CHAT</button>
-          <button
-            v-else
-            class="border border-warning btn btn-rounded btn-outline-warning btn-block mt-3 py-1"
-            @click="joinedChat = !joinedChat"
-          >HIDE CHAT</button>
+        <div class="row justify-content-center">
+          <div
+            v-if="profile.games.some((game) => game.gameId == activeGame.id)"
+          >
+            <button
+              v-if="!joinedChat"
+              class="
+                border border-success
+                btn btn-rounded btn-outline-success
+                mt-3
+                py-1
+              "
+              @click="joinChat"
+            >
+              JOIN CHAT
+            </button>
+            <button
+              v-else
+              class="
+                border border-warning
+                btn btn-rounded btn-outline-warning
+                mt-3
+                py-1
+              "
+              @click="joinedChat = !joinedChat"
+            >
+              HIDE CHAT
+            </button>
+          </div>
+          <div v-if="profile.id">
+            <button
+              v-if="!profile.games.some((game) => game.gameId == activeGame.id)"
+              class="
+                border border-info
+                btn btn-rounded btn-outline-info
+                mt-3
+                py-1
+              "
+              @click="followGame(activeGame.id)"
+            >
+              +Follow Game
+            </button>
+            <button
+              v-else
+              class="
+                border border-danger
+                btn btn-rounded btn-outline-danger
+                mt-3
+                py-1
+              "
+              @click="unfollowGame(activeGame.id)"
+            >
+              Unfollow Game
+            </button>
+          </div>
         </div>
-        <button
-          v-if="!profile.games.some(game => game.gameId == activeGame.id)"
-          class="border border-info btn btn-rounded btn-outline-info btn-block mt-3 py-1"
-          @click="followGame(activeGame.id)"
-        >+Follow Game</button>
-        <button
-          v-else
-          class="border border-danger btn btn-rounded btn-outline-danger btn-block mt-1 py-1"
-          @click="unfollowGame(activeGame.id)"
-        >Unfollow Game</button>
       </div>
     </div>
   </div>
@@ -84,6 +128,7 @@ export default {
     return {
       platformVisible: false,
       joinedChat: false,
+      hiddenText: true,
     };
   },
   mounted() {
@@ -131,6 +176,9 @@ export default {
       });
       swal.toast("Unfollowed", "");
     },
+    revealText() {
+      hiddenText = !hiddenText;
+    },
   },
   components: {
     chatRoom,
@@ -140,9 +188,28 @@ export default {
 
 
 <style scoped>
+.game-description {
+  height: 18px;
+  width: 75%;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  margin: 0 5px 0 5px;
+  text-align: center;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .shadow-lg {
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.616) !important;
 }
+
+button {
+  margin: 1em;
+}
+
 .cursor {
   cursor: pointer;
 }
